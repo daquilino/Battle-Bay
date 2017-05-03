@@ -33,14 +33,15 @@ APP.engine("handlebars", EXPHBS({ defaultLayout: "main" }));
 APP.set("view engine", "handlebars");
 
 // Routes =============================================================
-require("./routes/html-routes.js")(APP);
-require("./routes/player-api-routes.js")(APP);
-require("./routes/player-products-api-routes.js")(APP);
-require("./routes/warehouse-api-routes.js")(APP);
-require("./routes/warehouse-products-api-routes.js")(APP);
-require("./routes/bidders-api-routes.js")(APP);
+require("./controllers/html-routes.js")(APP);
+require("./controllers/player-api-routes.js")(APP);
+require("./controllers/player-products-api-routes.js")(APP);
+require("./controllers/warehouse-api-routes.js")(APP);
+require("./controllers/warehouse-products-api-routes.js")(APP);
+require("./controllers/bidders-api-routes.js")(APP);
 
-DB.sequelize.sync({ force: true }).then(function()  //**** REMOVE *** {force:true}. USE FOR TESTING.
+DB.sequelize.sync({ force: true }).then(function()  //**** REMOVE {force:true} *** . USE ONLY FOR TESTING.
 {
 	APP.listen(PORT, () => console.log("listening on port:", PORT));
-});	
+});
+
