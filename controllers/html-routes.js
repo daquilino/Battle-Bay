@@ -24,7 +24,16 @@ module.exports = function(app)
 
   // EXAMPLE for landing page (test.html using handlebars)
   app.get("/", function(req, res) {
-   res.render("test");
+   res.render("landing");
   });
+
+  app.get("/2", function(req, res) {
+   res.render("page2");
+  });
+
+  app.get("/3", function(req, res) {
+   res.render("page3");
+  });
+
 
 };
