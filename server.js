@@ -25,7 +25,7 @@ APP.use(BODY_PARSER.urlencoded({ extended: false }));
 APP.use(BODY_PARSER.text());
 APP.use(BODY_PARSER.json({ type: "application/vnd.api+json" }));
 
-// Override with POST having ?_method=DELETE
+// Override with POST having ?_method=...
 APP.use(METHOD_OVERIDE("_method"));
 
 // Set Handlebars.
@@ -34,11 +34,16 @@ APP.set("view engine", "handlebars");
 
 // Routes =============================================================
 require("./controllers/html-routes.js")(APP);
-require("./controllers/player-api-routes.js")(APP);
-require("./controllers/player-products-api-routes.js")(APP);
-require("./controllers/warehouse-api-routes.js")(APP);
-require("./controllers/warehouse-products-api-routes.js")(APP);
-require("./controllers/bidders-api-routes.js")(APP);
+require("./controllers/for-sale-api-routes.js")(APP);
+require("./controllers/all-users-api-routes.js")(APP);
+require("./controllers/user-inventory-api-routes.js")(APP);
+require("./controllers/warehouse-items-api-routes.js")(APP);
+
+// These are routes for optional models. If not going to use *REMOVE*. 
+//
+//   require("./controllers/bidders-api-routes.js")(APP);
+//   require("./controllers/warehouse-api-routes.js")(APP);
+
 
 DB.sequelize.sync({ force: true }).then(function()  //**** REMOVE {force:true} *** . USE ONLY FOR TESTING.
 {
