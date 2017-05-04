@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes)
 {
   var warehouseItems = sequelize.define("warehouseItems",
   {  
-    item_name: 
+    item-name: 
     {
       type: DataTypes.STRING,
       allowNull: false, 
@@ -10,11 +10,8 @@ module.exports = function(sequelize, DataTypes)
       {
         notEmpty: true
       }      
-    }
-  }
-    ,  
+    },  
       
-  {
     category:
     {
       type: DataTypes.STRING,
@@ -23,11 +20,9 @@ module.exports = function(sequelize, DataTypes)
       {
         notEmpty: true
       }      
-    }
-  }
-    ,
-  {
-    units_sold:
+    },
+    
+    units-sold:
     {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -36,10 +31,8 @@ module.exports = function(sequelize, DataTypes)
       {
         isInt: true
       }      
-    }
-  }
-    ,
-  {
+    },
+  
     price:
     {
       type: DataTypes.INTEGER,
@@ -49,11 +42,9 @@ module.exports = function(sequelize, DataTypes)
       {
         isInt: true
       }      
-    }
-  }
-    ,
-  {
-    warehouse_name:
+    },
+  
+    warehouse-name:
     {
       type: DataTypes.STRING,
       allowNull: false, 
@@ -61,10 +52,14 @@ module.exports = function(sequelize, DataTypes)
       {
         notEmpty: true       
       }      
-    }
-  }
-         
-  });//END warehouseItems
+    }         
+  
+  },
+
+  {
+    freezeTableName: true  
+  });
+  
   return warehouseItems;
 };
 
