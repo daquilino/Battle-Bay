@@ -1,0 +1,158 @@
+<style>
+	#barba-wrapper {
+		margin: 0 auto;
+	}
+	.navbar {
+		background-color: red;
+	}
+	.game-intro {
+		background-color: green;
+	}
+	#advertisement {
+		width: 100%;
+	}
+</style>
+
+<body>	   
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+  	<div class="row">
+			<div class="col-xs-12">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      {{!-- <a class="navbar-brand" href="#">Brand</a> --}}
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav navbar-right">
+		        <li class="active">
+		          <a href="/">Home <span class="sr-only">(current)</span></a>
+		        </li>
+		        <li>
+		          <a href="2">Page2</a>
+		        </li>
+		        <li>
+		          <a href="3">Page3</a>
+		        </li>
+		      </ul>
+{{!-- 		<form class="navbar-form navbar-left">
+		        <div class="form-group">
+		          <input type="text" class="form-control" placeholder="Search">
+		        </div>
+		        <button type="submit" class="btn btn-default">Submit</button>
+		      </form> --}}
+		      {{!-- <ul class="nav navbar-nav navbar-right">
+		        <li>
+		          <a href="#">Link</a>
+		        </li>
+		      </ul> --}}
+		    </div><!-- /.navbar-collapse -->
+		  </div> {{!-- col-xs-12 --}}
+		</div> {{!-- row --}}
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+	<main id="barba-wrapper">
+	  <div class="barba-container">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-8">
+						<h1>Hello One</h1>
+							<p  class="game-intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							<p class="game-intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					</div>
+					
+					<div class="col-xs-4">
+						<img src="https://media.giphy.com/media/8HhbENQPdWUoM/giphy.gif" id="advertisement">
+					</div>
+				</div> {{!-- row --}}
+			</div> {{!-- container-fluid --}}
+
+		
+
+
+
+
+	 	</div>
+	</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/1.0.0/barba.js" type="text/javascript"></script>
+<script type="text/javascript">
+console.log("hello");
+var FadeTransition = Barba.BaseTransition.extend({
+  start: function() {
+    /**
+     * This function is automatically called as soon the Transition starts
+     * this.newContainerLoading is a Promise for the loading of the new container
+     * (Barba.js also comes with an handy Promise polyfill!)
+     */
+     console.log("start");
+    // As soon the loading is finished and the old page is faded out, let's fade the new page
+    Promise
+      .all([this.newContainerLoading, this.fadeOut()])
+      .then(this.fadeIn.bind(this));
+  },
+  fadeOut: function() {
+  	console.log("fade out");
+  	console.log($(this.oldContainer));
+    /**
+     * this.oldContainer is the HTMLElement of the old Container
+     */
+    return $(this.oldContainer).css("position", "relative").animate({ opacity: 0, left: "-100%" }).promise();
+  },
+  fadeIn: function() {
+  	console.log("fade in");
+    /**
+     * this.newContainer is the HTMLElement of the new Container
+     * At this stage newContainer is on the DOM (inside our #barba-container and with visibility: hidden)
+     * Please note, newContainer is available just after newContainerLoading is resolved!
+     */
+    var _this = this;
+    var $el = $(this.newContainer);
+    $(this.oldContainer).hide();
+    $el.css({
+      visibility : 'visible',
+      opacity : 0
+    });
+    $el.animate({ opacity: 1 }, 400, function() {
+      /**
+       * Do not forget to call .done() as soon your transition is finished!
+       * .done() will automatically remove from the DOM the old Container
+       */
+      _this.done();
+    });
+  }
+});
+/**
+ * Next step, you have to tell Barba to use the new Transition
+ */
+Barba.Pjax.getTransition = function() {
+	console.log("get transition");
+  /**
+   * Here you can use your own logic!
+   * For example you can use different Transition based on the current page or link...
+   */
+  return FadeTransition;
+};
+Barba.Pjax.start();
+</script>
+</body>
+</html>
