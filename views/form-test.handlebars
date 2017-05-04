@@ -1,0 +1,207 @@
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+		<h1>Sign in/up Page Forms</h1>
+		
+		<br>
+		
+			<h3>Sign up</h3>
+			<form>
+			<input type="text" name="signUpName">name
+			<br>
+			<input type="password" name="signUpPassword">Pass
+			<br>
+			<input type="password" name="signUpPasswordConfirm">Confirm Pass
+			</form>
+			<button id="signUpSubmit">Sign Up Submit</button>
+		
+		<br>
+		
+			<h3>Sign In</h3>
+			<form>
+			<input type="text" name="signInName">Name
+			<br>
+			<input type="password" name="signInPassword">Pass
+			</form>
+			<button id="signInSubmit">Sign In Submit</button>
+		
+		<br>
+		<br>
+		<br>
+		<hr>
+		
+		<h1>User Homepage Forms</h1>
+		
+		<br>
+		
+			<h3>API Calls</h3>
+			<div id="playerAccountInfo">
+				<h4>Player Account Info Goes Here</h4>
+				<ul>
+					<li>Money</li>
+					<li>Inventory</li>
+					<li>Number of items for sale</li>
+				</ul>
+			</div>
+			<button id="getPlayerAccountInfo">Get Player Account Info</button>
+		
+		<br>
+		
+			<div id="playerListings">
+				<h4>Player item listings go here</h4>
+				<ul>
+					<li>Item one:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+					<li>Item two:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+					<li>Item three:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+					<li>Item four:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+					<li>Item five:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+					<li>Item six:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+				</ul>	
+			</div>
+			<button id="getPlayerListings">Get Player Listings</button>
+		
+		<br>
+		
+			<div id="playersItemsSold">
+				<h4>Players sold items go here</h4>
+				<ul>
+					<li>Item one:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
+					<li>Item two:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
+					<li>Item three:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
+					<li>Item four:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
+				</ul>
+			</div>
+			<button id="getPlayersItemsSold">Get Players Items Sold</button>
+		
+		<br>
+		<br>
+		<br>
+		<hr>
+		
+		<h1>Warehouse Page Forms</h1>
+		
+		<br>
+		
+			<h3>API Calls</h3>
+			<div id="warehousePrices">
+				<h4>Warehouse prices go here</h4>
+				<ul>
+					<li>Warehouse 1: Current Price Per Unit</li>
+					<li>Warehouse 2: Current Price Per Unit</li>
+					<li>Warehouse 3: Current Price Per Unit</li>
+				</ul>
+			</div>
+			<button id="getWarehousePrices">Get Warehouse Prices</button>
+		
+		<br>
+		
+			<div id="playerAccountInfo">
+				<h4>Player Account Info Goes Here</h4>
+				<ul>
+					<li>Money</li>
+					<li>Inventory</li>
+					<li>Number of items for sale</li>
+				</ul>
+			</div>
+			<button id="getPlayerAccountInfo">Get Player Account Info</button>
+		
+		<br>
+		
+			<h3>Buying Form</h3>
+			<form action="">
+				<input type="radio" name="warehouse" value="fashion"> Fashion
+				<br>
+				<input type="radio" name="warehouse" value="electronics"> Electronics
+				<br>
+				<input type="radio" name="warehouse" value="collectables"> Collectables
+				<br>
+				<input type="number" name="amount">number of units
+			</form>
+			<button id="placeOrder">Place Order</button>
+		
+		<br>
+		<br>
+		<br>
+		<hr>
+
+		<h1>Item Listings Page</h1>
+
+		<br>
+
+			<h3>API Calls</h3>
+			<div id="allItemListings">
+				<h4>Item Listings Go Here</h4>
+				<ul>
+					<li>Item one:--NAME--NUMBER OF BIDS--PRICE--</li>
+					<li>Item two:--NAME--NUMBER OF BIDS--PRICE--</li>
+					<li>Item three:--NAME--NUMBER OF BIDS--PRICE--</li>
+					<li>Item four:--NAME--NUMBER OF BIDS--PRICE--</li>
+				</ul>				
+			</div>
+			<h5>Sorting Options</h5>
+			<form>
+				<input type="radio" name="priceSort" value="DESC">Price DESC
+				<br>
+				<input type="radio" name="priceSort" value="ASC">Price ASC
+				<br>
+				<input type="radio" name="timeSort" value="DESC">Time DESC
+				<br>
+				<input type="radio" name="timeSort" value="ASC">Time ASC
+				<br>
+				<input type="radio" name="methodSort" value="auction">Auction
+				<br>
+				<input type="radio" name="methodSort" value="buyNow">Buy Now
+				<br>
+				<input type="radio" name="methodSort" value="all">All
+			</form>
+			<button id="getItemListings">Get Item Listings</button>
+		
+		<br>
+		<br>
+		<br>
+		<hr>
+
+		<h1>Create A Listing</h1>
+
+		<br>
+		
+			<h3>API Calls</h3>
+			<div id="playerAccountInfo">
+				<h4>Player Account Info Goes Here</h4>
+				<ul>
+					<li>Money</li>
+					<li>Inventory</li>
+					<li>Number of items for sale</li>
+				</ul>
+			</div>
+			<button id="getPlayerAccountInfo">Get Player Account Info</button>
+		
+		<br>
+			
+			<h3>Sell an Item Form</h3>
+			<form action="">
+				<input type="radio" name="itemType" value="fashion"> Fashion
+				<br>
+				<input type="radio" name="itemType" value="electronics"> Electronics
+				<br>
+				<input type="radio" name="itemType" value="collectables"> Collectables
+				<br>
+				<input type="number" name="amount">number of units
+				<br>
+				<input type="radio" name="method" value="buyNow">Buy Now
+				<br>
+				<input type="radio" name="method" value="auction">Auction
+				<br>
+				<input type="number" name="price">Price
+				<br>
+				<input type="radio" name="time" value="15">15 Min
+				<br>
+				<input type="radio" name="time" value="30">30 Min
+				<br>
+				<input type="radio" name="time" value="60">60 Min
+			</form>
+			<button id="makeListing">Make A Listing</button>
+		<br>
+		<br>
+		<br>
+	</div>
+</div>
