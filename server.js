@@ -25,7 +25,7 @@ APP.use(BODY_PARSER.urlencoded({ extended: false }));
 APP.use(BODY_PARSER.text());
 APP.use(BODY_PARSER.json({ type: "application/vnd.api+json" }));
 
-// Override with POST having ?_method=DELETE
+// Override with POST having ?_method=...
 APP.use(METHOD_OVERIDE("_method"));
 
 // Set Handlebars.
