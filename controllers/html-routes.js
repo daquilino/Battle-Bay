@@ -27,8 +27,12 @@ module.exports = function(app)
    res.render("form-test");
   });
 
-  app.get("/2", function(req, res) {
-   res.render("page2");
+  app.get("/landing", function(req, res) {
+   res.render("landing");
+  });
+
+  app.get("/user-homepage", function(req, res) {
+   res.render("user-homepage");
   });
 
   app.get("/3", function(req, res) {
