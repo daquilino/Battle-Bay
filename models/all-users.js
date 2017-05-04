@@ -71,7 +71,7 @@ module.exports = function(sequelize, DataTypes)
 				});
 			}
 		},
-		freezeTableName: true;
+		freezeTableName: true
 	});
 
 	return allUsers;
