@@ -64,11 +64,12 @@ module.exports = function(sequelize, DataTypes)
 					onDelete: "cascade"
 				});
 
-				//when a user is deleted, all their inventory are deleted as well
-				allUsers.hasMany(models.usersInventory, 
-				{
-					onDelete: "cascade"
-				});
+				//**** Uncomment this section once all the models have been defined in the remote repo ****/
+				// //when a user is deleted, all their inventory are deleted as well
+				// allUsers.hasMany(models.usersInventory, 
+				// {
+				// 	onDelete: "cascade"
+				// });
 			}
 		},
 		freezeTableName: true
