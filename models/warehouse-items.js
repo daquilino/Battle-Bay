@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes)
 {
   var warehouseItems = sequelize.define("warehouseItems",
   {  
-    item-name: 
+    item_name: 
     {
       type: DataTypes.STRING,
       allowNull: false, 
@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes)
       }      
     },
     
-    units-sold:
+    units_sold:
     {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -44,7 +44,7 @@ module.exports = function(sequelize, DataTypes)
       }      
     },
   
-    warehouse-name:
+    warehouse_name:
     {
       type: DataTypes.STRING,
       allowNull: false, 
