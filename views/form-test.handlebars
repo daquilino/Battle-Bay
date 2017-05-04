@@ -138,13 +138,23 @@
 				</ul>				
 			</div>
 			<h5>Sorting Options</h5>
-			<button id="getAllItemListingsByPriceDESC">Price DESC</button>
-			<button id="getAllItemListingsByPriceASC">Price ASC</button>
-			<button id="getAllItemListingsByTimeLeftDESC">Time DESC</button>
-			<button id="getAllItemListingsByTimeLeftASC">Time ASC</button>
-			<button id="getAllItemListingsByTypeAuction">Auctions</button>
-			<button id="getAllItemListingsByTypeBuyNow">Buy Now</button>
-
+			<form>
+				<input type="radio" name="priceSort" value="DESC">Price DESC
+				<br>
+				<input type="radio" name="priceSort" value="ASC">Price ASC
+				<br>
+				<input type="radio" name="timeSort" value="DESC">Time DESC
+				<br>
+				<input type="radio" name="timeSort" value="ASC">Time ASC
+				<br>
+				<input type="radio" name="methodSort" value="auction">Auction
+				<br>
+				<input type="radio" name="methodSort" value="buyNow">Buy Now
+				<br>
+				<input type="radio" name="methodSort" value="all">All
+			</form>
+			<button id="getItemListings">Get Item Listings</button>
+		
 		<br>
 		<br>
 		<br>
@@ -189,6 +199,7 @@
 				<br>
 				<input type="radio" name="time" value="60">60 Min
 			</form>
+			<button id="makeListing">Make A Listing</button>
 		<br>
 		<br>
 		<br>
