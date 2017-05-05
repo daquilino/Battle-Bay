@@ -35,8 +35,12 @@ module.exports = function(app)
    res.render("user-homepage");
   });
 
-  app.get("/3", function(req, res) {
-   res.render("page3");
+  app.get("/all-listings", function(req, res) {
+   res.render("all-listings");
+  });
+
+  app.get("/warehouse", function(req, res) {
+   res.render("warehouse");
   });
 
 
