@@ -1,21 +1,42 @@
 module.exports = function(sequelize, DataTypes){
 
 var usersInventory = sequelize.define("usersInventory", {
+  
   item_name: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      is: ["^[a-z]+$",'i']
-    },
+      is: ["^[a-z]+$",'i'],
+      notEmpty: true
+    }
   },
   quantity: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  }
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      isInt: true,
+      min: 1
+    }
+  },
 
-  freezeTableName: true,
+ {
+      
+      classMethods: {
+        associate: function(models) {
+          
+          usersInventory.belongsTo(models.allUsers, {
+            foreignKey: {
+              allowNull: false
+            }
+          });
+        }
+      }
+    },
+
+
+  freezeTableName: true
 
   });
 return usersInventory;
 
-}
+};
