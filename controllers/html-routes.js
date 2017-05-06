@@ -24,31 +24,31 @@ module.exports = function(app)
 
   // EXAMPLE for landing page (test.html using handlebars)
   app.get("/", function(req, res) {
-   res.render("form-test");
+   res.sendFile(PATH.join(__dirname, "../public/form-test.html"));
   });
 
   app.get("/landing", function(req, res) {
-   res.render("landing");
-  });
-
-  app.get("/sign-up", function(req, res) {
-   res.render("sign-up");
+    res.sendFile(PATH.join(__dirname, "../public/landing.html"));
   });
 
   app.get("/sign-in", function(req, res) {
-   res.render("sign-in");
+    res.sendFile(PATH.join(__dirname, "../public/sign-in.html"));
+  });
+
+  app.get("/sign-up", function(req, res) {
+    res.sendFile(PATH.join(__dirname, "../public/sign-up.html"));
   });
 
   app.get("/user-homepage", function(req, res) {
-   res.render("user-homepage");
+    res.sendFile(PATH.join(__dirname, "../public/user-homepage.html"));
   });
 
   app.get("/all-listings", function(req, res) {
-   res.render("all-listings");
+    res.sendFile(PATH.join(__dirname, "../public/all-listings.html"));
   });
 
   app.get("/warehouse", function(req, res) {
-   res.render("warehouse");
+    res.sendFile(PATH.join(__dirname, "../public/warehouse.html"));
   });
 
 

@@ -9,6 +9,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/css/side-nav-bar.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 	<!-- jQuery -->
@@ -22,9 +23,14 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
+<!-- <style>
+	.navbar.navbar-default.navbar-fixed-side {
+	  text-align: center;
+	}
+</style>
+ -->
 <body>
-
-<!--  NAV  -->
+<!--  Top-NAV  -->
 	<nav class="navbar navbar-default" id="main-nav-bar">
 	  <div class="container-fluid">
 	  	<div class="row">
@@ -80,121 +86,74 @@
 	</nav>
 <!--  End of Nav  -->
 
-
 <!--  Main Barba Wrappers  -->
+
 	<main id="barba-wrapper">
   	<div class="barba-container">
-    
-			<!--  Game Intro  -->
+
+			<!-- <style>
+				#main-nav-bar {
+				  display: none;
+				}
+				.navbar.navbar-default.navbar-fixed-side {
+				  text-align: center;
+				}
+			</style> -->
+
 			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-8">
-						<h1>Welcome to Battle Bay!</h1>
-							<p  class="game-intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<p class="game-intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					</div>
-					
-					<!--  Fake Advertisement  -->
-					<div class="col-xs-4">
-						<img src="https://media.giphy.com/media/8HhbENQPdWUoM/giphy.gif" class="advertisement">
-					</div>
-				</div> <!--  row  -->
-			</div> <!--  container-fluid  -->
+			  <div class="row">
+			    <div class="col-xs-3">
+			      <nav class="navbar navbar-default navbar-fixed-side">
+			      <br>
+			        <div class="navbar-header">
+			          <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+			            <span class="sr-only">Toggle navigation</span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			          </button>
+			            <img src="../assets/images/fashion-logo.png" id="user-pic">
+			          	<!-- <a class="navbar-brand" href="./">BS3 Side Navbar</a> -->
+			        </div>
+			        <br>
+			        <div class="collapse navbar-collapse">
+			          <ul class="nav navbar-nav">
+			            <li class="active">
+			              <a href="/">Form-test <span class="sr-only">(current)</span></a>
+			            </li>
+			            <li>
+			              <a href="/landing">Home</a>
+			            </li>
+			            <li>
+			              <a href="/user-homepage" id="user-homepage-link">User Homepage</a>
+			            </li>
+			            <li>
+			              <a href="/all-listings">Your Listings</a>
+			            </li>
+			            <li>
+			              <a href="/warehouse">Warehouse</a>
+			            </li>
+			          </ul>
+			        </div>
+			      </nav>
+			    </div>
 
-			<br>
-
-			<!--  First set of rules  -->
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-5">
-						<img src="https://media.giphy.com/media/8HhbENQPdWUoM/giphy.gif" class="advertisement">
-					</div>
-
-					<div class="col-xs-7">
-						<h1>Create user and a store instructions</h1>
-							<ul>
-							  <li>First item</li>
-							  <li>Second item</li>
-							  <li>Third item</li>
-							  <li>First item</li>
-							  <li>Second item</li>
-							  <li>Third item</li>
-							</ul>
-					</div>
-				</div>
+			    <div class="col-xs-9">
+			     <h1>User Data</h1>
+			        <p>proident, sunt in culpa qui officia deserunt mollit anim isdf</p>
+			        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </p>
+			        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </p>
+			        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </p>
+			        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </p>
+			        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </p>
+			    </div>
+			  </div>
 			</div>
-
-			<br>
-
-			<!--  Second set of rules  -->
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-7">
-						<h1>Buy items and sell them for profit!</h1>
-							<ul>
-							  <li>First item</li>
-							  <li>Second item</li>
-							  <li>Third item</li>
-							  <li>First item</li>
-							  <li>Second item</li>
-							  <li>Third item</li>
-							</ul>
-					</div>
-
-					<div class="col-xs-5">
-						<img src="https://media.giphy.com/media/8HhbENQPdWUoM/giphy.gif" class="advertisement">
-					</div>
-				</div>
-			</div>
-
-			<br>
-
-			<!--  Third set of rules  -->
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-5">
-						<img src="https://media.giphy.com/media/8HhbENQPdWUoM/giphy.gif" class="advertisement">
-					</div>
-
-					<div class="col-xs-7">
-						<h1>After customers purchase your items, buy more items to sell!</h1>
-							<ul>
-							  <li>First item</li>
-							  <li>Second item</li>
-							  <li>Third item</li>
-							  <li>First item</li>
-							  <li>Second item</li>
-							  <li>Third item</li>
-							</ul>
-					</div>
-				</div>
-			</div>
-
-			<br>
-
-			<!--  Sign up link  -->
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-12">
-						<a href="/sign-up" id="landing-signup"><h1>SIGN UP AND PLAY NOW!</h1></a>
-					</div>
-				</div>
-			</div>
-
 
 	 	</div>
 	</main>
 <!--  End of Main and Barba Wrappers  -->
+
 
 <!--  Footer  -->
 <footer class="footer">

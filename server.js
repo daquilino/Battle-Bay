@@ -7,7 +7,8 @@
 const EXPRESS = require('express');
 const BODY_PARSER = require('body-parser');
 const METHOD_OVERIDE = require('method-override');  
-const EXPHBS = require("express-handlebars");
+const COOKIE_PARSER = require("cookie-parser");
+// const EXPHBS = require("express-handlebars");
 
 // Sets up the Express App
 const PORT = process.env.PORT || 3000;
@@ -25,12 +26,15 @@ APP.use(BODY_PARSER.urlencoded({ extended: false }));
 APP.use(BODY_PARSER.text());
 APP.use(BODY_PARSER.json({ type: "application/vnd.api+json" }));
 
+//Set up cookie parser
+APP.use(COOKIE_PARSER());
+
 // Override with POST having ?_method=...
 APP.use(METHOD_OVERIDE("_method"));
 
 // Set Handlebars.
-APP.engine("handlebars", EXPHBS({ defaultLayout: "main" }));
-APP.set("view engine", "handlebars");
+// APP.engine("handlebars", EXPHBS({ defaultLayout: "main" }));
+// APP.set("view engine", "handlebars");
 
 // Routes =============================================================
 require("./controllers/html-routes.js")(APP);
