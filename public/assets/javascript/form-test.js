@@ -63,9 +63,12 @@ $(document).on("click", "#makeListing", makeListing);
 // 		}
 		
 // 		//=-=-=-=-=-=-=-=
-// 		$.post("/api/users", userInfo)
-//       	.then(function(){
+// 		$.post("/api/user/signup", userInfo)
+//       	.then(function(data){
 //       	console.log("Sent user info: " + userInfo);
+//       	$("input:text[name=signUpName]").val(data.error)
+
+
 
 //     	});
 // 		//=-=-=-=-=-=-=-=
@@ -84,25 +87,25 @@ $(document).on("click", "#makeListing", makeListing);
 // Function to handle sign ins
 //-------------------------------------------------------------------------------------
 
-function signIn() {
-	console.log("Sign In Button Pressed.");
-	var name = $("input:text[name=signInName]").val().trim();
-	var pass = $("input:password[name=signInPassword]").val().trim();
+// function signIn() {
+// 	console.log("Sign In Button Pressed.");
+// 	var name = $("input:text[name=signInName]").val().trim();
+// 	var pass = $("input:password[name=signInPassword]").val().trim();
 
-	var userInfo = {
-			name: name,
-			pass: pass,
-			sign: "in"
-	}
+// 	var userInfo = {
+// 			name: name,
+// 			pass: pass,
+// 			sign: "in"
+// 	}
 
-	//=-=-=-=-=-=-=-=
-	$.post("/api/users", userInfo)
-    .then(function(){
-    console.log("Sent user info: " + userInfo);
+// 	//=-=-=-=-=-=-=-=
+// 	$.post("/api/users", userInfo)
+//     .then(function(){
+//     console.log("Sent user info: " + userInfo);
 
-    });
-	//=-=-=-=-=-=-=-=
-}
+//     });
+// 	//=-=-=-=-=-=-=-=
+// }
 
 //=====================================================================================
 
