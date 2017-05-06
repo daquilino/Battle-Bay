@@ -24,7 +24,7 @@ $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
 $(document).on("click", "#getWarehousePrices", getWarehousePrices);
 $(document).on("click", "#placeOrder", placeOrder);
 $(document).on("click", "#getItemListings", getItemListings);
-$(document).on("click", "#makeListing", updateSaleItem); //makeListing
+$(document).on("click", "#makeListing", sellItem); //makeListing
 //====================================================================================
 
 
@@ -302,22 +302,20 @@ function getWarehousePrices() {
 //=========================== ITEMS-FOR-SALE FUNCTIONS ==============
 //===================================================================
 
-
-
-//-------------------------------------------------------------------------------------
 	
 
 	// Post sellItem
-	function sellItem(itemForSale)
+	function sellItem(itemName, startPrice, userId )
 	{	
-		//  - populate item values from jQuery
+		itemName = "ItemE" ;	//TEST CODE REMOVE
+		startPrice = 1;			//TEST CODE REMOVE
+		userId = 1;				//TEST CODE REMOVE
+
+		// object to post (body)
 		var item = {
-			"item_name": "itemD",
-			"quantity":  1,
-			"starting_price":  1,
-			"highest_bid": 1,
-			"highest_bidder":  "bidderD",
-			"allUserId":  1
+			"item_name": itemName,
+			"starting_price":  startPrice,
+			"allUserId":  userId
 		};
 		
 		$.ajax({
@@ -331,6 +329,11 @@ function getWarehousePrices() {
 	    });
 	}
 
+	//----------------------------------------------------------------------------
+
+
+	// Delete item for sale
+	// Use id of item to delete as argument.
 	function deleteSaleItem(itemId)
 	{
 		var itemId = 4;
@@ -361,7 +364,6 @@ function getWarehousePrices() {
 			"highest_bidder": highestBidder,
 			"highest_bid": highestBid
 		};
-
 
 
 		var itemId = 3;
