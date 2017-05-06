@@ -67,7 +67,7 @@ module.exports = function(app)
 			console.log("\n\nCREATE");
 			console.log(JSON.stringify(req.body, null, 2));
 					
-					DB.warehouseItems.create()
+					DB.warehouseItems.create(req.body)
 					.then(function(data)
 					{
 						res.json(data);  

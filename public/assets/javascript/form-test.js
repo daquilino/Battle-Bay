@@ -1,5 +1,6 @@
 console.log("form-test.js has loaded");
 
+
 //******** ALL COMPLETED FUNCTIONS ARE ON BOTTOM *******************
 
 // $(document).on("click", "button.delete", deleteTodo);
@@ -23,7 +24,7 @@ $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
 $(document).on("click", "#getWarehousePrices", getWarehousePrices);
 $(document).on("click", "#placeOrder", placeOrder);
 $(document).on("click", "#getItemListings", getItemListings);
-$(document).on("click", "#makeListing", makeListing);
+$(document).on("click", "#makeListing", updateSaleItem); //makeListing
 //====================================================================================
 
 
@@ -282,7 +283,92 @@ function getWarehousePrices() {
 	//=-=-=-=-=-=-=
 }
 
+//===================================================================
+//=========================== ITEMS FOR SALE FUNCTIONS ==============
+//===================================================================
+	/*        notes
+	 insert/create - sellItem - used returned object from 
+	 delete
+	 update
+	
+	
+	*/
 
+
+	// Post sellItem
+//-------------------------------------------------------------------------------------
+	function sellItem(itemForSale)
+	{
+		
+		//  - populate item values from jQuery
+		var item = {
+			"item_name": "itemD",
+			"quantity":  1,
+			"starting_price":  1,
+			"highest_bid": 1,
+			"highest_bidder":  "bidderD",
+			"allUserId":  1
+		};
+		
+		$.ajax({
+      	method: "POST",
+      	url: "/api/forsale",
+      	data: item
+	    })
+	    .done(function(data) {
+	     	console.log(JSON.stringify(data, null, 2))
+	     	//if item is created, 'data' should be item.
+	    });
+	}
+
+	function deleteSaleItem(itemId)
+	{
+		var itemId = 4;
+
+		$.ajax({
+      	method: "DELETE",
+      	url: "/api/forsale/" + itemId
+      	
+	    })
+	    .done(function(data) {
+	     	console.log(JSON.stringify(data, null, 2))
+	     	console.log("data", data);
+	    });
+
+	}
+
+	
+	//------------------------------
+
+
+	function updateSaleItem(itemId, highestBidder, highestBid)
+	{
+
+		highestBidder = "highestBidder";
+		highestBid = 99;
+
+		var updateData = {
+			"highest_bidder": highestBidder,
+			"highest_bid": highestBid
+		};
+
+
+
+		var itemId = 3;
+
+		$.ajax({
+      	method: "PUT",
+      	url: "/api/forsale/" + itemId,
+      	data: updateData
+
+      	
+	    })
+	    .done(function(data) {
+	     	console.log(JSON.stringify(data, null, 2))
+	     	console.log("data", data);
+	    });
+
+	}
 
 
 
