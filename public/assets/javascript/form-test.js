@@ -1,6 +1,8 @@
 console.log("form-test.js has loaded");
 
 
+//******** ALL COMPLETED FUNCTIONS ARE ON BOTTOM *******************
+
 // $(document).on("click", "button.delete", deleteTodo);
 
 // $(document).on("click", "#", );
@@ -22,9 +24,8 @@ $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
 $(document).on("click", "#getWarehousePrices", getWarehousePrices);
 $(document).on("click", "#placeOrder", placeOrder);
 $(document).on("click", "#getItemListings", getItemListings);
-$(document).on("click", "#makeListing", makeListing);
+$(document).on("click", "#makeListing", updateSaleItem); //makeListing
 //====================================================================================
-
 
 
 // Testing Variables
@@ -187,49 +188,6 @@ function getPlayersItemsSold() {
 //=====================================================================================
 
 
-
-// GET warehouse prices
-//-------------------------------------------------------------------------------------
-
-function getWarehousePrices() {
-	console.log("Get Warehouse Prices Button Pressed.");
-
-	//=-=-=-=-=-=-=
-	$.get("api/warehouse/prices", function(data){
-
-		$("#warehousePrices").empty();
-		$("#warehousePrices").append("<h4>Warehouse Prices</h4>");
-		$("#warehousePrices").append("<p>Fashion--Price Per Unit: " + data.fashion + "</p>");
-		$("#warehousePrices").append("<p>Electronics--Price Per Unit: " + data.electronics + "</p>");
-		$("#warehousePrices").append("<p>Collectables--Price Per Unit: " + data.collectables + "</p>");
-
-	});
-	//=-=-=-=-=-=-=
-}
-
-//=====================================================================================
-
-
-
-// POST warehouse order
-//-------------------------------------------------------------------------------------
-
-function placeOrder() {
-	console.log("Place Order Button Pressed.");
-	
-	var warehouse = $('input:radio[name=warehouse]:checked').val();
-	var numberOfUnits = $(":input[name=amount]").val();
-
-	var orderInfo = {
-		warehouse: warehouse,
-		units: numberOfUnits
-	};
-
-	$.post("api/warehouse/order", orderInfo).then(function(){
-		console.log("Order Placed! Order: " + orderInfo);
-	});
-}
-
 //=====================================================================================
 
 
@@ -253,3 +211,171 @@ function makeListing() {
 }
 
 //=====================================================================================
+
+
+//===================================================================
+//=========================== WAREHOUSE FUNCTIONS ===================
+//===================================================================
+
+// get warehouse items
+// purchase - needs to update warehouse item - insert into usersItems table.
+
+//-------------------------------------------------------------------------------------
+// Update a given warehouseItem by `id`'s `sold_quatnitiy` , bring user to the blog page when done
+  function updateWarehouseItem(post) {
+    $.ajax({
+      method: "PUT",
+      url: "/api/warehouse",
+      data: post
+    })
+    .done(function(data) {
+     	console.log(JSON.stringify(data, null, 2));
+     	//create function to add 'data' item to usersInvetory
+     	//call function here using data as argument.
+    });
+  }
+
+// POST warehouse order
+//-------------------------------------------------------------------------------------
+
+function placeOrder() {
+	console.log("Place Order Button Pressed.");
+	
+	var warehouse = $('input:radio[name=warehouse]:checked').val();
+	var numberOfUnits = $(":input[name=amount]").val();
+
+	// var orderInfo = {
+	// 	warehouse: warehouse,
+	// 	units: numberOfUnits
+	// };
+
+	// $.post("api/warehouse/order", orderInfo).then(function(){
+	// 	console.log("Order Placed! Order: " + orderInfo);
+	// });
+
+	var post =
+	{
+		sold_quantity: numberOfUnits, //need to change to add sold_quantity += numberOfUnits
+		id : 1
+
+	}
+
+	updateWarehouseItem(post);
+}
+
+
+// GET warehouse prices
+//-------------------------------------------------------------------------------------
+
+function getWarehousePrices() {
+	console.log("Get Warehouse Prices Button Pressed.");
+
+	//=-=-=-=-=-=-=
+	$.get("api/warehouse/prices", function(data){
+
+		$("#warehousePrices").empty();
+		$("#warehousePrices").append("<h4>Warehouse Prices</h4>");
+		$("#warehousePrices").append("<p>Fashion--Price Per Unit: " + data.fashion + "</p>");
+		$("#warehousePrices").append("<p>Electronics--Price Per Unit: " + data.electronics + "</p>");
+		$("#warehousePrices").append("<p>Collectables--Price Per Unit: " + data.collectables + "</p>");
+
+	});
+	//=-=-=-=-=-=-=
+}
+
+
+
+
+
+
+
+
+
+  //======================================================================================
+  //======================================================================================
+  //============================ Completed Functions Below ==================================
+  //======================================================================================
+  //======================================================================================
+
+
+//===================================================================
+//=========================== ITEMS-FOR-SALE FUNCTIONS ==============
+//===================================================================
+
+
+
+//-------------------------------------------------------------------------------------
+	
+
+	// Post sellItem
+	function sellItem(itemForSale)
+	{	
+		//  - populate item values from jQuery
+		var item = {
+			"item_name": "itemD",
+			"quantity":  1,
+			"starting_price":  1,
+			"highest_bid": 1,
+			"highest_bidder":  "bidderD",
+			"allUserId":  1
+		};
+		
+		$.ajax({
+      	method: "POST",
+      	url: "/api/forsale",
+      	data: item
+	    })
+	    .done(function(data) {
+	     	console.log(JSON.stringify(data, null, 2))
+	     	//if item is created, 'data' should be item.
+	    });
+	}
+
+	function deleteSaleItem(itemId)
+	{
+		var itemId = 4;
+
+		$.ajax({
+      	method: "DELETE",
+      	url: "/api/forsale/" + itemId
+      	
+	    })
+	    .done(function(data) {
+	     	console.log(JSON.stringify(data, null, 2))
+	     	console.log("data", data);
+	    });
+
+	}
+
+	
+	//------------------------------
+
+
+	function updateSaleItem(itemId, highestBidder, highestBid)
+	{
+
+		highestBidder = "highestBidder";
+		highestBid = 99;
+
+		var updateData = {
+			"highest_bidder": highestBidder,
+			"highest_bid": highestBid
+		};
+
+
+
+		var itemId = 3;
+
+		$.ajax({
+      	method: "PUT",
+      	url: "/api/forsale/" + itemId,
+      	data: updateData
+
+      	
+	    })
+	    .done(function(data) {
+	     	console.log(JSON.stringify(data, null, 2))
+	     	console.log("data", data);
+	    });
+
+	}

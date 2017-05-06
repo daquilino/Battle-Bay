@@ -34,7 +34,7 @@ APP.use(METHOD_OVERIDE("_method"));
 
 // Routes =============================================================
 require("./controllers/html-routes.js")(APP);
-require("./controllers/for-sale-api-routes.js")(APP);
+require("./controllers/items-for-sale-api-routes.js")(APP);
 require("./controllers/all-users-api-routes.js")(APP);
 require("./controllers/user-inventory-api-routes.js")(APP);
 require("./controllers/warehouse-items-api-routes.js")(APP);
@@ -45,7 +45,7 @@ require("./controllers/warehouse-items-api-routes.js")(APP);
 //   require("./controllers/warehouse-api-routes.js")(APP);
 
 
-DB.sequelize.sync({ force: true }).then(function()  //**** REMOVE {force:true} *** . USE ONLY FOR TESTING.
+DB.sequelize.sync().then(function()  //**** REMOVE {force:true} *** . USE ONLY FOR TESTING.
 {
 	APP.listen(PORT, () => console.log("listening on port:", PORT));
 });
