@@ -219,8 +219,6 @@ function makeListing() {
 // get warehouse items
 // purchase - needs to update warehouse item - insert into usersItems table.
 
-
- 
 //-------------------------------------------------------------------------------------
 // Update a given warehouseItem by `id`'s `sold_quatnitiy` , bring user to the blog page when done
   function updateWarehouseItem(post) {
