@@ -6,9 +6,9 @@ module.exports = function(sequelize, DataTypes)
 		item_name: 
 		{
 			type: DataTypes.STRING,
+			allowNull: false,
 			validate: 
 			{
-				notNull: true,
 				isAlpha: true,
 				notEmpty: true
 			}
@@ -16,9 +16,9 @@ module.exports = function(sequelize, DataTypes)
 		quantity:
 		{
 			type: DataTypes.INTEGER,
+			allowNull: false,
 			validate: 
 			{
-				notNull: true,
 				isInt: true,
 				min: 1
 			}
@@ -26,9 +26,9 @@ module.exports = function(sequelize, DataTypes)
 		starting_price:
 		{
 			type: DataTypes.INTEGER,
+			allowNull: false,
 			validate: 
 			{
-				notNull: true,
 				isInt: true,
 				min: 1
 			}
@@ -36,6 +36,7 @@ module.exports = function(sequelize, DataTypes)
 		highest_bid:
 		{
 			type: DataTypes.INTEGER,
+			allowNull: true,
 			validate: 
 			{
 				isInt: true,
@@ -45,6 +46,7 @@ module.exports = function(sequelize, DataTypes)
 		highest_bidder:
 		{
 			type: DataTypes.STRING,
+			allowNull: true,
 			validate: 
 			{
 				isAlpha: true,
