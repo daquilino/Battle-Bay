@@ -2,6 +2,15 @@
 // warehouse-items-api-routes.js - this file offers a set of routes for displaying and saving data to the db
 // *********************************************************************************
 
+
+/*-------- development notes ---------------
+	
+
+
+
+
+*/
+
 // Dependencies
 // =============================================================
 // Requiring our models
@@ -22,7 +31,6 @@ module.exports = function(app)
 	});
 
 
-	
 	
 	/*If in jQuery send body object 
 			{
