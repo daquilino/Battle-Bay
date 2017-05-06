@@ -2,7 +2,6 @@ module.exports = function(sequelize, DataTypes){
 
   var usersInventory = sequelize.define("usersInventory", 
     {
-      
       item_name: 
       {
         type: DataTypes.STRING,
@@ -23,10 +22,9 @@ module.exports = function(sequelize, DataTypes){
           isInt: true,
           min: 1
         }
-      },
-
+      }
+   },
      {
-          
       classMethods: 
         {
           associate: function(models) 
@@ -40,12 +38,9 @@ module.exports = function(sequelize, DataTypes){
               }
             });
           }
-        }
-      },
-
-
-      freezeTableName: true
-
+        },
+      freezeTableName: true,
+      timestamps: false
     });
   return usersInventory;
 
