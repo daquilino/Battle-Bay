@@ -39,7 +39,8 @@ module.exports = function(sequelize, DataTypes){
             });
           }
         },
-      freezeTableName: true
+      freezeTableName: true,
+      timestamps: false
     });
   return usersInventory;
 
