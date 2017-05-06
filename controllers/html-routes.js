@@ -31,6 +31,14 @@ module.exports = function(app)
    res.render("landing");
   });
 
+  app.get("/sign-up", function(req, res) {
+   res.render("sign-up");
+  });
+
+  app.get("/sign-in", function(req, res) {
+   res.render("sign-in");
+  });
+
   app.get("/user-homepage", function(req, res) {
    res.render("user-homepage");
   });
