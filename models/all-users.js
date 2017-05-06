@@ -5,9 +5,9 @@ module.exports = function(sequelize, DataTypes)
 		username: 
 		{
 			type: DataTypes.STRING,
+			allowNull: false,
 			validate: 
 			{
-				notNull: true,
 				isAlphanumeric: true,
 				notEmpty: true
 			}
@@ -15,40 +15,40 @@ module.exports = function(sequelize, DataTypes)
 		password:
 		{
 			type: DataTypes.STRING,
+			allowNull: false,
 			validate: 
 			{
-				notNull: true,
 				notEmpty: true
 			}
 		},
 		balance:
 		{
 			type: DataTypes.INTEGER,
+			allowNull: false,
 			defaultValue: 200,
 			validate:
 			{
 				isInt: true,
-				notNull: true
 			}
 		},
 		money_spent:
 		{
 			type: DataTypes.INTEGER,
+			allowNull: false,
 			defaultValue: 0,
 			validate:
 			{
 				isInt: true,
-				notNull: true
 			}
 		},
 		money_earned:
 		{
 			type: DataTypes.INTEGER,
+			allowNull: false,
 			defaultValue: 0,
 			validate:
 			{
 				isInt: true,
-				notNull: true
 			}
 		}
 	},
@@ -64,12 +64,11 @@ module.exports = function(sequelize, DataTypes)
 					onDelete: "cascade"
 				});
 
-				//**** Uncomment this section once all the models have been defined in the remote repo ****/
-				// //when a user is deleted, all their inventory are deleted as well
-				// allUsers.hasMany(models.usersInventory, 
-				// {
-				// 	onDelete: "cascade"
-				// });
+				//when a user is deleted, all their inventory are deleted as well
+				allUsers.hasMany(models.usersInventory, 
+				{
+					onDelete: "cascade"
+				});
 			}
 		},
 		freezeTableName: true
