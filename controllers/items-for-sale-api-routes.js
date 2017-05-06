@@ -23,6 +23,7 @@ module.exports = function(app)
 		});		
 	});
 
+
 	//------------------------------------------------------
 	//Insert/create item for sale
 	app.post("/api/forsale", function(req, res)
@@ -51,6 +52,7 @@ module.exports = function(app)
 			res.json(data);
 		});		
 	});
+
 
 	//------------------------------------------------------
 	//Delete item from warehouse
