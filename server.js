@@ -34,7 +34,7 @@ APP.set("view engine", "handlebars");
 
 // Routes =============================================================
 require("./controllers/html-routes.js")(APP);
-require("./controllers/for-sale-api-routes.js")(APP);
+require("./controllers/items-for-sale-api-routes.js")(APP);
 require("./controllers/all-users-api-routes.js")(APP);
 require("./controllers/user-inventory-api-routes.js")(APP);
 require("./controllers/warehouse-items-api-routes.js")(APP);
