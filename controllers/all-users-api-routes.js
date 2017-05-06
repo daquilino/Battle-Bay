@@ -72,10 +72,20 @@ module.exports = function(app)
 			{
 				console.log("user does not exist in database.");
 				console.log(user);
+				//send error message and redirect back
 				res.end();
 			}
 			else //username exists in database
 			{
+				//if passwords match
+				if (req.body.signInPassword == user.dataValues.password)
+				{
+					//sign user in
+				}
+				else //passwords didnt' match
+				{
+					
+				}
 				console.log("user exists in database");
 				console.log(user.dataValues);
 				res.end();
