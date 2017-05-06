@@ -7,6 +7,7 @@
 // Requiring our models
 const DB = require("../models");
 
+
 // Routes
 // =============================================================
 module.exports = function(app) 

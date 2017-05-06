@@ -7,8 +7,8 @@
 const EXPRESS = require('express');
 const BODY_PARSER = require('body-parser');
 const METHOD_OVERIDE = require('method-override');  
-const EXPHBS = require("express-handlebars");
 const COOKIE_PARSER = require("cookie-parser");
+// const EXPHBS = require("express-handlebars");
 
 // Sets up the Express App
 const PORT = process.env.PORT || 3000;
@@ -33,12 +33,12 @@ APP.use(COOKIE_PARSER());
 APP.use(METHOD_OVERIDE("_method"));
 
 // Set Handlebars.
-APP.engine("handlebars", EXPHBS({ defaultLayout: "main" }));
-APP.set("view engine", "handlebars");
+// APP.engine("handlebars", EXPHBS({ defaultLayout: "main" }));
+// APP.set("view engine", "handlebars");
 
 // Routes =============================================================
 require("./controllers/html-routes.js")(APP);
-require("./controllers/for-sale-api-routes.js")(APP);
+require("./controllers/items-for-sale-api-routes.js")(APP);
 require("./controllers/all-users-api-routes.js")(APP);
 require("./controllers/user-inventory-api-routes.js")(APP);
 require("./controllers/warehouse-items-api-routes.js")(APP);
@@ -49,7 +49,7 @@ require("./controllers/warehouse-items-api-routes.js")(APP);
 //   require("./controllers/warehouse-api-routes.js")(APP);
 
 
-DB.sequelize.sync({ force: true }).then(function()  //**** REMOVE {force:true} *** . USE ONLY FOR TESTING.
+DB.sequelize.sync().then(function()  //**** REMOVE {force:true} *** . USE ONLY FOR TESTING.
 {
 	APP.listen(PORT, () => console.log("listening on port:", PORT));
 });
