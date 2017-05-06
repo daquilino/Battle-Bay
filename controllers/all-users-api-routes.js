@@ -56,6 +56,7 @@ module.exports = function(app)
 		}
 	});
 
+	//User signing in 
 	app.post("/api/user/login", function(req, res)
 	{
 		//Check if username exists in database 
@@ -81,16 +82,19 @@ module.exports = function(app)
 				if (req.body.signInPassword == user.dataValues.password)
 				{
 					//sign user in
+					console.log("passwords match. Welcome back.");
+					console.log(user.dataValues);
+					//set a cookie of the users id
+					res.cookie("id", user.dataValues.id);
+					res.end();
 				}
 				else //passwords didnt' match
 				{
-					
+					//indicate passwords didn't match
+					console.log("passwords don't match");
+					res.end();
 				}
-				console.log("user exists in database");
-				console.log(user.dataValues);
-				res.end();
 			}
-				//check that password matches
 		});
 	});
 	// app.post("/api/users", function(req, res) {
