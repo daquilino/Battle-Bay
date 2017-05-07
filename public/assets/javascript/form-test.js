@@ -17,7 +17,7 @@ console.log("form-test.js has loaded");
 // On click events for all the form buttons
 //-----------------------------------------------------------------------------------
 // $(document).on("click", "#signUpSubmit", signUp);
-$(document).on("click", "#signInSubmit", signIn);
+//$(document).on("click", "#signInSubmit", signIn);
 $(document).on("click", "#getPlayerAccountInfo", getPlayerAccountInfo);
 $(document).on("click", "#getPlayerListings", getPlayerListings);
 $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
@@ -290,10 +290,6 @@ function getWarehousePrices() {
 
 
 
-
-
-
-
   //======================================================================================
   //======================================================================================
   //============================ Completed Functions Below ==================================
@@ -306,7 +302,6 @@ function getWarehousePrices() {
 //===================================================================
 
 	
-
 	// Post sellItem
 	function sellItem(itemName, startPrice, userId )
 	{	
@@ -348,18 +343,16 @@ function getWarehousePrices() {
 	    })
 	    .done(function(data) {
 	     	console.log(JSON.stringify(data, null, 2))
-	     	console.log("data", data);
+	 
 	    });
 
 	}
 
-	
 	//------------------------------
 
 
 	function updateSaleItem(itemId, highestBidder, highestBid)
 	{
-
 		highestBidder = "highestBidder";
 		highestBid = 99;
 
@@ -368,19 +361,15 @@ function getWarehousePrices() {
 			"highest_bid": highestBid
 		};
 
-
 		var itemId = 3;
 
 		$.ajax({
-      	method: "PUT",
-      	url: "/api/forsale/" + itemId,
-      	data: updateData
-
-      	
+	      	method: "PUT",
+	      	url: "/api/forsale/" + itemId,
+	      	data: updateData
 	    })
 	    .done(function(data) {
-	     	console.log(JSON.stringify(data, null, 2))
-	     	console.log("data", data);
+	     	console.log(JSON.stringify(data, null, 2));
 	    });
 
 	}
