@@ -8,9 +8,6 @@
 // Requiring our models
 const DB = require("../models");
 
-const sequelize = require('sequelize'); // TEST May need for update?
-
-
 // Routes
 // =============================================================
 module.exports = function(app) 
