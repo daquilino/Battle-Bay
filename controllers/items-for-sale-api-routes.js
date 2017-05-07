@@ -13,7 +13,7 @@ module.exports = function(app)
 {
 	
 	//------------------------------------------------------
-	//Get all items for sale
+	//Get all 'itemsForSale' joined with 'allUsers'
 	app.get("/api/forsale", function(req, res)
 	{
 		DB.itemsForSale.findAll({include: [DB.allUsers],})
@@ -25,7 +25,7 @@ module.exports = function(app)
 
 
 	//------------------------------------------------------
-	//Insert/create item for sale
+	//Insert/create row
 	app.post("/api/forsale", function(req, res)
 	{
 		DB.itemsForSale.create(req.body)
@@ -37,7 +37,7 @@ module.exports = function(app)
 
 	
 	//------------------------------------------------------
-	//update item for sale
+	//update row where `id`
 	app.put("/api/forsale/:id", function(req, res)
 	{
 		DB.itemsForSale.update(req.body,
@@ -55,7 +55,7 @@ module.exports = function(app)
 
 
 	//------------------------------------------------------
-	//Delete item from warehouse
+	//Delete row where `id`
 	app.delete("/api/forsale/:id", function(req, res) 
 	{
 	    DB.itemsForSale.destroy(
