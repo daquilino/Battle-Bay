@@ -16,7 +16,7 @@ console.log("form-test.js has loaded");
 
 // On click events for all the form buttons
 //-----------------------------------------------------------------------------------
-// $(document).on("click", "#signUpSubmit", signUp);
+$(document).on("click", "#signUpSubmit", signUp);
 $(document).on("click", "#signInSubmit", signIn);
 $(document).on("click", "#getPlayerAccountInfo", getPlayerAccountInfo);
 $(document).on("click", "#getPlayerListings", getPlayerListings);
@@ -44,43 +44,40 @@ $(document).on("click", "#makeListing", updateSaleItem); //makeListing
 // Function to handle sign ups
 //------------------------------------------------------------------------------------
 
-// function signUp() {
-// 	console.log("Sign Up Button Pressed.");
-// 	//grab the inputs
-// 	var name = $("input:text[name=signUpName]").val().trim();
-// 	var pass = $("input:password[name=signUpPassword]").val().trim();
-// 	var passConfirm = $("input:password[name=signUpPasswordConfirm]").val().trim();
+function signUp() {
+	console.log("Sign Up Button Pressed.");
+	//grab the inputs
+	var name = $("input:text[name=signUpName]").val().trim();
+	var pass = $("input:password[name=signUpPassword]").val().trim();
+	var passConfirm = $("input:password[name=signUpPasswordConfirm]").val().trim();
 
-// 	// For testing
-// 	//console.log(name, pass);
+	// For testing
+	//console.log(name, pass);
 
-// 	// If the passwords match post to users API route
-// 	if (pass === passConfirm){
-
-// 		var userInfo = {
-// 			name: name,
-// 			pass: pass,
-// 			sign: "up"
-// 		}
+	// If the passwords match post to users API route
+	if (pass === passConfirm){
 		
-// 		//=-=-=-=-=-=-=-=
-// 		$.post("/api/user/signup", userInfo)
-//       	.then(function(data){
-//       	console.log("Sent user info: " + userInfo);
-//       	$("input:text[name=signUpName]").val(data.error)
-
-
-
-//     	});
-// 		//=-=-=-=-=-=-=-=
+		var userInfo = {
+			signUpName: name,
+			signUpPassword: pass,
+			signUpPasswordConfirm: passConfirm
+		}
+		
+		//=-=-=-=-=-=-=-=
+		$.post("/api/user/signup", userInfo)
+      	.then(function(data){
+      		console.log("Sent user info: " + userInfo);
+      		$("input:text[name=signUpName]").val(data.error)
+    	});
+		//=-=-=-=-=-=-=-=
 	
-// 	} else {
-// 		$("input:text[name=signUpName]").val("");
-// 		$("input:password[name=signUpPassword]").val("");
-// 		$("input:password[name=signUpPasswordConfirm]").val("");
-// 		console.log("Passwords do not match");
-// 	}
-// }
+	} else {
+		$("input:text[name=signUpName]").val("");
+		$("input:password[name=signUpPassword]").val("");
+		$("input:password[name=signUpPasswordConfirm]").val("");
+		console.log("Passwords do not match");
+	}
+}
 //=====================================================================================
 
 
