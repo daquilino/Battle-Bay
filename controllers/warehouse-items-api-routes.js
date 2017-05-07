@@ -3,53 +3,42 @@
 // *********************************************************************************
 
 
-/*-------- development notes ---------------
-	
-
-
-*/
-
 // Dependencies
 // =============================================================
 // Requiring our models
 const DB = require("../models");
 
+const sequelize = require('sequelize'); // TEST May need for update?
+
+
 // Routes
 // =============================================================
 module.exports = function(app) 
 {
-	// get all data from warehouseItems table
+	// get all data from 'warehouseItems'
 	app.get("/api/warehouse", function(req, res)
 	{
 		DB.warehouseItems.findAll()
 		.then(function(data)
 		{
-			res.json(warehousePrices);
+			res.json(data);
 		});		
 	});
 
-
-	
-	/*If in jQuery send body object 
-			{
-				id: ,
-				units_sold: 
-			}		
-	data in callback should be data of item with id just updated? check. */
-
-	// use to update `units sold`  warehouseItems
-	app.put("/api/warehouse", function(req, res)
+			
+	// use to update `units sold` 
+	app.put("/api/warehouse/:id", function(req, res)
 	{
 		
 		DB.warehouseItems.update(
-		{ 
-			units_sold: req.body.units_sold
-		}
-		,
+		{ 			
+			 units_sold: DB.sequelize.literal('units_sold + ' + req.body.quantity)				
+		},
+		
 		{
 			where: 
 			{
-				id: req.body.id
+				id: req.params.id
 			}
 		})
 		.then(function(data)
@@ -59,14 +48,11 @@ module.exports = function(app)
 
 	});
 
-// ====================== Optional Routes =======================================
+// ====================== Optional Routes To Add/Delete Items ================================
 /*				
 				// Add items to warehouse
 				app.post("/api/warehouse", function(req, res)
-				{
-			console.log("\n\nCREATE");
-			console.log(JSON.stringify(req.body, null, 2));
-					
+				{				
 					DB.warehouseItems.create(req.body)
 					.then(function(data)
 					{
@@ -75,6 +61,7 @@ module.exports = function(app)
 				});
 
 
+/*
 				//Delete item from warehouse
 				app.delete("/api/posts/:id", function(req, res) 
 				{
