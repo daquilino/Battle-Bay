@@ -49,7 +49,7 @@ require("./controllers/warehouse-items-api-routes.js")(APP);
 //   require("./controllers/warehouse-api-routes.js")(APP);
 
 
-DB.sequelize.sync({force: true}).then(function()  //**** REMOVE {force:true} *** . USE ONLY FOR TESTING.
+DB.sequelize.sync().then(function()  //**** REMOVE {force:true} *** . USE ONLY FOR TESTING.
 {
 	APP.listen(PORT, () => console.log("listening on port:", PORT));
 });

@@ -40,6 +40,7 @@ module.exports = function(app)
   });
 
   app.get("/user-homepage", function(req, res) {
+  	console.log("/user-homepage route hit.");
     res.sendFile(PATH.join(__dirname, "../public/user-homepage.html"));
   });
 

@@ -56,7 +56,7 @@ function signUp() {
 
 	// If the passwords match post to users API route
 	if (pass === passConfirm){
-		
+
 		var userInfo = {
 			signUpName: name,
 			signUpPassword: pass,
@@ -67,7 +67,7 @@ function signUp() {
 		$.post("/api/user/signup", userInfo)
       	.then(function(data){
       		console.log("Sent user info: " + userInfo);
-      		$("input:text[name=signUpName]").val(data.error)
+      		$("input:text[name=signUpName]").val(data.error);
     	});
 		//=-=-=-=-=-=-=-=
 	
@@ -85,25 +85,25 @@ function signUp() {
 // Function to handle sign ins
 //-------------------------------------------------------------------------------------
 
-// function signIn() {
-// 	console.log("Sign In Button Pressed.");
-// 	var name = $("input:text[name=signInName]").val().trim();
-// 	var pass = $("input:password[name=signInPassword]").val().trim();
+function signIn() {
+	console.log("Sign In Button Pressed.");
+	var name = $("input:text[name=signInName]").val().trim();
+	var pass = $("input:password[name=signInPassword]").val().trim();
 
-// 	var userInfo = {
-// 			name: name,
-// 			pass: pass,
-// 			sign: "in"
-// 	}
+	var userInfo = {
+			signInName: name,
+			signInPassword: pass
+	}
 
-// 	//=-=-=-=-=-=-=-=
-// 	$.post("/api/users", userInfo)
-//     .then(function(){
-//     console.log("Sent user info: " + userInfo);
+	//=-=-=-=-=-=-=-=
+	$.post("/api/user/login", userInfo)
+    .then(function(data){
+    	console.log("Sent user info: " + userInfo);
+    	$("input:text[name=signInName]").val(data.error);
 
-//     });
-// 	//=-=-=-=-=-=-=-=
-// }
+    });
+	//=-=-=-=-=-=-=-=
+}
 
 //=====================================================================================
 
