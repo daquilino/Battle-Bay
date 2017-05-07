@@ -37,10 +37,14 @@ module.exports = function(app)
 
 
 	//------------------------------------------------------
-	//update row where `id`
+	//updates quantity of userInventory item
 	app.put("/api/inventory/:id", function(req, res)
 	{
-		DB.usersInventory.update(req.body,
+		DB.usersInventory.update(
+		{
+			quantity: DB.sequelize.literal('quantity + ' + req.body.quantity)
+		},
+		
 		{
 			where:
 			{
@@ -70,5 +74,4 @@ module.exports = function(app)
 	    });
   	});
 
-  
 };
