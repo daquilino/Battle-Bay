@@ -16,12 +16,7 @@ module.exports = function(sequelize, DataTypes){
       quantity: 
       {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: 
-        {
-          isInt: true,
-          min: 1
-        }
+        allowNull: false  
       }
    },
      {
