@@ -103,7 +103,6 @@ module.exports = function(app)
 	//Pulling leaderboard information
 	app.get("/leaderboard", function(req, res)
 	{
-		//setting a varaible to track rank which increments on 'iteration'
 		DB.sequelize.query("SELECT " + 
 		"username AS `player`," + 
 		"(au.money_earned - au.money_spent) AS `profit` " +
