@@ -24,10 +24,10 @@ module.exports = function(app)
 	});
 
 	//------------------------------------------------------
-	//Get all 'usersInventory' joined with 'allUsers'
+	//Get only one 'usersInventory'
 	app.get("/api/inventory/:id", function(req, res)
 	{
-		DB.usersInventory.findAll({where:{id: req.params.id}})
+		DB.usersInventory.findOne({where:{id: req.params.id}})
 		.then(function(data)
 		{
 			res.json(data);
