@@ -1,13 +1,15 @@
 Use battleBay_db;
 
-INSERT INTO usersinventory (item_name, quantity, allUserId) 
-VALUES ("itemA", 5, 1);
 
-INSERT INTO usersinventory (item_name, quantity, allUserId) 
-VALUES ("itemB", 45, 2);
 
-INSERT INTO usersinventory (item_name, quantity, allUserId) 
-VALUES ("itemC", 15, 3);
+INSERT INTO usersinventory (item_name, quantity, highest_bidder, allUserId) 
+VALUES ("itemA", 10,"bidderA", 1);
+
+INSERT INTO usersinventory (item_name, quantity, highest_bidder, allUserId) 
+VALUES ("itemB", 20, "bidderB", 3);
+
+INSERT INTO usersinventory (item_name, quantity, highest_bidder, allUserId) 
+VALUES ("itemC", 30, "bidderC", 2);
 
 
 
