@@ -22,6 +22,7 @@ module.exports = function(sequelize, DataTypes){
         starting_price:
         {
             type: DataTypes.INTEGER,
+            defaultValue: 0,
             allowNull: false,
             validate: 
             {
@@ -34,6 +35,7 @@ module.exports = function(sequelize, DataTypes){
         {
             type: DataTypes.INTEGER,
             allowNull: true,
+            defaultValue: 0,
             validate: 
             {
                 isInt: true,
