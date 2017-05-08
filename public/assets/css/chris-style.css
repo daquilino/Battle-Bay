@@ -21,4 +21,12 @@ body {
     margin-top: -.8em;
     text-align: center;
     line-height: 1.6em;
-  }
+}
+
+.hidden-div {
+	visibility: hidden;
+}
+
+.rounded-borders {
+	border-radius: 10px;
+}

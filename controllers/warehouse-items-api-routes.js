@@ -24,7 +24,7 @@ module.exports = function(app)
 		DB.warehouseItems.findAll()
 		.then(function(data)
 		{
-			res.json(warehousePrices);
+			res.json(data);
 		});		
 	});
 
