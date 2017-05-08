@@ -13,6 +13,7 @@ module.exports = function(sequelize, DataTypes)
 				notEmpty: true
 			}
 		},
+		
 		quantity:
 		{
 			type: DataTypes.INTEGER,
@@ -25,6 +26,7 @@ module.exports = function(sequelize, DataTypes)
 				min: 1
 			}
 		},
+		
 		starting_price:
 		{
 			type: DataTypes.INTEGER,
@@ -35,6 +37,7 @@ module.exports = function(sequelize, DataTypes)
 				min: 1
 			}
 		},
+		
 		highest_bid:
 		{
 			type: DataTypes.INTEGER,
@@ -45,6 +48,7 @@ module.exports = function(sequelize, DataTypes)
 				min: 1
 			}
 		},
+		
 		highest_bidder:
 		{
 			type: DataTypes.STRING,
@@ -54,8 +58,9 @@ module.exports = function(sequelize, DataTypes)
 				isAlpha: true,
 				notEmpty: true
 			}
-		},
+		}
 	}, 
+	
 	{
 		//setting the foreign key of userID
 		classMethods: 
@@ -72,8 +77,10 @@ module.exports = function(sequelize, DataTypes)
 				});
 			}
 		},
+		
 		freezeTableName: true,
-		timestamps: false
+		timestamps: true,
+		updatedAt: false
 	});
 
 	return itemsForSale;
