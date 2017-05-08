@@ -16,7 +16,7 @@ module.exports = function(app)
 	//Get all 'usersInventory' joined with 'allUsers'
 	app.get("/api/inventory", function(req, res)
 	{
-		DB.usersInventory.findAll({include: [DB.allUsers],})
+		DB.usersInventory.findAll({include: [DB.allUsers]})
 		.then(function(data)
 		{
 			res.json(data);
@@ -49,12 +49,30 @@ module.exports = function(app)
 
 	//------------------------------------------------------
 	//updates quantity of userInventory item
-	app.put("/api/inventory/:id", function(req, res)
+	app.put("/api/inventory/quantity/:id", function(req, res)
 	{
 		DB.usersInventory.update(
 		{
 			quantity: DB.sequelize.literal('quantity + ' + req.body.quantity)
 		},
+		
+		{
+			where:
+			{
+				id: req.params.id
+			}
+		})
+		.then(function(data)
+		{
+			res.json(data);
+		});		
+	});
+
+	//------------------------------------------------------
+	//updates userInventory item of id with whatever is in req.body.
+	app.put("/api/inventory/:id", function(req, res)
+	{
+		DB.usersInventory.update(req.body,
 		
 		{
 			where:
