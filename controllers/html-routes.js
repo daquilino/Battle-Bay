@@ -52,5 +52,8 @@ module.exports = function(app)
     res.sendFile(PATH.join(__dirname, "../public/warehouse.html"));
   });
 
+  app.get("/leaderboard", function(req, res) {
+    res.sendFile(PATH.join(__dirname, "../public/leaderboard.html"));
+  });
 
 };
