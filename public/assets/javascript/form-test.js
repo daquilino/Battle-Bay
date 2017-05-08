@@ -16,15 +16,15 @@ console.log("form-test.js has loaded");
 
 // On click events for all the form buttons
 //-----------------------------------------------------------------------------------
-// $(document).on("click", "#signUpSubmit", signUp);
-// $(document).on("click", "#signInSubmit", signIn);
+$(document).on("click", "#signUpSubmit", signUp);
+$(document).on("click", "#signInSubmit", signIn);
 $(document).on("click", "#getPlayerAccountInfo", getPlayerAccountInfo);
 $(document).on("click", "#getPlayerListings", getPlayerListings);
 $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
 $(document).on("click", "#getWarehousePrices", getWarehousePrices);
 $(document).on("click", "#placeOrder", placeOrder);
 $(document).on("click", "#getItemListings", getItemListings);
-$(document).on("click", "#makeListing", updateSaleItem); //makeListing
+$(document).on("click", "#makeListing", updateInventoryItem); //makeListing
 //====================================================================================
 
 
@@ -44,43 +44,40 @@ $(document).on("click", "#makeListing", updateSaleItem); //makeListing
 // Function to handle sign ups
 //------------------------------------------------------------------------------------
 
-// function signUp() {
-// 	console.log("Sign Up Button Pressed.");
-// 	//grab the inputs
-// 	var name = $("input:text[name=signUpName]").val().trim();
-// 	var pass = $("input:password[name=signUpPassword]").val().trim();
-// 	var passConfirm = $("input:password[name=signUpPasswordConfirm]").val().trim();
+function signUp() {
+	console.log("Sign Up Button Pressed.");
+	//grab the inputs
+	var name = $("input:text[name=signUpName]").val().trim();
+	var pass = $("input:password[name=signUpPassword]").val().trim();
+	var passConfirm = $("input:password[name=signUpPasswordConfirm]").val().trim();
 
-// 	// For testing
-// 	//console.log(name, pass);
+	// For testing
+	//console.log(name, pass);
 
-// 	// If the passwords match post to users API route
-// 	if (pass === passConfirm){
+	// If the passwords match post to users API route
+	if (pass === passConfirm){
 
-// 		var userInfo = {
-// 			name: name,
-// 			pass: pass,
-// 			sign: "up"
-// 		}
+		var userInfo = {
+			signUpName: name,
+			signUpPassword: pass,
+			signUpPasswordConfirm: passConfirm
+		}
 		
-// 		//=-=-=-=-=-=-=-=
-// 		$.post("/api/user/signup", userInfo)
-//       	.then(function(data){
-//       	console.log("Sent user info: " + userInfo);
-//       	$("input:text[name=signUpName]").val(data.error)
-
-
-
-//     	});
-// 		//=-=-=-=-=-=-=-=
+		//=-=-=-=-=-=-=-=
+		$.post("/api/user/signup", userInfo)
+      	.then(function(data){
+      		console.log("Sent user info: " + userInfo);
+      		$("input:text[name=signUpName]").val(data.error);
+    	});
+		//=-=-=-=-=-=-=-=
 	
-// 	} else {
-// 		$("input:text[name=signUpName]").val("");
-// 		$("input:password[name=signUpPassword]").val("");
-// 		$("input:password[name=signUpPasswordConfirm]").val("");
-// 		console.log("Passwords do not match");
-// 	}
-// }
+	} else {
+		$("input:text[name=signUpName]").val("");
+		$("input:password[name=signUpPassword]").val("");
+		$("input:password[name=signUpPasswordConfirm]").val("");
+		console.log("Passwords do not match");
+	}
+}
 //=====================================================================================
 
 
@@ -88,25 +85,24 @@ $(document).on("click", "#makeListing", updateSaleItem); //makeListing
 // Function to handle sign ins
 //-------------------------------------------------------------------------------------
 
-// function signIn() {
-// 	console.log("Sign In Button Pressed.");
-// 	var name = $("input:text[name=signInName]").val().trim();
-// 	var pass = $("input:password[name=signInPassword]").val().trim();
+function signIn() {
+	console.log("Sign In Button Pressed.");
+	var name = $("input:text[name=signInName]").val().trim();
+	var pass = $("input:password[name=signInPassword]").val().trim();
 
-// 	var userInfo = {
-// 			name: name,
-// 			pass: pass,
-// 			sign: "in"
-// 	}
+	var userInfo = {
+		signInName: name,
+		signInPassword: pass
+	}
 
-// 	//=-=-=-=-=-=-=-=
-// 	$.post("/api/users", userInfo)
-//     .then(function(){
-//     console.log("Sent user info: " + userInfo);
-
-//     });
-// 	//=-=-=-=-=-=-=-=
-// }
+	//=-=-=-=-=-=-=-=
+	$.post("/api/user/login", userInfo)
+    .then(function(data){
+    	console.log("Sent user info: " + userInfo);
+    	$("input:text[name=signInName]").val(data.error);
+    });
+	//=-=-=-=-=-=-=-=
+}
 
 //=====================================================================================
 
@@ -216,27 +212,7 @@ function makeListing() {
 //=====================================================================================
 
 
-//===================================================================
-//=========================== WAREHOUSE FUNCTIONS ===================
-//===================================================================
 
-// get warehouse items
-// purchase - needs to update warehouse item - insert into usersItems table.
-
-//-------------------------------------------------------------------------------------
-// Update a given warehouseItem by `id`'s `sold_quatnitiy` , bring user to the blog page when done
-  function updateWarehouseItem(post) {
-    $.ajax({
-      method: "PUT",
-      url: "/api/warehouse",
-      data: post
-    })
-    .done(function(data) {
-     	console.log(JSON.stringify(data, null, 2));
-     	//create function to add 'data' item to usersInvetory
-     	//call function here using data as argument.
-    });
-  }
 
 // POST warehouse order
 //-------------------------------------------------------------------------------------
@@ -274,7 +250,9 @@ function getWarehousePrices() {
 	console.log("Get Warehouse Prices Button Pressed.");
 
 	//=-=-=-=-=-=-=
-	$.get("api/warehouse/prices", function(data){
+	$.get("api/warehouse", function(data){
+
+
 
 		$("#warehousePrices").empty();
 		$("#warehousePrices").append("<h4>Warehouse Prices</h4>");
@@ -290,37 +268,30 @@ function getWarehousePrices() {
 
 
 
+  
+//======================================================================================
+//============================ Completed API Functions Below ===========================
+//================ I used to test api. May need to modify to fit your purpose ==========
+//======================================================================================
+//======================================================================================
 
+	//===================================================================
+	//=========================== ITEMS-FOR-SALE FUNCTIONS ==============
+	//===================================================================
 
-
-
-  //======================================================================================
-  //======================================================================================
-  //============================ Completed Functions Below ==================================
-  //======================================================================================
-  //======================================================================================
-
-
-//===================================================================
-//=========================== ITEMS-FOR-SALE FUNCTIONS ==============
-//===================================================================
-
-
-
-//-------------------------------------------------------------------------------------
 	
-
-	// Post sellItem
-	function sellItem(itemForSale)
+	// Post item to be sold
+	function sellItem(itemName, startPrice, userId )
 	{	
-		//  - populate item values from jQuery
+		itemName = "ItemF" ;	//TEST CODE REMOVE
+		startPrice = 1;			//TEST CODE REMOVE
+		userId = 3;				//TEST CODE REMOVE
+
+		// object to post (body)
 		var item = {
-			"item_name": "itemD",
-			"quantity":  1,
-			"starting_price":  1,
-			"highest_bid": 1,
-			"highest_bidder":  "bidderD",
-			"allUserId":  1
+			"item_name": itemName,
+			"starting_price":  startPrice,
+			"allUserId":  userId
 		};
 		
 		$.ajax({
@@ -329,14 +300,21 @@ function getWarehousePrices() {
       	data: item
 	    })
 	    .done(function(data) {
-	     	console.log(JSON.stringify(data, null, 2))
-	     	//if item is created, 'data' should be item.
+	     	console.log(JSON.stringify(data, null, 2)); //TEST CODE
+
+	     	//Logic using data here.
+	     	
 	    });
 	}
 
+	//----------------------------------------------------------------------------
+
+
+	// Delete item for sale
+	// Use id of item to delete as argument.
 	function deleteSaleItem(itemId)
 	{
-		var itemId = 4;
+		var itemId = 6;
 
 		$.ajax({
       	method: "DELETE",
@@ -344,41 +322,151 @@ function getWarehousePrices() {
       	
 	    })
 	    .done(function(data) {
-	     	console.log(JSON.stringify(data, null, 2))
-	     	console.log("data", data);
+	     	console.log(JSON.stringify(data, null, 2));  //TEST CODE
+
+	     	//Logic using data here.
+	 		
 	    });
 
 	}
 
-	
 	//------------------------------
 
-
+	// Updates highest_bidder and highest_bid of an item begin sold.
 	function updateSaleItem(itemId, highestBidder, highestBid)
 	{
-
-		highestBidder = "highestBidder";
-		highestBid = 99;
+		highestBidder = "highestBidderB";
+		highestBid = 399;
 
 		var updateData = {
 			"highest_bidder": highestBidder,
 			"highest_bid": highestBid
 		};
 
-
-
 		var itemId = 3;
 
 		$.ajax({
-      	method: "PUT",
-      	url: "/api/forsale/" + itemId,
-      	data: updateData
+	      	method: "PUT",
+	      	url: "/api/forsale/" + itemId,
+	      	data: updateData
+	    })
+	    .done(function(data) {
+	     	console.log(JSON.stringify(data, null, 2)); //TEST CODE
 
+	     	//Logic using data here.
+	     	
+	    });
+	}
+
+
+//===================================================================
+//=========================== WAREHOUSE FUNCTIONS ===================
+//===================================================================
+
+// get warehouse items
+// purchase - needs to update warehouse item - insert into usersItems table.
+
+//-------------------------------------------------------------------------------------
+// Update a given warehouseItem  `units_sold` ,
+  function updateWarehouseItem(quantity, itemId) {
+   
+  	quantity = 10;		// TEST CODE REMOVE	
+  	itemId = 1;			// TEST CODE REMOVE	
+
+  	post = {"quantity": quantity};
+
+    $.ajax({
+      method: "PUT",
+      url: "/api/warehouse/" + itemId ,
+      data: post
+    })
+    .done(function(data) {
+     	console.log(JSON.stringify(data, null, 2)); //TEST CODE
+     	
+     	//create function to add 'data' item to usersInvetory
+     	//call function here using data as argument.
+    });
+  }
+
+
+  //===================================================================
+//=========================== USER-INVENTORY FUNCTIONS ==============
+//===================================================================
+
+	
+	// Adds an item to usersInventory
+	function addInventoryItem(itemName, quantity, userId )
+	{	
+		itemName = "ItemF" ;	//TEST CODE REMOVE
+		quantity = 77;			//TEST CODE REMOVE
+		userId = 3;				//TEST CODE REMOVE
+
+		// object to post (body)
+		var item = {
+			"item_name": itemName,
+			"quantity":  quantity,
+			"allUserId":  userId
+		};
+		
+		$.ajax({
+      	method: "POST",
+      	url: "/api/inventory",
+      	data: item
+	    })
+	    .done(function(data) {
+	     	console.log(JSON.stringify(data, null, 2)); //TEST CODE
+
+	     	//Logic using data here.
+	     	
+	    });
+	}
+
+	//----------------------------------------------------------------------------
+
+
+	// Delete item from usersInventory
+	// Use id of item to delete as argument.
+	function deleteInventoryItem(itemId)
+	{
+		itemId = 6; //TEST CODE REMOVE
+
+		$.ajax({
+      	method: "DELETE",
+      	url: "/api/inventory/" + itemId
       	
 	    })
 	    .done(function(data) {
-	     	console.log(JSON.stringify(data, null, 2))
-	     	console.log("data", data);
+	     	console.log(JSON.stringify(data, null, 2));  //TEST CODE
+
+	     	//Logic using data here.
+	 		
 	    });
 
+	}
+
+	//------------------------------
+
+	// Updates quantity of usersInventory item.
+	function updateInventoryItem(itemId, quantity)
+	{
+		quantity = 500;		//TEST CODE REMOVE
+		itemId = 3;			//TEST CODE REMOVE
+		
+
+		var updateData = {
+			"quantity": quantity
+		};
+
+
+		$.ajax({
+	      	method: "PUT",
+	      	url: "/api/inventory/" + itemId,
+	      	data: updateData
+	    })
+	    .done(function(data) {
+	     	console.log(JSON.stringify(data, null, 2)); //TEST CODE
+
+	     	//Logic using data here.
+	     	
+	    });
 	}

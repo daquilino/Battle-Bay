@@ -39,28 +39,28 @@ module.exports = function(app)
 						//set a cookie containing that user's id#
 						res.cookie("id", newUser.dataValues.id);
 						//redirect to homepage
-						res.redirect("/");
+						res.redirect("/user-homepage");
 					});
 				}
 				else //username is already taken
 				{
-					console.log("username is already taken.");
+					console.log("Username already taken.");
 					//redirect to sign up page with error
-					res.send({error: "Username already taken"});
+					res.json({error: "Username already taken"});
 				}
 			});
 		}
 		else //paswords didn't match
 		{
 			console.log("passwords didn't match.");
-			res.end();
+			res.json({error: "Passwords entered did not match"});
 		}
 	});
 
 	//User signing in 
 	app.post("/api/user/login", function(req, res)
 	{
-		//Check if username exists in database 
+		// Check if username exists in database 
 		DB.allUsers.findOne(
 		{
 			where: 
@@ -75,7 +75,7 @@ module.exports = function(app)
 				console.log("user does not exist in database.");
 				console.log(user);
 				//send error message and redirect back
-				res.end();
+				res.json({error: "User does not exist."});
 			}
 			else //username exists in database
 			{
@@ -87,13 +87,14 @@ module.exports = function(app)
 					console.log(user.dataValues);
 					//set a cookie of the users id
 					res.cookie("id", user.dataValues.id);
-					res.end();
+					//send user to their homepage
+					res.redirect("/user-homepage");
 				}
 				else //passwords didnt' match
 				{
 					//indicate passwords didn't match
 					console.log("passwords don't match");
-					res.end();
+					res.json({error: "Incorrect password"});
 				}
 			}
 		});
