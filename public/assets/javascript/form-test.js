@@ -91,8 +91,8 @@ function signIn() {
 	var pass = $("input:password[name=signInPassword]").val().trim();
 
 	var userInfo = {
-			signInName: name,
-			signInPassword: pass
+		signInName: name,
+		signInPassword: pass
 	}
 
 	//=-=-=-=-=-=-=-=
@@ -100,7 +100,6 @@ function signIn() {
     .then(function(data){
     	console.log("Sent user info: " + userInfo);
     	$("input:text[name=signInName]").val(data.error);
-
     });
 	//=-=-=-=-=-=-=-=
 }
