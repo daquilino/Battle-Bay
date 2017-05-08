@@ -1,4 +1,4 @@
-console.log("warehouse-page.js file loaded");
+console.log("warehouse-page.js file has loaded");
 
 
 
@@ -79,6 +79,8 @@ $.ajax({
   electronicsPricePerUnit = data[1].price;
   collectablesPricePerUnit = data[2].price;
 
+  console.log(fashionPricePerUnit, electronicsPricePerUnit, collectablesPricePerUnit);
+
   $("#fashionPrice").html(fashionPricePerUnit + " Bit(s)");
   $("#electronicsPrice").html(electronicsPricePerUnit + " Bit(s)");
   $("#collectablesPrice").html(collectablesPricePerUnit + " Bit(s)");
@@ -101,7 +103,8 @@ function selectWarehouse(){
   } else {
 
     if ($(this).attr("data-warehouse") === selectedWarehouse){
-
+      // Do Nothing 
+    
     } else {
       var currentlySelectedDiv = $(document).find("[data-warehouse='" + selectedWarehouse + "']");
       
@@ -128,7 +131,7 @@ function changeOrderSummary(){
     var total = fashionPricePerUnit * numberOfUnits;
     $("#orderSummaryTotal").html(total);
   
-  } else if (selectWarehouse === "electronics"){
+  } else if (selectedWarehouse === "electronics"){
     var total = electronicsPricePerUnit * numberOfUnits;
     $("#orderSummaryTotal").html(total);
   
