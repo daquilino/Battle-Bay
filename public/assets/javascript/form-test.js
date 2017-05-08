@@ -17,7 +17,7 @@ console.log("form-test.js has loaded");
 // On click events for all the form buttons
 //-----------------------------------------------------------------------------------
 // $(document).on("click", "#signUpSubmit", signUp);
-$(document).on("click", "#signInSubmit", signIn);
+// $(document).on("click", "#signInSubmit", signIn);
 $(document).on("click", "#getPlayerAccountInfo", getPlayerAccountInfo);
 $(document).on("click", "#getPlayerListings", getPlayerListings);
 $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
