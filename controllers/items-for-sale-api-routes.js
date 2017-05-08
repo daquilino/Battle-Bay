@@ -23,6 +23,17 @@ module.exports = function(app)
 		});		
 	});
 
+	//------------------------------------------------------
+	//Get only one 'itemsForSale' joined with 'allUsers'
+	app.get("/api/forsale/:id", function(req, res)
+	{
+		DB.itemsForSale.findOne({where: {id: req.params.id}})
+		.then(function(data)
+		{
+			res.json(data);
+		});		
+	});
+
 
 	//------------------------------------------------------
 	//Insert/create row
