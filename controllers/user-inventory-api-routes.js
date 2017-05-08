@@ -23,6 +23,17 @@ module.exports = function(app)
 		});		
 	});
 
+	//------------------------------------------------------
+	//Get all 'usersInventory' joined with 'allUsers'
+	app.get("/api/inventory/:id", function(req, res)
+	{
+		DB.usersInventory.findAll({where:{id: req.params.id}})
+		.then(function(data)
+		{
+			res.json(data);
+		});		
+	});
+
 
 	//------------------------------------------------------
 	//Insert/create row
