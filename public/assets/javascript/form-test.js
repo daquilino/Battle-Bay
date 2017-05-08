@@ -235,10 +235,11 @@ function placeOrder() {
 		console.log("Error in place order warehouse ID if statement.");
 	};
 
+	var userID = document.cookie.split("=")[1];
 	
 
-
-	updateWarehouseItem(numberOfUnits, warehouseID);
+	console.log(numberOfUnits, warehouseID, selectedWarehouse, userID, total);
+	updateWarehouseItem(numberOfUnits, warehouseID, selectedWarehouse, userID, total);
 }
 
 
@@ -367,14 +368,20 @@ function getWarehousePrices() {
 
 //-------------------------------------------------------------------------------------
 // Update a given warehouseItem  `units_sold` ,
-  function updateWarehouseItem(quantity, itemId, userID, total) {
+  function updateWarehouseItem(quantity, warehouseID, warehouseName, userID, total) {
    
   	
-  	post = {"quantity": quantity};
+  	var post = {
+  	quantity: quantity,
+  	warehouseID: warehouseID,
+  	warehouseName: warehouseName,
+  	userID: userID,
+  	total: total
+  	};
 
     $.ajax({
       method: "PUT",
-      url: "/api/warehouse/" + itemId ,
+      url: "/api/warehouse" ,
       data: post
     })
     .done(function(data) {
