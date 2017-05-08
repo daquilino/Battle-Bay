@@ -24,7 +24,7 @@ $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
 $(document).on("click", "#getWarehousePrices", getWarehousePrices);
 $(document).on("click", "#placeOrder", placeOrder);
 $(document).on("click", "#getItemListings", getItemListings);
-$(document).on("click", "#makeListing", updateInventoryItem); //makeListing
+$(document).on("click", "#makeListing", makeListing); //makeListing
 //====================================================================================
 
 
@@ -283,9 +283,9 @@ function getWarehousePrices() {
 	// Post item to be sold
 	function sellItem(itemName, startPrice, userId )
 	{	
-		itemName = "ItemF" ;	//TEST CODE REMOVE
-		startPrice = 1;			//TEST CODE REMOVE
-		userId = 3;				//TEST CODE REMOVE
+		itemName = "electronics" ;	//TEST CODE REMOVE
+		startPrice = 12;			//TEST CODE REMOVE
+		userId = 1;				//TEST CODE REMOVE
 
 		// object to post (body)
 		var item = {
@@ -335,15 +335,15 @@ function getWarehousePrices() {
 	// Updates highest_bidder and highest_bid of an item begin sold.
 	function updateSaleItem(itemId, highestBidder, highestBid)
 	{
-		highestBidder = "highestBidderB";
-		highestBid = 399;
+		highestBidder = "highestBidderC";
+		highestBid = 405;
 
 		var updateData = {
 			"highest_bidder": highestBidder,
 			"highest_bid": highestBid
 		};
 
-		var itemId = 3;
+		var itemId = 2;
 
 		$.ajax({
 	      	method: "PUT",

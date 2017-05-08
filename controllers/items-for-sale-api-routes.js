@@ -16,13 +16,23 @@ module.exports = function(app)
 	//Get all 'itemsForSale' joined with 'allUsers'
 	app.get("/api/forsale", function(req, res)
 	{
-		DB.itemsForSale.findAll({include: [DB.allUsers],})
+		DB.itemsForSale.findAll({include: [DB.allUsers]})
 		.then(function(data)
 		{
 			res.json(data);
 		});		
 	});
 
+	//------------------------------------------------------
+	//Get only one 'itemsForSale'
+	app.get("/api/forsale/:id", function(req, res)
+	{
+		DB.itemsForSale.findOne({where: {id: req.params.id}})
+		.then(function(data)
+		{
+			res.json(data);
+		});		
+	});
 
 	//------------------------------------------------------
 	//Insert/create row
@@ -35,7 +45,6 @@ module.exports = function(app)
 		});		
 	});
 
-	
 	//------------------------------------------------------
 	//update row where `id`
 	app.put("/api/forsale/:id", function(req, res)
@@ -52,7 +61,6 @@ module.exports = function(app)
 			res.json(data);
 		});		
 	});
-
 
 	//------------------------------------------------------
 	//Delete row where `id`
