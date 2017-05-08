@@ -12,7 +12,66 @@ const DB = require("../models");
 module.exports = function(app) 
 {
 
-	app.get("/user")
+	//------------------------------------------------------
+	//Get all 'usersInventory' joined with 'allUsers'
+	app.get("/api/inventory", function(req, res)
+	{
+		DB.usersInventory.findAll({include: [DB.allUsers],})
+		.then(function(data)
+		{
+			res.json(data);
+		});		
+	});
 
-  
+
+	//------------------------------------------------------
+	//Insert/create row
+	app.post("/api/inventory", function(req, res)
+	{
+		DB.usersInventory.create(req.body)
+		.then(function(data)
+		{
+			res.json(data);
+		});		
+	});
+
+
+	//------------------------------------------------------
+	//updates quantity of userInventory item
+	app.put("/api/inventory/:id", function(req, res)
+	{
+		DB.usersInventory.update(
+		{
+			quantity: DB.sequelize.literal('quantity + ' + req.body.quantity)
+		},
+		
+		{
+			where:
+			{
+				id: req.params.id
+			}
+		})
+		.then(function(data)
+		{
+			res.json(data);
+		});		
+	});
+
+
+	//------------------------------------------------------
+	//Delete row where `id`
+	app.delete("/api/inventory/:id", function(req, res) 
+	{
+	    DB.usersInventory.destroy(
+	    {
+	     	where: 
+	      	{
+	        	id: req.params.id
+	      	}
+	    }).then(function(data) 
+	    {
+	      res.json(data);
+	    });
+  	});
+
 };
