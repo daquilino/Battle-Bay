@@ -131,13 +131,13 @@
 						<!-- Warehouse Selection Div -->
 						<div class="row">
 							<div class="col-xs-6 col-xs-offset-3">
-								<div class="col-xs-4 stand-out-div-dark rounded-borders warehouse-selection-div">
+								<div class="col-xs-4 stand-out-div-dark rounded-borders warehouse-selection-div" data-warehouse="fashion">
 									<img class="full-width-img" src="../assets/images/fashion-logo.png">
 								</div>
-								<div class="col-xs-4 stand-out-div-dark rounded-borders warehouse-selection-div">
+								<div class="col-xs-4 stand-out-div-dark rounded-borders warehouse-selection-div" data-warehouse="electronics">
 									<img class="full-width-img" src="../assets/images/electronics-logo.png">
 								</div>
-								<div class="col-xs-4 stand-out-div-dark rounded-borders warehouse-selection-div">
+								<div class="col-xs-4 stand-out-div-dark rounded-borders warehouse-selection-div" data-warehouse="collectables">
 									<img class="full-width-img" src="../assets/images/collectables-logo.png">
 								</div>
 							</div>
@@ -163,17 +163,16 @@
 						<br>
 						<br>
 						
-						<h4>Order Details</h4>
+						<h4>Order Summary</h4>
 						<br>
 						
 						<!-- Order Details Div -->
 						<div class="row">
 							<div class="col-xs-4 col-xs-offset-4">	
-								<div id="orderDetails">
-									<p>Buying: 13 Units
-									From: Fashion
-									----------------
-									Total: 13 Bits</p>
+								<div id="orderSummary">
+									<p>Units: <span id="orderSummaryUnits">Units</span></p>
+									<p>From: <span id="orderSummaryWarehouse">Warehouse</span></p>
+									<p>Total: <span id="orderSummaryTotal">Total</span></p>
 								</div>
 							</div>
 						</div>

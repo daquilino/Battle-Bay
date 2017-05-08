@@ -13,6 +13,10 @@ console.log("warehouse-page.js file loaded");
       },
       slide: function( event, ui ) {
         handle.text( ui.value );
+      },
+      stop: function( event, ui ) {
+        numberOfUnits = $('#slider').slider("option", "value");
+        changeOrderSummary();
       }
     });
   // } );
@@ -21,6 +25,28 @@ console.log("warehouse-page.js file loaded");
 
 // Event Listeners
 //-------------------------------------------------------------------------------
+
+// Mouse hover on the warehouse choices
+$(document).on({
+    mouseenter: function () {
+      $(this).addClass("hover-shadow");
+      $(this).css("z-index", "10");
+    },
+    mouseleave: function () {
+      if ($(this).attr("data-warehouse") === selectedWarehouse){
+        $(this).removeClass("hover-shadow");
+        $(this).css("z-index", "5");
+      } else {
+        $(this).removeClass("hover-shadow");
+        $(this).css("z-index", "0");
+      }
+    }
+}, ".warehouse-selection-div");
+
+$(document).on("click", ".warehouse-selection-div", selectWarehouse);
+
+
+
 // $(document).on("click", "#placeOrder", placeOrder);
 //===============================================================================
 
@@ -31,6 +57,7 @@ var fashionPricePerUnit;
 var electronicsPricePerUnit;
 var collectablesPricePerUnit;
 var numberOfUnits = $('#slider').slider("option", "value");
+var selectedWarehouse = "none";
 //===============================================================================
 
 
@@ -60,8 +87,62 @@ $.ajax({
 //===============================================================================
 
 
+// Function to store the warehouse that gets selected by the user
+//-------------------------------------------------------------------------------
+function selectWarehouse(){
+  console.log("Warehouse selected.");
 
+  if (selectedWarehouse === "none"){
+    $(this).addClass("selected-shadow");
+    $(this).css("z-index", "5");
+    selectedWarehouse = $(this).attr("data-warehouse");
+    changeOrderSummary();
 
+  } else {
+
+    if ($(this).attr("data-warehouse") === selectedWarehouse){
+
+    } else {
+      var currentlySelectedDiv = $(document).find("[data-warehouse='" + selectedWarehouse + "']");
+      
+      $(currentlySelectedDiv).removeClass("selected-shadow");
+      $(currentlySelectedDiv).css("z-index", "0");
+
+      $(this).addClass("selected-shadow");
+      $(this).css("z-index", "5");
+      selectedWarehouse = $(this).attr("data-warehouse");
+      changeOrderSummary();
+
+    }
+  }
+};
+//===============================================================================
+
+// Helper Function to change the order summary Div
+//-------------------------------------------------------------------------------
+function changeOrderSummary(){
+  $("#orderSummaryUnits").html(numberOfUnits);
+  $("#orderSummaryWarehouse").html(selectedWarehouse);
+
+  if (selectedWarehouse === "fashion"){
+    var total = fashionPricePerUnit * numberOfUnits;
+    $("#orderSummaryTotal").html(total);
+  
+  } else if (selectWarehouse === "electronics"){
+    var total = electronicsPricePerUnit * numberOfUnits;
+    $("#orderSummaryTotal").html(total);
+  
+  } else {
+    var total = collectablesPricePerUnit * numberOfUnits;
+    $("#orderSummaryTotal").html(total);
+ 
+  }
+}
+//===============================================================================
+
+// Function to Display the order status
+//-------------------------------------------------------------------------------
+//===============================================================================
 
 // Place an Order Function
 //-------------------------------------------------------------------------------
@@ -101,13 +182,9 @@ $.ajax({
 
 
 
-//
-//-------------------------------------------------------------------------------
-//===============================================================================
 
-//
-//-------------------------------------------------------------------------------
-//===============================================================================
+
+
 
 //
 //-------------------------------------------------------------------------------
