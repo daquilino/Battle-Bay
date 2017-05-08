@@ -1,41 +1,82 @@
 module.exports = function(sequelize, DataTypes){
 
-  var usersInventory = sequelize.define("usersInventory", 
+    var usersInventory = sequelize.define("usersInventory", 
     {
-      item_name: 
-      {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: 
+        item_name: 
         {
-          is: ["^[a-z]+$",'i'],
-          notEmpty: true
-        }
-      },
-
-      quantity: 
-      {
-        type: DataTypes.INTEGER,
-        allowNull: false  
-      }
-   },
-     {
-      classMethods: 
-        {
-          associate: function(models) 
-          {
-            
-            usersInventory.belongsTo(models.allUsers, 
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: 
             {
-              foreignKey: 
-              {
-                allowNull: false
-              }
-            });
-          }
+                is: ["^[a-z]+$",'i'],
+                notEmpty: true
+            }
         },
-      freezeTableName: true,
-      timestamps: false
+
+        quantity: 
+        {
+            type: DataTypes.INTEGER,
+            allowNull: false  
+        },
+        
+        starting_price:
+        {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: 
+            {
+                isInt: true,
+                min: 1
+            }
+        },
+
+        highest_bid:
+        {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            validate: 
+            {
+                isInt: true,
+                min: 1
+            }
+        },
+      
+        highest_bidder:
+        {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: 
+            {
+                isAlpha: true,
+                notEmpty: true
+            }
+        },
+
+        sold:
+        {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        }
+    },    
+     
+    {
+        classMethods: 
+        {
+            associate: function(models) 
+            {
+            
+                usersInventory.belongsTo(models.allUsers, 
+                {
+                    foreignKey: 
+                    {
+                        allowNull: false
+                    }
+                });
+            }
+        },
+        
+        freezeTableName: true,
+        timestamps: false
     });
   return usersInventory;
 
