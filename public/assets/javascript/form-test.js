@@ -1,4 +1,4 @@
-Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+// Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
 	console.log("form-test.js has loaded");
 
 
@@ -488,4 +488,4 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
 		     	
 		    });
 		}
-});
+// });

@@ -1,4 +1,4 @@
-Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+// Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
  	
 	// Debug Tool
 	console.log("make-a-listing-page.js file has loaded");
@@ -149,4 +149,4 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
   //
   //-------------------------------------------------------------------------------
   //===============================================================================
-});
+// });

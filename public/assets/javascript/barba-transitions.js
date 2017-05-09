@@ -9,7 +9,7 @@ var FadeTransition = Barba.BaseTransition.extend({
      * this.newContainerLoading is a Promise for the loading of the new container
      * (Barba.js also comes with an handy Promise polyfill!)
      */
-     console.log("start");
+     // console.log("start");
     // As soon the loading is finished and the old page is faded out, let's fade the new page
     Promise
       .all([this.newContainerLoading, this.fadeOut()])
@@ -17,8 +17,8 @@ var FadeTransition = Barba.BaseTransition.extend({
   },
 
   fadeOut: function() {
-  	console.log("fade out");
-  	console.log($(this.oldContainer));
+  	// console.log("fade out");
+  	// console.log($(this.oldContainer));
     /**
      * this.oldContainer is the HTMLElement of the old Container
      */
@@ -27,7 +27,7 @@ var FadeTransition = Barba.BaseTransition.extend({
   },
 
   fadeIn: function() {
-  	console.log("fade in");
+  	// console.log("fade in");
     /**
      * this.newContainer is the HTMLElement of the new Container
      * At this stage newContainer is on the DOM (inside our #barba-container and with visibility: hidden)
@@ -60,7 +60,7 @@ var FadeTransition = Barba.BaseTransition.extend({
  */
 
 Barba.Pjax.getTransition = function() {
-	console.log("get transition");
+	// console.log("get transition");
   /**
    * Here you can use your own logic!
    * For example you can use different Transition based on the current page or link...
@@ -74,54 +74,73 @@ Barba.Pjax.getTransition = function() {
 
 // Set up for the barba.js Name Spaces
 //-------------------------------------------------------------------------------------------
+
+// Landing namespace
+//---------------------------
 var Landing = Barba.BaseView.extend({
   namespace: 'Landing',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
-      $.get("assets/javascript/make-a-listing-page.js");
       console.log("Landing loading worked");
   }
 });
 
 // Don't forget to init the view!
 Landing.init();
+//===========================
 
+
+// Sign Up name space
+//---------------------------
 var SignUp = Barba.BaseView.extend({
   namespace: 'SignUp',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
-      $.get("assets/javascript/make-a-listing-page.js");
       console.log("SignUp loading worked");
   }
 });
 
 // Don't forget to init the view!
 SignUp.init();
+//===========================
 
+
+// Sign In name space
+//---------------------------
 var SignIn = Barba.BaseView.extend({
   namespace: 'SignIn',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
-      $.get("assets/javascript/make-a-listing-page.js");
       console.log("SignIn loading worked");
   }
 });
 
 // Don't forget to init the view!
 SignIn.init();
+//===========================
 
+
+// Make a listing Name space
+//---------------------------
 var MakeListing = Barba.BaseView.extend({
   namespace: 'MakeListing',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
+      $.get("https://code.jquery.com/ui/1.12.1/jquery-ui.js");
       $.get("assets/javascript/make-a-listing-page.js");
+      $.get("assets/javascript/form-test.js");
+      
       console.log("MakeListing loading worked");
   }
 });
 
 // Don't forget to init the view!
 MakeListing.init();
+//===========================
 
+
+// Leaderboard Name space
+//---------------------------
 var Leaderboard = Barba.BaseView.extend({
   namespace: 'Leaderboard',
   onEnter: function() {
@@ -133,7 +152,11 @@ var Leaderboard = Barba.BaseView.extend({
 
 // Don't forget to init the view!
 Leaderboard.init();
+//===========================
 
+
+// User homepage name space
+//---------------------------
 var UserHomepage = Barba.BaseView.extend({
   namespace: 'UserHomepage',
   onEnter: function() {
@@ -145,7 +168,11 @@ var UserHomepage = Barba.BaseView.extend({
 
 // Don't forget to init the view!
 UserHomepage.init();
+//===========================
 
+
+// All listing name space
+//---------------------------
 var AllListings = Barba.BaseView.extend({
   namespace: 'AllListings',
   onEnter: function() {
@@ -157,6 +184,7 @@ var AllListings = Barba.BaseView.extend({
 
 // Don't forget to init the view!
 AllListings.init();
+//===========================
 
 
 // Extra for easy additions later
