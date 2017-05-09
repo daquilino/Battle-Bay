@@ -44,6 +44,10 @@ module.exports = function(app)
     res.sendFile(PATH.join(__dirname, "../public/user-homepage.html"));
   });
 
+  app.get("/make-a-listing", function(req, res) {
+    res.sendFile(PATH.join(__dirname, "../public/make-a-listing.html"));
+  });
+
   app.get("/all-listings", function(req, res) {
     res.sendFile(PATH.join(__dirname, "../public/all-listings.html"));
   });
