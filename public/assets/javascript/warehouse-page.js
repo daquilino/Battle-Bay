@@ -61,9 +61,6 @@ var selectedWarehouse = "none";
 //===============================================================================
 
 
-
-
-
 // GET Warehouse Prices
 //-------------------------------------------------------------------------------
 // This Function runs when the warehouse page loads so It pulls the most recent 
