@@ -1,5 +1,16 @@
 console.log("barba-transitions.js has loaded.");
 
+
+// Set Up JQuery to use the browser cache to reduce loading times on script loads
+// This is just in case as there might be a bug with barba.js where it loads
+// scripts multiple times.
+//------------------------------------------------------------------------------------------
+$.ajaxSetup({
+  cache: true
+});
+//==========================================================================================
+
+
 // Set up for the barba.js transitions
 //-------------------------------------------------------------------------------------------
 var FadeTransition = Barba.BaseTransition.extend({
@@ -126,7 +137,6 @@ var MakeListing = Barba.BaseView.extend({
   namespace: 'MakeListing',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
-      $.get("https://code.jquery.com/ui/1.12.1/jquery-ui.js");
       $.get("assets/javascript/make-a-listing-page.js");
       $.get("assets/javascript/form-test.js");
       
@@ -193,7 +203,6 @@ var Warehouse = Barba.BaseView.extend({
   namespace: 'Warehouse',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
-      $.get("https://code.jquery.com/ui/1.12.1/jquery-ui.js");
       $.get("assets/javascript/warehouse-page.js");
       $.get("assets/javascript/form-test.js");
       console.log("Warehouse loading worked");
@@ -229,7 +238,6 @@ Warehouse.init();
 
 //===========================================================================================
 // End of barba.js Name Space Set up
-
 
 
 
