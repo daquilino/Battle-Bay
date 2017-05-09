@@ -101,7 +101,7 @@ module.exports = function(app)
 	});
 
 	//Pulling leaderboard information
-	app.get("/leaderboard", function(req, res)
+	app.get("/api/leaderboard", function(req, res)
 	{
 		DB.sequelize.query("SELECT " + 
 		"username AS `player`," + 
@@ -114,7 +114,7 @@ module.exports = function(app)
 			//sequelize doesn't allow the SET operation in its queries.
 			for (var index = 0; index < results[0].length; index++)
 				results[0][index].rank = index + 1;
-
+			console.log(results[0]);
 			res.json(results[0]);
 		});
 	});

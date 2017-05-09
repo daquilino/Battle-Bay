@@ -92,13 +92,13 @@ body {
 .list-group-item {
     display: list-item;
 }
-#first-place {
+.first-place {
   height: 125px;
 }
-#second-place {
+.second-place {
   height: 100px;
 }
-#third-place {
+.third-place {
   height: 75px;
 }
 
