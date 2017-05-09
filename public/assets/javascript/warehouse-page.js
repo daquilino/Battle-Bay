@@ -58,10 +58,8 @@ var electronicsPricePerUnit;
 var collectablesPricePerUnit;
 var numberOfUnits = $('#slider').slider("option", "value");
 var selectedWarehouse = "none";
+var total = 0;
 //===============================================================================
-
-
-
 
 
 // GET Warehouse Prices
@@ -128,15 +126,15 @@ function changeOrderSummary(){
   $("#orderSummaryWarehouse").html(selectedWarehouse);
 
   if (selectedWarehouse === "fashion"){
-    var total = fashionPricePerUnit * numberOfUnits;
+    total = fashionPricePerUnit * numberOfUnits;
     $("#orderSummaryTotal").html(total);
   
   } else if (selectedWarehouse === "electronics"){
-    var total = electronicsPricePerUnit * numberOfUnits;
+    total = electronicsPricePerUnit * numberOfUnits;
     $("#orderSummaryTotal").html(total);
   
   } else {
-    var total = collectablesPricePerUnit * numberOfUnits;
+    total = collectablesPricePerUnit * numberOfUnits;
     $("#orderSummaryTotal").html(total);
  
   }

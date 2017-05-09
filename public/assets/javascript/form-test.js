@@ -24,7 +24,7 @@ $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
 $(document).on("click", "#getWarehousePrices", getWarehousePrices);
 $(document).on("click", "#placeOrder", placeOrder);
 $(document).on("click", "#getItemListings", getItemListings);
-$(document).on("click", "#makeListing", makeListing); //makeListing
+$(document).on("click", "#makeListing", updateWarehouseItem); //makeListing
 //====================================================================================
 
 
@@ -228,6 +228,7 @@ function placeOrder() {
 	} else if (selectedWarehouse === "fashion"){
 		warehouseID = 2;
 
+
 	} else if (selectedWarehouse === "collectables"){
 		warehouseID = 3;
 
@@ -235,10 +236,11 @@ function placeOrder() {
 		console.log("Error in place order warehouse ID if statement.");
 	};
 
+	var userID = document.cookie.split("=")[1];
 	
 
-
-	updateWarehouseItem(numberOfUnits, warehouseID);
+	console.log(numberOfUnits, warehouseID, selectedWarehouse, userID, total);
+	updateWarehouseItem(numberOfUnits, warehouseID, selectedWarehouse, userID, total);
 }
 
 
@@ -252,7 +254,6 @@ function getWarehousePrices() {
 	$.get("api/warehouse", function(data){
 
 
-
 		$("#warehousePrices").empty();
 		$("#warehousePrices").append("<h4>Warehouse Prices</h4>");
 		$("#warehousePrices").append("<p>Fashion--Price Per Unit: " + data.fashion + "</p>");
@@ -264,10 +265,6 @@ function getWarehousePrices() {
 }
 
 
-
-
-
-  
 //======================================================================================
 //============================ Completed API Functions Below ===========================
 //================ I used to test api. May need to modify to fit your purpose ==========
@@ -367,14 +364,22 @@ function getWarehousePrices() {
 
 //-------------------------------------------------------------------------------------
 // Update a given warehouseItem  `units_sold` ,
-  function updateWarehouseItem(quantity, itemId, userID, total) {
+
+  function updateWarehouseItem(quantity, warehouseID, warehouseName, userID, total) {
    
   	
-  	post = {"quantity": quantity};
+  	var post = {
+  	quantity: quantity,
+  	warehouseID: warehouseID,
+  	warehouseName: warehouseName,
+  	userID: userID,
+  	total: total
+  	};
+
 
     $.ajax({
       method: "PUT",
-      url: "/api/warehouse/" + itemId ,
+      url: "/api/warehouse" ,
       data: post
     })
     .done(function(data) {
