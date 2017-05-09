@@ -1,7 +1,7 @@
 Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
-  console.log("trying to load make-a-listing page")
-
-  console.log("make-a-listing-page.js file has loaded");
+ 	
+	// Debug Tool
+	console.log("make-a-listing-page.js file has loaded");
 
 
 
@@ -11,14 +11,14 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
   // Event Listeners
   //-------------------------------------------------------------------------------
 
-  // Mouse hover on the warehouse choices
+  // Mouse hover on the itemType choices
   $(document).on({
       mouseenter: function () {
         $(this).addClass("hover-shadow");
         $(this).css("z-index", "10");
       },
       mouseleave: function () {
-        if ($(this).attr("data-warehouse") === selectedWarehouse){
+        if ($(this).attr("data-itemType") === selectedItemType){
           $(this).removeClass("hover-shadow");
           $(this).css("z-index", "5");
         } else {
@@ -26,9 +26,15 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
           $(this).css("z-index", "0");
         }
       }
-  }, ".warehouse-selection-div");
+  }, ".itemType-selection-div");
 
-  $(document).on("click", ".warehouse-selection-div", selectWarehouse);
+  // Triggers when the user clicks on a itemType selector
+  $(document).on("click", ".itemType-selection-div", selectItemType);
+
+  // Updates the order summary when the mouse leaves the number input field
+  $(":input[name=startingPrice]").mouseleave(function(){
+  	changeOrderSummary();
+  });
 
 
 
@@ -42,7 +48,9 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
   var numberOfElectronicsUnits = 0;
   var numberOfCollectablesUnits = 0;
   var numberOfUnitsToSell = 1;
-  var selectedWarehouse;
+  var selectedItemType = "none";
+  var userId = document.cookie.split("=")[1];
+  var price = 0;
 
   //===============================================================================
 
@@ -54,7 +62,7 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
   //-------------------------------------------------------------------------------
   $.ajax({
     method: 'GET',
-    url: '/api/inventory/' + 1
+    url: '/api/inventory/' + userId
   })
   .done(function(data) {
   	// The data comes back as an array of objects
@@ -81,29 +89,29 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
 
   // Function to store the warehouse that gets selected by the user
   //-------------------------------------------------------------------------------
-  function selectWarehouse(){
-    console.log("Warehouse selected.");
+  function selectItemType(){
+    console.log("itemType selected.");
 
-    if (selectedWarehouse === "none"){
+    if (selectedItemType === "none"){
       $(this).addClass("selected-shadow");
       $(this).css("z-index", "5");
-      selectedWarehouse = $(this).attr("data-warehouse");
+      selectedItemType = $(this).attr("data-itemType");
       changeOrderSummary();
 
     } else {
 
-      if ($(this).attr("data-warehouse") === selectedWarehouse){
+      if ($(this).attr("data-itemType") === selectedItemType){
         // Do Nothing 
       
       } else {
-        var currentlySelectedDiv = $(document).find("[data-warehouse='" + selectedWarehouse + "']");
+        var currentlySelectedDiv = $(document).find("[data-itemType='" + selectedItemType + "']");
         
         $(currentlySelectedDiv).removeClass("selected-shadow");
         $(currentlySelectedDiv).css("z-index", "0");
 
         $(this).addClass("selected-shadow");
         $(this).css("z-index", "5");
-        selectedWarehouse = $(this).attr("data-warehouse");
+        selectedItemType = $(this).attr("data-itemType");
         changeOrderSummary();
 
       }
@@ -115,43 +123,22 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
   //-------------------------------------------------------------------------------
   function changeOrderSummary(){
     $("#listingDetailsUnits").html(numberOfUnitsToSell);
-    $("#listingDetailsWarehouse").html(selectedWarehouse);
+    $("#listingDetailsItemType").html(selectedItemType);
 
-    if (selectedWarehouse === "fashion"){
-      // total = fashionPricePerUnit * numberOfUnitsToSell;
-      $("#listingDetailsTotal").html(1);
+    if (selectedItemType === "fashion"){
+    	price = $(":input[name=startingPrice]").val();
+      $("#listingDetailsTotal").html(price);
     
-    } else if (selectedWarehouse === "electronics"){
-      // total = electronicsPricePerUnit * numberOfUnitsToSell;
-      $("#listingDetailsTotal").html(1);
+    } else if (selectedItemType === "electronics"){
+    	price = $(":input[name=startingPrice]").val();
+      $("#listingDetailsTotal").html(price);
     
     } else {
-      // total = collectablesPricePerUnit * numberOfUnitsToSell;
-      $("#listingDetailsTotal").html(1);
+    	price = $(":input[name=startingPrice]").val();
+      $("#listingDetailsTotal").html(price);
    
     }
   }
-  //===============================================================================
-
-
-  // Jquery Slider Function
-  //-------------------------------------------------------------------------------
-
-      // var handle = $( "#custom-handle" );
-      // $( "#warehouse-slider" ).slider({
-      //   max: 50,
-      //   create: function() {
-      //     handle.text( $( this ).slider( "value" ) );
-      //   },
-      //   slide: function( event, ui ) {
-      //     handle.text( ui.value );
-      //   },
-      //   stop: function( event, ui ) {
-      //     numberOfUnits = $('#warehouse-slider').slider("option", "value");
-      //     changeOrderSummary();
-      //   }
-      // });
-
   //===============================================================================
 
 

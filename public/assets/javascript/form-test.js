@@ -210,8 +210,8 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
 		console.log("Make Listing Button Pressed.");
 
 		post = {
-			itemName: "fashion",
-			price: 10
+			itemName: itemType,
+			price: price
 		}
 
 		$.ajax({
