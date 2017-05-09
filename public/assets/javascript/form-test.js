@@ -24,7 +24,7 @@ $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
 $(document).on("click", "#getWarehousePrices", getWarehousePrices);
 $(document).on("click", "#placeOrder", placeOrder);
 $(document).on("click", "#getItemListings", getItemListings);
-$(document).on("click", "#makeListing", updateWarehouseItem); //makeListing
+$(document).on("click", "#makeListing", makeListing); //makeListing
 //====================================================================================
 
 
@@ -237,7 +237,6 @@ function placeOrder() {
 	};
 
 	var userID = document.cookie.split("=")[1];
-	
 
 	console.log(numberOfUnits, warehouseID, selectedWarehouse, userID, total);
 	updateWarehouseItem(numberOfUnits, warehouseID, selectedWarehouse, userID, total);
@@ -376,7 +375,7 @@ function getWarehousePrices() {
   	total: total
   	};
 
-
+    
     $.ajax({
       method: "PUT",
       url: "/api/warehouse" ,
