@@ -116,6 +116,7 @@ module.exports = function(app)
 				results[0][index].rank = index + 1;
 
 			//respond with an array of player objects in ranked order
+			console.log(results[0]);
 			res.json(results[0]);
 		});
 	});

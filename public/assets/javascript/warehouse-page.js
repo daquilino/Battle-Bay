@@ -75,8 +75,8 @@ $.ajax({
 })
 .done(function(data) {
   console.log(data);
-  fashionPricePerUnit = data[0].price;
-  electronicsPricePerUnit = data[1].price;
+  fashionPricePerUnit = data[1].price;
+  electronicsPricePerUnit = data[0].price;
   collectablesPricePerUnit = data[2].price;
 
   console.log(fashionPricePerUnit, electronicsPricePerUnit, collectablesPricePerUnit);
