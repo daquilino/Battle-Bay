@@ -1,34 +1,9 @@
-Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
-  console.log("trying to load warehouse page")
-
+// Debug Tool
 console.log("warehouse-page.js file has loaded");
-
-
-
-// Jquery Slider Function
-//-------------------------------------------------------------------------------
-// $( function() {
-    // var handle = $( "#custom-handle" );
-    // $( "#slider" ).slider({
-    // 	max: 50,
-    //   create: function() {
-    //     handle.text( $( this ).slider( "value" ) );
-    //   },
-    //   slide: function( event, ui ) {
-    //     handle.text( ui.value );
-    //   },
-    //   stop: function( event, ui ) {
-    //     numberOfUnits = $('#slider').slider("option", "value");
-    //     changeOrderSummary();
-    //   }
-    // });
-  // } );
-//===============================================================================
 
 
 // Event Listeners
 //-------------------------------------------------------------------------------
-
 // Mouse hover on the warehouse choices
 $(document).on({
     mouseenter: function () {
@@ -46,11 +21,13 @@ $(document).on({
     }
 }, ".warehouse-selection-div");
 
+// Triggers when the user clicks on a warehouse selector
 $(document).on("click", ".warehouse-selection-div", selectWarehouse);
 
-
-
-// $(document).on("click", "#placeOrder", placeOrder);
+// Updates the order summary when the mouse leaves the number input field
+$(":input[name=numberOfUnits]").mouseleave(function(){
+  changeOrderSummary();
+});
 //===============================================================================
 
 
@@ -59,7 +36,7 @@ $(document).on("click", ".warehouse-selection-div", selectWarehouse);
 var fashionPricePerUnit;
 var electronicsPricePerUnit;
 var collectablesPricePerUnit;
-// var numberOfUnits = $('#slider').slider("option", "value");
+var numberOfUnits;
 var selectedWarehouse = "none";
 var total = 0;
 //===============================================================================
@@ -116,15 +93,16 @@ function selectWarehouse(){
       $(this).css("z-index", "5");
       selectedWarehouse = $(this).attr("data-warehouse");
       changeOrderSummary();
-
     }
   }
 };
 //===============================================================================
 
+
 // Helper Function to change the order summary Div
 //-------------------------------------------------------------------------------
 function changeOrderSummary(){
+  numberOfUnits = $(":input[name=numberOfUnits]").val();
   $("#orderSummaryUnits").html(numberOfUnits);
   $("#orderSummaryWarehouse").html(selectedWarehouse);
 
@@ -139,56 +117,10 @@ function changeOrderSummary(){
   } else {
     total = collectablesPricePerUnit * numberOfUnits;
     $("#orderSummaryTotal").html(total);
- 
   }
 }
 //===============================================================================
 
-// Function to Display the order status
-//-------------------------------------------------------------------------------
-//===============================================================================
-
-// Place an Order Function
-//-------------------------------------------------------------------------------
-// function placeOrder() {
-//   console.log("Place Order Button Pressed");
-// }
-
-
-
-// postObj = {
-//   "item_name": "value",
-//   "quantity": "value",
-//   "allUserId": "value"
-// }
-
-// $.ajax({
-//   method: "POST",
-//   url: '/api/inventory',
-//   post: postObj
-// })
-// .done(function(data){
-//   console.log(data);
-// });
-
-// //Returns JSON object 
-//              {
-//       "quantity": 1,
-//       "id": 6,
-//       "item_name": "electronics",
-//       "starting_price": "1",
-//       "allUserId": "3"
-//         }
-
-//===============================================================================
-
-
-
-
-
-
-
-
 
 //
 //-------------------------------------------------------------------------------
@@ -197,4 +129,3 @@ function changeOrderSummary(){
 //
 //-------------------------------------------------------------------------------
 //===============================================================================
-});

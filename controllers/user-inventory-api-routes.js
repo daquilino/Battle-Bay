@@ -27,7 +27,7 @@ module.exports = function(app)
 	//Get only one 'usersInventory'
 	app.get("/api/inventory/:id", function(req, res)
 	{
-		DB.usersInventory.findOne({where:{id: req.params.id}})
+		DB.usersInventory.findAll({where:{allUserId: req.params.id}})
 		.then(function(data)
 		{
 			res.json(data);
