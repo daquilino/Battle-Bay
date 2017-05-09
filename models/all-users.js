@@ -25,31 +25,22 @@ module.exports = function(sequelize, DataTypes)
 		{
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			defaultValue: 200,
-			validate:
-			{
-				isInt: true,
-			}
+			defaultValue: 200
+
 		},
 		money_spent:
 		{
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			defaultValue: 0,
-			validate:
-			{
-				isInt: true,
-			}
+			defaultValue: 0
+		
 		},
 		money_earned:
 		{
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			defaultValue: 0,
-			validate:
-			{
-				isInt: true,
-			}
+			defaultValue: 0
+		
 		}
 	},
 	{

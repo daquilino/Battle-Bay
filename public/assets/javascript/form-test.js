@@ -237,7 +237,6 @@ function placeOrder() {
 	};
 
 	var userID = document.cookie.split("=")[1];
-	
 
 	console.log(numberOfUnits, warehouseID, selectedWarehouse, userID, total);
 	updateWarehouseItem(numberOfUnits, warehouseID, selectedWarehouse, userID, total);
@@ -376,7 +375,7 @@ function getWarehousePrices() {
   	total: total
   	};
 
-
+    
     $.ajax({
       method: "PUT",
       url: "/api/warehouse" ,
