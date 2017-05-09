@@ -1,3 +1,6 @@
+Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+  console.log("trying to load warehouse page")
+
 console.log("warehouse-page.js file has loaded");
 
 
@@ -5,20 +8,20 @@ console.log("warehouse-page.js file has loaded");
 // Jquery Slider Function
 //-------------------------------------------------------------------------------
 // $( function() {
-    var handle = $( "#custom-handle" );
-    $( "#slider" ).slider({
-    	max: 50,
-      create: function() {
-        handle.text( $( this ).slider( "value" ) );
-      },
-      slide: function( event, ui ) {
-        handle.text( ui.value );
-      },
-      stop: function( event, ui ) {
-        numberOfUnits = $('#slider').slider("option", "value");
-        changeOrderSummary();
-      }
-    });
+    // var handle = $( "#custom-handle" );
+    // $( "#slider" ).slider({
+    // 	max: 50,
+    //   create: function() {
+    //     handle.text( $( this ).slider( "value" ) );
+    //   },
+    //   slide: function( event, ui ) {
+    //     handle.text( ui.value );
+    //   },
+    //   stop: function( event, ui ) {
+    //     numberOfUnits = $('#slider').slider("option", "value");
+    //     changeOrderSummary();
+    //   }
+    // });
   // } );
 //===============================================================================
 
@@ -56,7 +59,7 @@ $(document).on("click", ".warehouse-selection-div", selectWarehouse);
 var fashionPricePerUnit;
 var electronicsPricePerUnit;
 var collectablesPricePerUnit;
-var numberOfUnits = $('#slider').slider("option", "value");
+// var numberOfUnits = $('#slider').slider("option", "value");
 var selectedWarehouse = "none";
 var total = 0;
 //===============================================================================
@@ -194,3 +197,4 @@ function changeOrderSummary(){
 //
 //-------------------------------------------------------------------------------
 //===============================================================================
+});

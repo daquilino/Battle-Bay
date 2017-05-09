@@ -23,24 +23,26 @@ module.exports = function(sequelize, DataTypes){
         {
             type: DataTypes.INTEGER,
             defaultValue: 0,
-            allowNull: false,
-            validate: 
-            {
-                isInt: true,
-                min: 1
-            }
+            allowNull: true
+            // ,
+            // validate: 
+            // {
+            //     isInt: true,
+            //     min: 1
+            // }
         },
 
         highest_bid:
         {
             type: DataTypes.INTEGER,
             allowNull: true,
-            defaultValue: 0,
-            validate: 
-            {
-                isInt: true,
-                min: 1
-            }
+            defaultValue: 0
+            // ,
+            // validate: 
+            // {
+            //     isInt: true,
+            //     min: 1
+            // }
         },
       
         highest_bidder:

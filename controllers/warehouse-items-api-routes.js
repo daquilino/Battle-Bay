@@ -27,9 +27,10 @@ module.exports = function(app)
 	app.put("/api/warehouse", function(req, res)
 	{		
 			
-		addToUserInventory(req.body.userID, req.body.quantity, warehouseName);
-		updateUserStats(req.body.userID, req.body.total );
-		
+
+		addToUserInventory(req.body.userID, req.body.quantity, req.body.warehouseName, res);
+		updateUserStats(req.body.userID, req.body.total,res );
+
 		DB.warehouseItems.update(
 		{ 			
 			 units_sold: DB.sequelize.literal('units_sold + ' + req.body.quantity)				
@@ -43,7 +44,7 @@ module.exports = function(app)
 		})
 		.then(function(data)
 		{			
-			res.json(data);  
+			//res.json(data);  
 		});
 
 	});
@@ -85,40 +86,46 @@ module.exports = function(app)
 // helper functions
 
 //
-function addToUserInventory(userId, quantity, itemName)
+function addToUserInventory(userId, quantity, itemName, res)
 {
-	var item ={	 
-		
-		quantity: quantity,
-		item_name: itemName,
-		allUserId: userId
-	};
 
-
-		DB.usersInventory.create(item)
-		.then(function(data)
-		{
-			res.json(data);
-		});		
+console.log("\n\nADDTOUSERINVENTORY\n\n");	
+	
 	
 
+	var item ={	 
+		
+		quantity: parseInt(quantity),
+		item_name: itemName,
+		allUserId: 2          //userId
+	};
+
+console.log("\n\nitem", item, "\n\n")
+		
+	DB.usersInventory.create(item)
+	.then(function(data)
+	{
+		
+	});		
+	
 }
 
 
 //
-function updateUserStats(userId, totalSpent )
+function updateUserStats(userId, totalSpent, res )
 {
 
-	var updateObj = {
-		balance: DB.sequelize.literal('balance + ' - req.body.quantity),
-		money_spent: DB.sequelize.literal('money_spent + ' - req.body.quantity)
+	userId = 2; //TEST CODE REMOVE
 
+	var updateObj = {
+		balance: DB.sequelize.literal('balance - ' + totalSpent),
+		money_spent: DB.sequelize.literal('money_spent + ' + totalSpent)
 	};
 
-	DB.allUsers.update(item, {where: {id: userId}})
+	DB.allUsers.update(updateObj, {where: {id: userId}})
 	.then(function(data)
 	{
-		res.json(data);
+		
 	});	
 
 
