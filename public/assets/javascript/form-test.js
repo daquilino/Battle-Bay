@@ -219,27 +219,27 @@ function makeListing() {
 
 function placeOrder() {
 	console.log("Place Order Button Pressed.");
+		
+	var warehouseID;
+
+	if (selectedWarehouse === "electronics") {
+		warehouseID = 1;
+
+	} else if (selectedWarehouse === "fashion"){
+		warehouseID = 2;
+
+
+	} else if (selectedWarehouse === "collectables"){
+		warehouseID = 3;
+
+	} else {
+		console.log("Error in place order warehouse ID if statement.");
+	};
+
 	
-	var warehouse = $('input:radio[name=warehouse]:checked').val();
-	var numberOfUnits = $(":input[name=amount]").val();
 
-	// var orderInfo = {
-	// 	warehouse: warehouse,
-	// 	units: numberOfUnits
-	// };
 
-	// $.post("api/warehouse/order", orderInfo).then(function(){
-	// 	console.log("Order Placed! Order: " + orderInfo);
-	// });
-
-	var post =
-	{
-		sold_quantity: numberOfUnits, 
-		id : 1
-
-	}
-
-	updateWarehouseItem(post);
+	updateWarehouseItem(numberOfUnits, warehouseID);
 }
 
 
@@ -363,9 +363,12 @@ function getWarehousePrices() {
 
 //-------------------------------------------------------------------------------------
 // Update a given warehouseItem  `units_sold` ,
-  function updateWarehouseItem(quantity, itemId)
-  {
+
+
+  function updateWarehouseItem(quantity, itemId, userID, total) {
    
+  	
+
   	post = {"quantity": quantity};
 
     $.ajax({

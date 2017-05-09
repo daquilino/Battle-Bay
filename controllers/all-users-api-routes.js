@@ -1,12 +1,12 @@
 // *********************************************************************************
-// all-users-api-routes.js - this file offers a set of routes for displaying and saving data to the db
+// all-users-api-routes.js. This file provides routes for signing in, logging in, and 
+// getting leaderboard information. (Info pertaining to all the users). 
 // *********************************************************************************
 
 // Dependencies
 // =============================================================
 // Requiring our models
 const DB = require("../models");
-
 
 // Routes
 // =============================================================
@@ -99,43 +99,37 @@ module.exports = function(app)
 			}
 		});
 	});
-	// app.post("/api/users", function(req, res) {
-	// 	var name = req.body.name;
-	// 	var pass = req.body.pass;
 
-	// 	console.log(name, pass);
+	//Pulling leaderboard information
+	app.get("/leaderboard", function(req, res)
+	{
+		DB.sequelize.query("SELECT " + 
+		"username AS `player`," + 
+		"(au.money_earned - au.money_spent) AS `profit` " +
+		"FROM allUsers au " +
+		"ORDER BY `Profit` DESC " + 
+		"LIMIT 25;").then(function(results)
+		{
+			//Rank must be added to results manually
+			//sequelize doesn't allow the SET operation in its queries.
+			for (var index = 0; index < results[0].length; index++)
+				results[0][index].rank = index + 1;
 
-	// 	// here we need to check the database for the user to see if the name is a duplicate, then
-	// 	// create a new user and give them the starting stats
-	// 	// then redirect to that users-homepage
+			res.json(results[0]);
+		});
+	});
 
-	// 	res.render("form-test");
-	// });
-  
-
-	// app.get("/api/users/:id", function(req, res) {
-	// 	var userID = req.params.id;
-
-	// 	res.json(userAccountInfo);	
-	// });
-
-
-	// app.get("/api/users/:id/listings", function(req, res) {
-	// 	var userID = req.params.id;
-
-	// 	res.json(userAccountInfo);	
-	// });
-
-	// app.get("/api/warehouse/prices", function(req, res){
-	// 	res.json(warehousePrices);
-	// });
-
-	// app.post("/api/warehouse/order", function(req, res){
-	// 	var warehouse = req.body.warehouse;
-	// 	var units = req.body.units;
-
-	// 	console.log(warehouse, units);
-
-	// 	res.render("form-test");
-	// })
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
