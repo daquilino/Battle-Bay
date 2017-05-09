@@ -42,6 +42,7 @@ require("./controllers/items-for-sale-api-routes.js")(APP);
 require("./controllers/all-users-api-routes.js")(APP);
 require("./controllers/user-inventory-api-routes.js")(APP);
 require("./controllers/warehouse-items-api-routes.js")(APP);
+require("./controllers/make-a-listing-routes.js")(APP);
 
 // These are routes for optional models. If not going to use *REMOVE*. 
 //

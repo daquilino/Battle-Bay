@@ -209,14 +209,19 @@ function getItemListings() {
 function makeListing() {
 	console.log("Make Listing Button Pressed.");
 
+	//numberOfWhateverUnits variables initialized in 'make-a-listing-page.js'
 	post = {
+		numFashion: numberOfFashionUnits,
+		numElectronics: numberOfElectronicsUnits,
+		numCollectables: numberOfCollectablesUnits,
+		quantity: 1, //default for now. Possibly based on user input down the road. 
 		itemName: selectedItemType,
 		price: price
 	}
 
 	$.ajax({
       method: "POST",
-      url: "/api/new-listing" ,
+      url: "/api/new-listing",
       data: post
     })
     .done(function(data) {

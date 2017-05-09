@@ -37,8 +37,6 @@ module.exports = function(app)
 			for (var index = 0; index < data.length; index++)
 				userInventoryInfo.push(data[index].dataValues);
 
-			console.log(userInventoryInfo);
-
 			res.json(userInventoryInfo);
 		});		
 	});
