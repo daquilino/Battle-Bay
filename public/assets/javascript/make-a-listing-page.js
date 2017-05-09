@@ -55,14 +55,26 @@ $.ajax({
 .done(function(data) {
 	// The data comes back as an array of objects
   console.log("User Inventory Data: " + data);
-  
-  for (var i = 0; i < data.length; i++){
-  	if (data[i].item_name === "fashion"){
-  		numberOfFashionUnits ++;
-  	} else if (data[i].item_name === "electronics"){
-  		numberOfElectronicsUnits ++;
-  	} else if (data[i].item_name === "collectables"){
-  		numberOfCollectablesUnits ++;
+
+  //pull quantities for item type based on user
+  for (var index = 0; index < data.length; index++)
+  {
+  	//check item type
+  	switch(data[index].item_name)
+  	{
+  		case "fashion":
+  			numberOfFashionUnits += data[index].quantity;
+  			break;
+  		case "electronics":
+  			numberOfElectronicsUnits += data[index].quantity;
+  			break;
+  		case "collectables":
+  			numberOfCollectablesUnits += data[index].quantity;
+  			break;
+  		default:
+  			//how did you get here?
+  			console.log("?");
+  			break;
   	}
   }
 

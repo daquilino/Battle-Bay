@@ -12,18 +12,18 @@ INSERT
 usersInventory (item_name, quantity, allUserId) 
 VALUES
 -- Leslie items
-("fasion", 30, 1),
-("collectibles", 24, 1),
+("fashion", 30, 1),
+("collectables", 24, 1),
 ("electronics", 5, 1),
 -- Ben items
-("fasion", 3, 2),
-("collectibles", 60, 2),
+("fashion", 3, 2),
+("collectables", 60, 2),
 ("electronics", 45, 2),
 -- Tom items
-("fasion", 90, 3),
-("collectibles", 40, 3),
+("fashion", 90, 3),
+("collectables", 40, 3),
 ("electronics", 9, 3),
 -- Jerry items
-("fasion", 2, 4),
-("collectibles", 100, 4),
+("fashion", 2, 4),
+("collectables", 100, 4),
 ("electronics", 20, 4);
