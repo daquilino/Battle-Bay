@@ -33,7 +33,7 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
 
   // Updates the order summary when the mouse leaves the number input field
   $(":input[name=startingPrice]").mouseleave(function(){
-  	changeOrderSummary();
+  	changeListingDetails();
   });
 
 
@@ -96,7 +96,7 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
       $(this).addClass("selected-shadow");
       $(this).css("z-index", "5");
       selectedItemType = $(this).attr("data-itemType");
-      changeOrderSummary();
+      changeListingDetails();
 
     } else {
 
@@ -112,7 +112,7 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
         $(this).addClass("selected-shadow");
         $(this).css("z-index", "5");
         selectedItemType = $(this).attr("data-itemType");
-        changeOrderSummary();
+        changeListingDetails();
 
       }
     }
@@ -121,7 +121,7 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
 
   // Helper Function to change the order summary Div
   //-------------------------------------------------------------------------------
-  function changeOrderSummary(){
+  function changeListingDetails(){
     $("#listingDetailsUnits").html(numberOfUnitsToSell);
     $("#listingDetailsItemType").html(selectedItemType);
 

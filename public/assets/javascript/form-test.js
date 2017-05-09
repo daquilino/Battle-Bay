@@ -210,7 +210,7 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
 		console.log("Make Listing Button Pressed.");
 
 		post = {
-			itemName: itemType,
+			itemName: selectedItemType,
 			price: price
 		}
 

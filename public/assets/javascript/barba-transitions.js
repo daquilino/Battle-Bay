@@ -1,5 +1,7 @@
 console.log("barba-transitions.js has loaded.");
 
+// Set up for the barba.js transitions
+//-------------------------------------------------------------------------------------------
 var FadeTransition = Barba.BaseTransition.extend({
   start: function() {
     /**
@@ -66,7 +68,114 @@ Barba.Pjax.getTransition = function() {
 
   return FadeTransition;
 };
+//===========================================================================================
+// End of the Set Up for the barba.js transitions
 
+
+// Set up for the barba.js Name Spaces
+//-------------------------------------------------------------------------------------------
+var Landing = Barba.BaseView.extend({
+  namespace: 'Landing',
+  onEnter: function() {
+      // The new Container is ready and attached to the DOM.
+      $.get("assets/javascript/make-a-listing-page.js");
+      console.log("Landing loading worked");
+  }
+});
+
+// Don't forget to init the view!
+Landing.init();
+
+var SignUp = Barba.BaseView.extend({
+  namespace: 'SignUp',
+  onEnter: function() {
+      // The new Container is ready and attached to the DOM.
+      $.get("assets/javascript/make-a-listing-page.js");
+      console.log("SignUp loading worked");
+  }
+});
+
+// Don't forget to init the view!
+SignUp.init();
+
+var SignIn = Barba.BaseView.extend({
+  namespace: 'SignIn',
+  onEnter: function() {
+      // The new Container is ready and attached to the DOM.
+      $.get("assets/javascript/make-a-listing-page.js");
+      console.log("SignIn loading worked");
+  }
+});
+
+// Don't forget to init the view!
+SignIn.init();
+
+var MakeListing = Barba.BaseView.extend({
+  namespace: 'MakeListing',
+  onEnter: function() {
+      // The new Container is ready and attached to the DOM.
+      $.get("assets/javascript/make-a-listing-page.js");
+      console.log("MakeListing loading worked");
+  }
+});
+
+// Don't forget to init the view!
+MakeListing.init();
+
+var Leaderboard = Barba.BaseView.extend({
+  namespace: 'Leaderboard',
+  onEnter: function() {
+      // The new Container is ready and attached to the DOM.
+      $.get("assets/javascript/make-a-listing-page.js");
+      console.log("Leaderboard loading worked");
+  }
+});
+
+// Don't forget to init the view!
+Leaderboard.init();
+
+var UserHomepage = Barba.BaseView.extend({
+  namespace: 'UserHomepage',
+  onEnter: function() {
+      // The new Container is ready and attached to the DOM.
+      $.get("assets/javascript/make-a-listing-page.js");
+      console.log("UserHomepage loading worked");
+  }
+});
+
+// Don't forget to init the view!
+UserHomepage.init();
+
+var AllListings = Barba.BaseView.extend({
+  namespace: 'AllListings',
+  onEnter: function() {
+      // The new Container is ready and attached to the DOM.
+      $.get("assets/javascript/make-a-listing-page.js");
+      console.log("AllListings loading worked");
+  }
+});
+
+// Don't forget to init the view!
+AllListings.init();
+
+
+// Extra for easy additions later
+// var Homepage = Barba.BaseView.extend({
+//   namespace: 'homepage',
+//   onEnter: function() {
+//       // The new Container is ready and attached to the DOM.
+//       $.get("assets/javascript/make-a-listing-page.js");
+//       console.log("Homepage loading worked");
+//   }
+// });
+
+// // Don't forget to init the view!
+// Homepage.init();
+
+
+
+//===========================================================================================
+// End of barba.js Name Space Set up
 
 
 
