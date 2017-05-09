@@ -41,10 +41,10 @@ module.exports = function(app)
 {
 	app.post("/api/new-listing", function(req, res)
 	{
-		console.log("REQUEST COOKIES--------------------------------------");
-		console.log(req.cookies);
-		console.log("REQUEST BODY--------------------------------------");
-		console.log(req.body);
+		// console.log("REQUEST COOKIES--------------------------------------");
+		// console.log(req.cookies);
+		// console.log("REQUEST BODY--------------------------------------");
+		// console.log(req.body);
 
 		//if user has enough of inventory to make that sale
 		if (EnoughInInvetory(req.body, false))
@@ -63,33 +63,31 @@ module.exports = function(app)
 				}).then(function(newListing)
 				{
 					console.log("---------- new listing created -------------");
-					res.redirect("/user-homepage");
-				});
 
-				//update quantity remaining in usersInventory
-				DB.usersInventory.update(
-				{
-					quantity: EnoughInInvetory(req.body, true)
-				}, 
-				{
-					where: 
+					//update quantity remaining in usersInventory
+					DB.usersInventory.update(
 					{
-						allUserId: req.cookies.id,
-						item_name: req.body.itemName
-					}
-				}).then(function(updatedItem)
-				{
-					console.log("---------- user inventory item updated ----------");
-					console.log(updatedItem.dataValues);
-					res.redirect("/user-homepage");
-				});
+						quantity: EnoughInInvetory(req.body, true)
+					}, 
+					{
+						where: 
+						{
+							allUserId: req.cookies.id,
+							item_name: req.body.itemName
+						}
+					}).then(function(updatedItem)
+					{
+						console.log("---------- user inventory item updated ----------");
+						console.log(updatedItem);
+						res.redirect("/user-homepage");
+					});
+				});	
 			}
 			else //price < 1
 				res.json({error: "Starting price must be greater than 0"});
 		}
 		else //not enough in inventory
 			res.json({error: "Not enough in stock"});
-				//subtract the quantity being sold from user's inventory
 	});
 }
 
