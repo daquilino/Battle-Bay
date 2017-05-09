@@ -68,7 +68,12 @@ function signUp() {
 		$.post("/api/user/signup", userInfo)
       	.then(function(data){
       		console.log("Sent user info: " + userInfo);
-      		$("input:text[name=signUpName]").val(data.error);
+      		if (data.error)
+      			$("input:text[name=signUpName]").val(data.error);
+
+      		if (data.success)
+      			window.location = data.redirectTo;
+      		
     	});
 		//=-=-=-=-=-=-=-=
 	
@@ -100,7 +105,11 @@ function signIn() {
 	$.post("/api/user/login", userInfo)
     .then(function(data){
     	console.log("Sent user info: " + userInfo);
-    	$("input:text[name=signInName]").val(data.error);
+    	if (data.error)
+    		$("input:text[name=signInName]").val(data.error);
+
+    	if (data.success)
+    		window.location = data.redirectTo;
     });
 	//=-=-=-=-=-=-=-=
 }
@@ -225,9 +234,8 @@ function makeListing() {
       data: post
     })
     .done(function(data) {
-     	console.log(JSON.stringify(data, null, 2)); //TEST CODE
-     	
-     	
+    	if (data.success)
+    		window.location = data.redirectTo;
     });
 };
 

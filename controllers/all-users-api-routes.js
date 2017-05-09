@@ -38,14 +38,18 @@ module.exports = function(app)
 						console.log(newUser.dataValues);
 						//set a cookie containing that user's id#
 						res.cookie("id", newUser.dataValues.id);
-						//redirect to homepage
-						res.redirect("/user-homepage");
+						//redirect to user homepage via front end functions
+						res.send(
+						{
+							success: true,
+							redirectTo: "/user-homepage"
+						});
 					});
 				}
 				else //username is already taken
 				{
 					console.log("Username already taken.");
-					//redirect to sign up page with error
+					//send error
 					res.json({error: "Username already taken"});
 				}
 			});
@@ -87,8 +91,12 @@ module.exports = function(app)
 					console.log(user.dataValues);
 					//set a cookie of the users id
 					res.cookie("id", user.dataValues.id);
-					//send user to their homepage
-					res.redirect("/user-homepage");
+					//redirect to user homepage via front end functions
+					res.send(
+					{
+						success: true,
+						redirectTo: "/user-homepage"
+					});
 				}
 				else //passwords didnt' match
 				{

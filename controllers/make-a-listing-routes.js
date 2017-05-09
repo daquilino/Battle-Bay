@@ -4,7 +4,7 @@ const DB = require("../models");
 //functions
 function EnoughInInvetory(reqBody, findingDifference)
 {
-	//this funtion serves two separate purposes
+	//this function serves two separate purposes
 		//determine if user has enough inventory to make sale
 		//find difference between inventory quantity and quantity listed
 
@@ -79,7 +79,12 @@ module.exports = function(app)
 					{
 						console.log("---------- user inventory item updated ----------");
 						console.log(updatedItem);
-						res.redirect("/user-homepage");
+						//redirect to user homepage via front end functions
+						res.send(
+						{
+							success: true,
+							redirectTo: "/user-homepage"
+						});
 					});
 				});	
 			}
