@@ -30,7 +30,14 @@ module.exports = function(app)
 		DB.usersInventory.findAll({where:{allUserId: req.params.id}})
 		.then(function(data)
 		{
-			res.json(data);
+			//to store dataValues objects
+			var userInventoryInfo = [];
+
+			//pull dataValues from array of returned objects
+			for (var index = 0; index < data.length; index++)
+				userInventoryInfo.push(data[index].dataValues);
+
+			res.json(userInventoryInfo);
 		});		
 	});
 

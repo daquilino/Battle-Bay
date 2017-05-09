@@ -68,7 +68,12 @@ function signUp() {
 		$.post("/api/user/signup", userInfo)
       	.then(function(data){
       		console.log("Sent user info: " + userInfo);
-      		$("input:text[name=signUpName]").val(data.error);
+      		if (data.error)
+      			$("input:text[name=signUpName]").val(data.error);
+
+      		if (data.success)
+      			window.location = data.redirectTo;
+      		
     	});
 		//=-=-=-=-=-=-=-=
 	
@@ -100,7 +105,11 @@ function signIn() {
 	$.post("/api/user/login", userInfo)
     .then(function(data){
     	console.log("Sent user info: " + userInfo);
-    	$("input:text[name=signInName]").val(data.error);
+    	if (data.error)
+    		$("input:text[name=signInName]").val(data.error);
+
+    	if (data.success)
+    		window.location = data.redirectTo;
     });
 	//=-=-=-=-=-=-=-=
 }
@@ -209,20 +218,24 @@ function getItemListings() {
 function makeListing() {
 	console.log("Make Listing Button Pressed.");
 
+	//numberOfWhateverUnits variables initialized in 'make-a-listing-page.js'
 	post = {
+		numFashion: numberOfFashionUnits,
+		numElectronics: numberOfElectronicsUnits,
+		numCollectables: numberOfCollectablesUnits,
+		quantity: 1, //default for now. Possibly based on user input down the road. 
 		itemName: selectedItemType,
 		price: price
 	}
 
 	$.ajax({
       method: "POST",
-      url: "/api/new-listing" ,
+      url: "/api/new-listing",
       data: post
     })
     .done(function(data) {
-     	console.log(JSON.stringify(data, null, 2)); //TEST CODE
-     	
-     	
+    	if (data.success)
+    		window.location = data.redirectTo;
     });
 };
 
