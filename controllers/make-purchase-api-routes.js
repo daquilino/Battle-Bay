@@ -66,14 +66,12 @@ module.exports = function(app)
 // Adds item with given parameters to `usersInventory`.
 function addToUserInventory(userId, quantity, itemName, totalSpent, res)
 {
-
 	var item ={	 
 		
 		quantity: quantity,
 		item_name: itemName,
 		allUserId: userId
 	};
-
 		
 	DB.usersInventory.create(item)
 	.then(function(data)
@@ -111,6 +109,5 @@ function updateUserStats(userId, totalSpent, res )
   		
   		res.json({complete: false});
 	});	
-
 }
 
