@@ -14,5 +14,6 @@ module.exports = function(app)
 		console.log("REQUEST BODY--------------------------------------");
 		console.log(req.body);
 
+		res.json({cool:"cool"});
 	});
 }

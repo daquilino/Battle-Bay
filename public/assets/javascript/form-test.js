@@ -1,3 +1,4 @@
+// Debug Tool
 console.log("form-test.js has loaded");
 
 
@@ -209,8 +210,8 @@ function makeListing() {
 	console.log("Make Listing Button Pressed.");
 
 	post = {
-		itemName: "fashion",
-		price: 10
+		itemName: selectedItemType,
+		price: price
 	}
 
 	$.ajax({
