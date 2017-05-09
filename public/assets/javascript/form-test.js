@@ -408,7 +408,7 @@ function getWarehousePrices() {
     
     $.ajax({
       method: "PUT",
-      url: "/api/warehouse" ,
+      url: "/api/make-purchase" ,
       data: post
     })
     .done(function(data) {
