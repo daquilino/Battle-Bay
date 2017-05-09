@@ -24,7 +24,7 @@ $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
 $(document).on("click", "#getWarehousePrices", getWarehousePrices);
 $(document).on("click", "#placeOrder", placeOrder);
 $(document).on("click", "#getItemListings", getItemListings);
-$(document).on("click", "#makeListing", updateWarehouseItem); //makeListing
+$(document).on("click", "#makeListing", makeListing); //makeListing
 //====================================================================================
 
 
@@ -207,7 +207,23 @@ function getItemListings() {
 
 function makeListing() {
 	console.log("Make Listing Button Pressed.");
-}
+
+	post = {
+		itemName: "fashion",
+		price: 10
+	}
+
+	$.ajax({
+      method: "POST",
+      url: "/api/new-listing" ,
+      data: post
+    })
+    .done(function(data) {
+     	console.log(JSON.stringify(data, null, 2)); //TEST CODE
+     	
+     	
+    });
+};
 
 //=====================================================================================
 
