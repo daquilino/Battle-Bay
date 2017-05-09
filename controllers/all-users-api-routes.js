@@ -101,7 +101,7 @@ module.exports = function(app)
 	});
 
 	//Pulling leaderboard information
-	app.get("/leaderboard", function(req, res)
+	app.get("/api/leaderboard", function(req, res)
 	{
 		DB.sequelize.query("SELECT " + 
 		"username AS `player`," + 
@@ -115,6 +115,7 @@ module.exports = function(app)
 			for (var index = 0; index < results[0].length; index++)
 				results[0][index].rank = index + 1;
 
+			//respond with an array of player objects in ranked order
 			res.json(results[0]);
 		});
 	});
