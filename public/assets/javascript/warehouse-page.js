@@ -1,4 +1,4 @@
-Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+// Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
   console.log("trying to load warehouse page")
 
   console.log("warehouse-page.js file has loaded");
@@ -29,6 +29,11 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
   }, ".warehouse-selection-div");
 
   $(document).on("click", ".warehouse-selection-div", selectWarehouse);
+
+  // Updates the order summary when the mouse leaves the number input field
+  $(":input[name=numberOfUnits]").mouseleave(function(){
+    changeOrderSummary();
+  });
 
 
 
@@ -107,6 +112,7 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
   // Helper Function to change the order summary Div
   //-------------------------------------------------------------------------------
   function changeOrderSummary(){
+    numberOfUnits = $(":input[name=numberOfUnits]").val();
     $("#orderSummaryUnits").html(numberOfUnits);
     $("#orderSummaryWarehouse").html(selectedWarehouse);
 
@@ -130,20 +136,20 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
   // Jquery Slider Function
   //-------------------------------------------------------------------------------
 
-      var handle = $( "#custom-handle" );
-      $( "#warehouse-slider" ).slider({
-        max: 50,
-        create: function() {
-          handle.text( $( this ).slider( "value" ) );
-        },
-        slide: function( event, ui ) {
-          handle.text( ui.value );
-        },
-        stop: function( event, ui ) {
-          numberOfUnits = $('#warehouse-slider').slider("option", "value");
-          changeOrderSummary();
-        }
-      });
+      // var handle = $( "#custom-handle" );
+      // $( "#slider" ).slider({
+      //   max: 50,
+      //   create: function() {
+      //     handle.text( $( this ).slider( "value" ) );
+      //   },
+      //   slide: function( event, ui ) {
+      //     handle.text( ui.value );
+      //   },
+      //   stop: function( event, ui ) {
+      //     numberOfUnits = $('#slider').slider("option", "value");
+      //     changeOrderSummary();
+      //   }
+      // });
 
   //===============================================================================
 
@@ -204,4 +210,4 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
   //
   //-------------------------------------------------------------------------------
   //===============================================================================
-});
+// });

@@ -1,4 +1,4 @@
-Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+// Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
 
 
 	// GET Player account
@@ -71,4 +71,4 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
 		});
 	}
 
-});
+// });

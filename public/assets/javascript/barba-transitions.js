@@ -145,7 +145,7 @@ var Leaderboard = Barba.BaseView.extend({
   namespace: 'Leaderboard',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
-      $.get("assets/javascript/make-a-listing-page.js");
+      $.get("assets/javascript/leaderboard.js");
       console.log("Leaderboard loading worked");
   }
 });
@@ -161,7 +161,7 @@ var UserHomepage = Barba.BaseView.extend({
   namespace: 'UserHomepage',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
-      $.get("assets/javascript/make-a-listing-page.js");
+      // $.get("assets/javascript/make-a-listing-page.js");
       console.log("UserHomepage loading worked");
   }
 });
@@ -177,7 +177,7 @@ var AllListings = Barba.BaseView.extend({
   namespace: 'AllListings',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
-      $.get("assets/javascript/make-a-listing-page.js");
+      $.get("assets/javascript/all-listings.js");
       console.log("AllListings loading worked");
   }
 });
@@ -187,7 +187,32 @@ AllListings.init();
 //===========================
 
 
+// Warehouse name space
+//---------------------------
+var Warehouse = Barba.BaseView.extend({
+  namespace: 'Warehouse',
+  onEnter: function() {
+      // The new Container is ready and attached to the DOM.
+      $.get("https://code.jquery.com/ui/1.12.1/jquery-ui.js");
+      $.get("assets/javascript/warehouse-page.js");
+      $.get("assets/javascript/form-test.js");
+      console.log("Warehouse loading worked");
+  }
+});
+
+// Don't forget to init the view!
+Warehouse.init();
+//===========================
+
+
+
+
+
+
 // Extra for easy additions later
+//---------------------------
+//===========================
+
 // var Homepage = Barba.BaseView.extend({
 //   namespace: 'homepage',
 //   onEnter: function() {
@@ -199,7 +224,7 @@ AllListings.init();
 
 // // Don't forget to init the view!
 // Homepage.init();
-
+//===========================
 
 
 //===========================================================================================

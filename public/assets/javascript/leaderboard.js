@@ -1,4 +1,4 @@
-Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+// Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
 
 	$(document).ready(function() {
 		$.ajax({
@@ -37,4 +37,4 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
 		});
 	});
 
-});
+// });
