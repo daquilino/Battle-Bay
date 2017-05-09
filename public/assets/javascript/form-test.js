@@ -24,7 +24,7 @@ $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
 $(document).on("click", "#getWarehousePrices", getWarehousePrices);
 $(document).on("click", "#placeOrder", placeOrder);
 $(document).on("click", "#getItemListings", getItemListings);
-$(document).on("click", "#makeListing", updateWarehouseItem); //makeListing
+$(document).on("click", "#makeListing", makeListing); //makeListing
 //====================================================================================
 
 
