@@ -24,7 +24,7 @@ $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
 $(document).on("click", "#getWarehousePrices", getWarehousePrices);
 $(document).on("click", "#placeOrder", placeOrder);
 $(document).on("click", "#getItemListings", getItemListings);
-$(document).on("click", "#makeListing", makeListing); //makeListing
+$(document).on("click", "#makeListing", updateWarehouseItem); //makeListing
 //====================================================================================
 
 
@@ -234,7 +234,7 @@ function placeOrder() {
 
 	var post =
 	{
-		sold_quantity: numberOfUnits, //need to change to add sold_quantity += numberOfUnits
+		sold_quantity: numberOfUnits, 
 		id : 1
 
 	}
@@ -253,7 +253,6 @@ function getWarehousePrices() {
 	$.get("api/warehouse", function(data){
 
 
-
 		$("#warehousePrices").empty();
 		$("#warehousePrices").append("<h4>Warehouse Prices</h4>");
 		$("#warehousePrices").append("<p>Fashion--Price Per Unit: " + data.fashion + "</p>");
@@ -265,10 +264,6 @@ function getWarehousePrices() {
 }
 
 
-
-
-
-  
 //======================================================================================
 //============================ Completed API Functions Below ===========================
 //================ I used to test api. May need to modify to fit your purpose ==========
@@ -368,11 +363,9 @@ function getWarehousePrices() {
 
 //-------------------------------------------------------------------------------------
 // Update a given warehouseItem  `units_sold` ,
-  function updateWarehouseItem(quantity, itemId) {
+  function updateWarehouseItem(quantity, itemId)
+  {
    
-  	quantity = 10;		// TEST CODE REMOVE	
-  	itemId = 1;			// TEST CODE REMOVE	
-
   	post = {"quantity": quantity};
 
     $.ajax({
