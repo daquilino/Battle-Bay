@@ -27,6 +27,7 @@ module.exports = function(app)
 	app.put("/api/warehouse", function(req, res)
 	{		
 			
+
 		addToUserInventory(req.body.userID, req.body.quantity, req.body.warehouseName, res);
 		updateUserStats(req.body.userID, req.body.total,res );
 

@@ -114,6 +114,8 @@ module.exports = function(app)
 			//sequelize doesn't allow the SET operation in its queries.
 			for (var index = 0; index < results[0].length; index++)
 				results[0][index].rank = index + 1;
+
+			//respond with an array of player objects in ranked order
 			console.log(results[0]);
 			res.json(results[0]);
 		});
