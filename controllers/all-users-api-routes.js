@@ -129,8 +129,7 @@ module.exports = function(app)
 		});
 	});
 
-
-	//Get only one user stats from 'allUsers'
+	//Get only one user's stats from 'allUsers'
 	app.get("/api/user/:id", function(req, res)
 	{
 		DB.allUsers.findOne({where: {id: req.params.id}})
@@ -147,7 +146,6 @@ module.exports = function(app)
 			res.json(userStats);
 		});		
 	});
-
 };
 
 
