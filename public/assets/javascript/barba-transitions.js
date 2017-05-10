@@ -142,8 +142,21 @@ var MakeListing = Barba.BaseView.extend({
       
       console.log("MakeListing loading worked");
   },
-   onleave: function() {
-    
+   onLeave: function() {
+
+    // Make A Listing Listeners
+    $(document).on("click", ".itemType-selection-div", selectItemType);
+
+    // Form-test listeners
+    $(document).on("click", "#signUpSubmit", signUp);
+    $(document).on("click", "#signInSubmit", signIn);
+    $(document).on("click", "#getPlayerAccountInfo", getPlayerAccountInfo);
+    $(document).on("click", "#getPlayerListings", getPlayerListings);
+    $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
+    $(document).on("click", "#getWarehousePrices", getWarehousePrices);
+    $(document).on("click", "#placeOrder", placeOrder);
+    $(document).on("click", "#getItemListings", getItemListings);
+    $(document).on("click", "#makeListing", makeListing); //makeListing
   }
 });
 
@@ -160,9 +173,6 @@ var Leaderboard = Barba.BaseView.extend({
       // The new Container is ready and attached to the DOM.
       $.get("assets/javascript/leaderboard.js");
       console.log("Leaderboard loading worked");
-  },
-   onleave: function() {
-    
   }
 });
 
@@ -180,7 +190,7 @@ var UserHomepage = Barba.BaseView.extend({
       // $.get("assets/javascript/make-a-listing-page.js");
       console.log("UserHomepage loading worked");
   },
-   onleave: function() {
+   onLeave: function() {
     
   }
 });
@@ -199,9 +209,6 @@ var AllListings = Barba.BaseView.extend({
       $.get("assets/javascript/all-listings.js");
       $.get("assets/javascript/sorttable.js");
       console.log("AllListings loading worked");
-  },
-   onleave: function() {
-    
   }
 });
 
@@ -222,7 +229,11 @@ var Warehouse = Barba.BaseView.extend({
   },
    onLeave: function() {
     console.log("Event listeners removed.");
+
+    // Warehouse Listeners
     $(document).off("click", ".warehouse-selection-div", selectWarehouse);
+    
+    // form-test Listeners
     $(document).off("click", "#signUpSubmit", signUp);
     $(document).off("click", "#signInSubmit", signIn);
     $(document).off("click", "#getPlayerAccountInfo", getPlayerAccountInfo);
