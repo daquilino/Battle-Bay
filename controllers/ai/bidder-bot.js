@@ -4,7 +4,7 @@ const DB = require("../../models");
 /*
 In order for a botBid to be made, 3 decisions must be made.
 
-    1. Select an item from itemsForSale
+    1. Select an item from itemsForSale (check if there are any)
         - query database for totalNum itemsForSale
         - randomly pick and item from there
     2. Decide if want to buy item
@@ -99,26 +99,32 @@ function BidderBot(nameInput)
 		//query itemsForSale
 		DB.itemsForSale.findAll({}).then(function(saleItemsRaw)
 		{
-			var saleItems = [];
-
-			//pull dataValues objects from saleItemsRaw
-			for (var index = 0; index < saleItemsRaw.length; index++)
-				saleItems.push(saleItemsRaw[index].dataValues);
-
-			//Randomly pick one of the items
-			var chosenIndex = GetRandomItemIndex(saleItems.length);
-
-			//Decide if want to buy that item
-			var isBuying = DecideIfBuying(saleItems[chosenIndex]);
-
-			if (isBuying)
+			//check the length
+			if (saleItemsRaw.length > 0) //there are itemsForSale
 			{
-				var bidAmount = DecideBidAmount(saleItems[chosenIndex]);
+				var saleItems = [];
 
-				MakeBid(bidAmount, saleItems[chosenIndex]);
+				//pull dataValues objects from saleItemsRaw
+				for (var index = 0; index < saleItemsRaw.length; index++)
+					saleItems.push(saleItemsRaw[index].dataValues);
+
+				//Randomly pick one of the items
+				var chosenIndex = GetRandomItemIndex(saleItems.length);
+
+				//Decide if want to buy that item
+				var isBuying = DecideIfBuying(saleItems[chosenIndex]);
+
+				if (isBuying)
+				{
+					var bidAmount = DecideBidAmount(saleItems[chosenIndex]);
+
+					MakeBid(bidAmount, saleItems[chosenIndex]);
+				}
+				else
+					console.log(name + " is not buying the item at index: " + chosenIndex);
 			}
 			else
-				console.log(name + " is not buying the item at index: " + chosenIndex);
+				console.log("no items for sale");
 
 		});
 	};
@@ -128,8 +134,6 @@ function BidderBot(nameInput)
 	{
 		var bidId = setInterval(SelectItem, seconds * 1000);
 	};
-
-	
 }
 
 //testing =================================================================
