@@ -1,6 +1,5 @@
-//dependencies ----------------------------------------------------------
+//dependencies ===========================================================
 const DB = require("../../models");
-
 
 /*
 In order for a botBid to be made, 3 decisions must be made.
@@ -17,13 +16,13 @@ In order for a botBid to be made, 3 decisions must be made.
     - make bid for whateverAmountDecided
 */
 
-//constructor -----------------------------------------------------------
-function bidderBot(name)
+//constructor =============================================================
+function BidderBot(name)
 {
-	//Instance Variables
+	//Instance Variables ----------------------------------
 	this.name = name;
 
-	//Methods
+	//Methods ---------------------------------------------
 
 	//private
 	var GetRandomItemIndex = function(numItems)
@@ -34,15 +33,34 @@ function bidderBot(name)
 	//private
 	var DecideIfBuying = function(itemObject)
 	{
-		//look at data in relation to bot preferences
+		//in future implementation, preferences will be taken into account
 
-		//decide if buying
+		console.log("------- Deciding if I want to buy it ----------");
+		return Math.round(Math.random());
 	};
 
 	//private
-	var DecideBidAmount = function()
+	var DecideBidAmount = function(itemObject)
 	{
+		//in future implementation, prefrences will be taken into account
 
+		console.log("----- Deciding how much I want to spend -------");
+		if (itemObject.highest_bid !== null)
+		{
+			console.log("going off highest bid");
+			return Math.round((Math.random() + 1) * itemObject.highest_bid);
+		}
+		else	//nobody has bid on the item yet
+		{
+			console.log("going off starting price");
+			return Math.round((Math.random() + 1) * itemObject.starting_price);
+		}
+	};
+
+	//private
+	var MakeBid = function(bidAmount, itemObject)
+	{
+		//make bid on selected item
 	};
 
 	//private
@@ -58,12 +76,24 @@ function bidderBot(name)
 				saleItems.push(saleItemsRaw[index].dataValues);
 
 			//Randomly pick one of the items
-			var chosenItem = GetRandomItemIndex(saleItems.length);
+			console.log("----- Selecting an Item--------");
+			var chosenIndex = GetRandomItemIndex(saleItems.length);
 
 			//Decide if want to buy that item
-			var isBuying = DecideIfBuying(saleItems[chosenItem]);
+			var isBuying = DecideIfBuying(saleItems[chosenIndex]);
 
-			console.log(isBuying);
+			if (isBuying)
+			{
+				console.log("I'm going to bid: " + 
+				DecideBidAmount(saleItems[chosenIndex]) + "\n" +
+				"on item at index: " + chosenIndex);
+				console.log(saleItems[chosenIndex]);
+			}
+			else
+			{
+				console.log("I'm not buying the item at index: " + chosenIndex);
+				console.log(saleItems[chosenIndex]);
+			}
 
 		});
 	};
@@ -77,8 +107,8 @@ function bidderBot(name)
 	
 }
 
-//testing ---------------------------------------------------------------
-var hank = new bidderBot("Hank");
+//testing =================================================================
+var hank = new BidderBot("Hank");
 hank.StartBiddingCycle();
 
 
