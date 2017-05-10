@@ -50,7 +50,7 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			      <!--  <a class="navbar-brand" href="#">Brand</a>  -->
+			       <a class="navbar-brand" href="#">Brand</a> 
 			    </div>
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -81,17 +81,6 @@
 			          <a href="/leaderboard">Leaderboard</a>
 			        </li>
 			      </ul>
-	<!--  		<form class="navbar-form navbar-left">
-			        <div class="form-group">
-			          <input type="text" class="form-control" placeholder="Search">
-			        </div>
-			        <button type="submit" class="btn btn-default">Submit</button>
-			      </form>  -->
-			      <!--  <ul class="nav navbar-nav navbar-right">
-			        <li>
-			          <a href="#">Link</a>
-			        </li>
-			      </ul>  -->
 			    </div><!-- /.navbar-collapse -->
 			  </div> <!--  col-xs-12  -->
 			</div> <!--  row  -->
@@ -102,81 +91,92 @@
 
 	<!--  Main Barba Wrappers  -->
 	<main id="barba-wrapper">
-  		<div class="barba-container" data-namespace="UserHomepage">
+  	<div class="barba-container" data-namespace="UserHomepage">
 			
-			<!-- Start of User Homepage -->
-			<div class="container-fluid">
-			  <div class="row">
-					<div class="col-xs-10 col-xs-offset-1" style="background-color: pink;">
-						<!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
-				      <ul class="nav navbar-nav navbar-middle">
-				        <li>
-				          <a href="/make-a-listing">Make a Listing</a>
-				        </li>
-				        <li>
-				          <a href="/warehouse">Warehouse</a>
-				        </li>
-				      </ul>
-			      </div>
+			<!-- Local Nav Bar -->
+			<nav class="navbar" id="local-nav-bar">
+			  <div class="container-fluid">
+			  	<div class="row">
+						<div class="col-xs-10 col-xs-offset-1">
+					    
+					    <!-- Collect the nav links, forms, and other content for toggling -->
+					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background-color: pink;">
+					      <ul class="nav navbar-nav">
+					        <li>
+					          <a href="/user-homepage" id="user-homepage-link">User Homepage</a>
+					        </li>
+					        <li>
+					          <a href="/make-a-listing">Make a Listing</a>
+					        </li>					        
+					        <li>
+					          <a href="/warehouse">Warehouse</a>
+					        </li>
+					      </ul>
+					    </div><!-- /.navbar-collapse -->
+					  </div> <!--  col-xs-10  -->
+					</div> <!--  row  -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+			<!--  End of Local Nav  -->
+					
+				
+
+						
+			<!-- Start of User Info Div -->
+	   	<div class="row">
+		    <div class="col-xs-10 col-xs-offset-1">
+		     	<h3>API Calls</h3>
+				
+					<!-- Player Account Info Div -->
+					<div id="playerAccountInfo">
+						<h4>Player Account Info Goes Here</h4>
+						<ul style="list-style-type: none;">
+							<li>Money</li>
+							<li>Inventory</li>
+							<li>Number of items for sale</li>
+						</ul>
 					</div>
-				</div>
+					<button id="getPlayerAccountInfo">Get Player Account Info</button>
+					<!-- End of Player account info Div -->
+					
+					<br>
+					
+					<!-- Player Listing Div -->
+					<div id="playerListings">
+						<h4>Player item listings go here</h4>
+						<ul>
+							<li>Item one:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+							<li>Item two:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+							<li>Item three:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+							<li>Item four:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+							<li>Item five:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+							<li>Item six:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
+						</ul>	
+					</div>
+					<button id="getPlayerListings">Get Player Listings</button>
+					<!-- End of player listings Div -->
+					
+					<br>
+					
+					<!-- Players Items Sold div -->
+					<div id="playersItemsSold">
+						<h4>Players sold items go here</h4>
+						<ul>
+							<li>Item one:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
+							<li>Item two:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
+							<li>Item three:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
+							<li>Item four:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
+						</ul>
+					</div>
+					<button id="getPlayersItemsSold">Get Players Items Sold</button>
+					<!-- End of Players Items Sold Div -->
 
-						
-					<!-- Start of User Info Div -->
-				   <div class="row">
-				    <div class="col-xs-10 col-xs-offset-1">
-				     	<h3>API Calls</h3>
-						
-						<!-- Player Account Info Div -->
-						<div id="playerAccountInfo">
-							<h4>Player Account Info Goes Here</h4>
-							<ul>
-								<li>Money</li>
-								<li>Inventory</li>
-								<li>Number of items for sale</li>
-							</ul>
-						</div>
-						<button id="getPlayerAccountInfo">Get Player Account Info</button>
-						<!-- End of Player account info Div -->
-						
-						<br>
-						
-						<!-- Player Listing Div -->
-						<div id="playerListings">
-							<h4>Player item listings go here</h4>
-							<ul>
-								<li>Item one:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-								<li>Item two:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-								<li>Item three:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-								<li>Item four:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-								<li>Item five:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-								<li>Item six:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-							</ul>	
-						</div>
-						<button id="getPlayerListings">Get Player Listings</button>
-						<!-- End of player listings Div -->
-						
-						<br>
-						
-						<!-- Players Items Sold div -->
-						<div id="playersItemsSold">
-							<h4>Players sold items go here</h4>
-							<ul>
-								<li>Item one:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
-								<li>Item two:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
-								<li>Item three:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
-								<li>Item four:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
-							</ul>
-						</div>
-						<button id="getPlayersItemsSold">Get Players Items Sold</button>
-						<!-- End of Players Items Sold Div -->
-
-				    </div>
-				   </div>
-				    <!-- End of User Info Div -->
+		    </div>
+		   </div>
+		    <!-- End of User Info Div -->
 
 			  
-			</div>
+			</div> <!-- container-fluid -->
 			<!-- End of User Homepage -->
 
 	 	</div>
