@@ -58,7 +58,12 @@ module.exports = function(sequelize, DataTypes)
 				isAlpha: true,
 				notEmpty: true
 			}
-		}
+		},
+		
+		was_listed:
+        {
+            type: DataTypes.BOOLEAN     
+        }
 	}, 
 	
 	{
