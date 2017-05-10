@@ -1,7 +1,6 @@
 // Debug Tool
 console.log("warehouse-page.js file has loaded");
 
-
 // Event Listeners
 //-------------------------------------------------------------------------------
 // Mouse hover on the warehouse choices

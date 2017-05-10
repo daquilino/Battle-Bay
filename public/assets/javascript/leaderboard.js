@@ -15,35 +15,44 @@ $.ajax({
 		switch (i)
 			{
 				case 0: 
-					var listItem = $("<h3>");
-					listItem.addClass("first-place");
-					listItem.html("Player: " + data[0].player + 
-						" " + "Profit: " + data[0].profit + 
-						" " + "Rank: " +  data[0].rank);
+					var newRankDiv = $("<div>");
+					var rankElement = $("<p>");
+					var rankItem = newRankDiv.append(rankElement);
+					rankElement.addClass("first-place text-center");
+					rankElement.html("Rank: " +  data[0].rank +
+						" " + "Player: " + data[0].player + 
+						" " + "Profit: " + data[0].profit);
 					break;
-				case 1: 
-					var listItem = $("<h3>");
-					listItem.addClass("second-place");
-					listItem.html("Player: " + data[1].player + 
-						" " + "Profit: " + data[1].profit + 
-						" " + "Rank: " +  data[1].rank);
+				case 1:
+					var newRankDiv = $("<div>"); 
+					var rankElement = $("<p>");
+					var rankItem = newRankDiv.append(rankElement);
+					rankElement.addClass("second-place text-center");
+					rankElement.html("Rank: " +  data[1].rank +
+						" " + "Player: " + data[1].player + 
+						" " + "Profit: " + data[1].profit);
 					break;
-				case 2: 
-					var listItem = $("<h3>");
-					listItem.addClass("third-place");
-					listItem.html("Player: " + data[2].player + 
-						" " + "Profit: " + data[2].profit + 
-						" " + "Rank: " +  data[2].rank);
+				case 2:
+					var newRankDiv = $("<div>");
+					var rankElement = $("<p>");
+					var rankItem = newRankDiv.append(rankElement);
+					rankElement.addClass("third-place text-center");
+					rankElement.html("Rank: " +  data[2].rank +
+						" " + "Player: " + data[2].player + 
+						" " + "Profit: " + data[2].profit);
 					break;
 				default:
-					var listItem = $("<h5>");
-					listItem.html("Player: " + data[i].player + 
-						" " + "Profit: " + data[i].profit + 
-						" " + "Rank: " +  data[i].rank);
+					var newRankDiv = $("<div>");
+					var rankElement = $("<p>");
+					var rankItem = newRankDiv.append(rankElement);
+					rankElement.addClass("text-center leaderboard-losers");
+					rankElement.html("Rank: " +  data[i].rank +
+						" " + "Player: " + data[i].player + 
+						" " + "Profit: " + data[i].profit);
 					break;
 			}
 
-		$(".rank-list").append(listItem);
+		$(".rank-list").append(rankItem);
 	}
 });
 //===================================================================================================
