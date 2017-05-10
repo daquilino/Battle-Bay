@@ -136,9 +136,12 @@ function BidderBot(nameInput)
 	};
 }
 
+//exporting the module ====================================================
+module.exports = BidderBot;
+
 //testing =================================================================
-var hank = new BidderBot("Hank");
-hank.StartBiddingCycle(2);
+// var hank = new BidderBot("Hank");
+// hank.StartBiddingCycle(2);
 
 
 
