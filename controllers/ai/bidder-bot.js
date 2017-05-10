@@ -25,8 +25,22 @@ function bidderBot(name)
 
 	//Methods
 
-	//public
-	this.StartBiddingCycle = function()
+	//private
+	var GetRandomItemIndex = function(numItems)
+	{
+		return Math.floor((Math.random() * numItems));
+	};
+
+	//private
+	var DecideIfBuying = function(itemObject)
+	{
+		//look at data in relation to bot preferences
+
+		//decide if buying
+	};
+
+	//private
+	var DecideBidAmount = function()
 	{
 
 	};
@@ -37,35 +51,35 @@ function bidderBot(name)
 		//query itemsForSale
 		DB.itemsForSale.findAll({}).then(function(saleItemsRaw)
 		{
-			//to store dataValues objects
 			var saleItems = [];
 
 			//pull dataValues objects from saleItemsRaw
 			for (var index = 0; index < saleItemsRaw.length; index++)
 				saleItems.push(saleItemsRaw[index].dataValues);
 
+			//Randomly pick one of the items
+			var chosenItem = GetRandomItemIndex(saleItems.length);
 
+			//Decide if want to buy that item
+			var isBuying = DecideIfBuying(saleItems[chosenItem]);
 
-			console.log(saleItems);
+			console.log(isBuying);
+
 		});
 	};
 
-	//private
-	var DecideIfBuying = function()
+	//public
+	this.StartBiddingCycle = function()
 	{
-
+		SelectItem();
 	};
 
-	//private
-	var DecideBidAmount = function()
-	{
-
-	};
+	
 }
 
 //testing ---------------------------------------------------------------
 var hank = new bidderBot("Hank");
-hank.SelectItem();
+hank.StartBiddingCycle();
 
 
 
