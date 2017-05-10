@@ -27,3 +27,6 @@ VALUES
 ("fashion", 2, 4),
 ("collectables", 100, 4),
 ("electronics", 20, 4);
+
+-- itemsForSale seeds
+
