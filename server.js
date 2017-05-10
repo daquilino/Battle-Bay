@@ -64,7 +64,7 @@ DB.sequelize.sync().then(function()  //**** REMOVE {force:true} *** . USE ONLY F
 		//Start AI bidding cycle
 
 		//Starts auction monitoring
-		//MONITOR(APP);
+		//MONITOR;
 	});
 });
 
