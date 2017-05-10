@@ -17,10 +17,20 @@ In order for a botBid to be made, 3 decisions must be made.
 */
 
 //constructor =============================================================
-function BidderBot(name)
+function BidderBot(nameInput)
 {
 	//Instance Variables ----------------------------------
-	this.name = name;
+
+	//private
+	var name = nameInput;
+
+	//Get/Set Properties -----------------------------------
+
+	//public 
+	this.GetName = function()
+	{
+		return name;
+	};
 
 	//Methods ---------------------------------------------
 
@@ -61,6 +71,20 @@ function BidderBot(name)
 	var MakeBid = function(bidAmount, itemObject)
 	{
 		//make bid on selected item
+		DB.itemsForSale.update(
+		{
+			highest_bid: bidAmount,
+			highest_bidder: name
+		},
+		{
+			where: 
+			{
+				id: itemObject.id
+			}
+		}).then(function(updatedItem)
+		{
+			//
+		});
 	};
 
 	//private
@@ -84,10 +108,9 @@ function BidderBot(name)
 
 			if (isBuying)
 			{
-				console.log("I'm going to bid: " + 
-				DecideBidAmount(saleItems[chosenIndex]) + "\n" +
-				"on item at index: " + chosenIndex);
-				console.log(saleItems[chosenIndex]);
+				var bidAmount = DecideBidAmount(saleItems[chosenIndex]);
+
+				MakeBid(bidAmount, saleItems[chosenIndex]);
 			}
 			else
 			{
@@ -110,6 +133,7 @@ function BidderBot(name)
 //testing =================================================================
 var hank = new BidderBot("Hank");
 hank.StartBiddingCycle();
+
 
 
 
