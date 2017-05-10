@@ -38,13 +38,19 @@ body {
 
 
 
-
-
 #barba-wrapper {
 	margin: 0 auto;
 }
+
+/*Main Nav Bar*/
 #main-nav-bar {
 	background-color: yellow;
+}
+#navbar-logo {
+  width: 45px;
+  position: relative;
+  top: -13px;
+  left: -12px;
 }
 
 /*Landing Page*/
