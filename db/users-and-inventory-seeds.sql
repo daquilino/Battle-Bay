@@ -42,6 +42,12 @@ VALUES
 ("collectables", 1, 20, null, CURRENT_TIMESTAMP, 4);
 
 
+-- warehouseItems-seeds
+INSERT INTO warehouseItems (item_name, category, units_sold, price, warehouse_name) 
+VALUES ("electronics", "electronics", 25, 200, "warehouse1"),
+("fashion", "fashion", 53, 15, "warehouse2"),
+("collectibles", "collectibles", 10, 125, "warehouse3");
+
 
 
 
