@@ -1,10 +1,14 @@
 //load in the models
 const DB = require("./models");
 
-// change in dougs-branch
+/*  NOTES
+
+	In order for Date() to work properly in localhost.
+	You need to add "timezone": "America/New_York" parameter to 'development' in config.json
+
+*/
 
 /*
-
 If there are items for sale. check to see if completed (current_timestamp - createAt < auctionTime)
 	- if complete did the sell (highest_bid > starting_price || highest_bid !== null)			
 			
@@ -13,6 +17,7 @@ If there are items for sale. check to see if completed (current_timestamp - crea
 			No - remove from items-for-sale, move back to userInventory.	
 
 */
+
 
 
 //Assume 5 minute auctions for testing.
@@ -27,97 +32,137 @@ module.exports = function(app)
 	
 	const auctionTime = 5000; //miliseconds
 
-
-	var x;
 	
-	x = new Date();
-	console.log("current time x:", x);
-	console.log("current time x hour:", x.getHours());
-
-
-
+	
 	// This should be in a interval timer a little less than auctionTime
 	// maybe put in its own function.
-	DB.itemsForSale.findAll({include: [DB.allUsers]})
+	DB.itemsForSale.findAll()
 	.then(function(data)
 	{
-		itemsForSale = data;
-		
+		itemsForSale = JSON.parse(JSON.stringify(data));  //this removes extra stuff from objects?
 			
 		//// ==============  test time code ==================
-		/**/	var currentItem = itemsForSale[4];	
-		/**/
-		/**/	x = new Date();
-		/**/
-		/**/	console.log("\nITEM:", currentItem.item_name);
-		/**/	console.log("createdAt:", currentItem.createdAt);
-		/**/	console.log("createdAt hours:", currentItem.createdAt.getHours());
-				console.log("x time :", x);
-				console.log("x hours:", x.getHours());
-		/**/	console.log("x-currentItem.createdAt:", (x-currentItem.createdAt));
-		/**/
-		/**/
-		/**/
-		/**/
-		/**/
-
-
-	/*	
-		//some kind of loop
-		if(itemsForSale.length > 0)
+		 //var currentItem = itemsForSale[5];	//TEST CODE REMOVE
+	
+		var intervalID = setInterval(function()
 		{
-			for(var key in itemsForSale)
+			if(itemsForSale.length > 0)
 			{
-				
-
-				if(isExpired(currentItem, autionTime)
+				for(var key in itemsForSale)
 				{
+					var currentItem = itemsForSale[key];
 
-					returnToUsersInventory(currentItem)
+					if(isExpired(currentItem)) // can send in auctionTime 
+					{
+						//itemsForSale.splice(key,1); // this will remove item from for same array.
+						
+						//returnToUsersInventory(currentItem)
 
 
-				}	
+						console.log(currentItem.item_name , "EXPIRED!");
+					}
+					else //THIS ELSE IS TEST CODE REMOVE	
+					{
+						console.log(currentItem.item_name , "not expired");
+					}	
 
-			}// for		
-		}// if	
-	*/
 
+				}// for		
+			}// if		
+		}, 5000);
+		
+		
 	});// DB		
-
-
-
-
 };// module
 
-/*
-// checks if items auction time is up
-function isExpired(item, auctionTime)
+//--------------------------------------
+// checks if item auction's time is up. If so returns 'true', else returns 'false'
+function isExpired(item)
 {
-	//check how to handle createdAt time format?	
+	
 
-	//returns true or false.
+	var itemStartTime = new Date(item.createdAt);
+	var currentTime = new Date();
+	
+	if((currentTime - itemStartTime) > 300000)   //5 minutes
+	{
+		return true;
+	}	
+	
+	return false;
+
 }
 
-
+//--------------------------------------
+// Adds item to 'usersInventory',
+// then calls removeForSale() to remove item from 'itemsForSale'. 
 function returnToUsersInventory(item, sold)
 {
+	var itemId = item.id;	
 
-	//1. remove item.createdAt.
-	//2. if sold item.sold = true (already set to false)
-	//3. insert into users inventory
-	//4. .then removeFromAuction(item)
+	// removes 'createdAt' and 'id' property from item
+	delete item.createdAt;
+	delete item.id;
+
+	//adds 'sold' property to item
+	item.sold = sold;
+
+	DB.usersInventory.create(item)
+	.then(function()
+	{
+		removeForSale(itemId);
+	});
 }
 
-
-function removeFromAuction(item)
+//--------------------------------------
+// Deletes item with id 'forSaleId' from 'itemsForSale' table
+function removeForSale(forSaleId)
 {
-	delete
+	DB.itemsForSale.destroy(
+    {
+     	where: 
+      	{
+        	id: forSaleId
+      	}
+    });
 }
+
+
+
+
+/*			Interval timer notes
+
+
+			timer (little less than 5 min, function()
+			{
+				
+				stop timerid; //DOES THIS MAKE SENSE
+				
+				get itemsforsale.then(function{
+	
+					var timerid = timer(1000,function(){
+					everything else here.
+
+
+
+
+
+					})
+
+
+				
+
+				})
+
+
+
+
+
+
+			})
+
+
+
+
 
 */
-
-
-
-//TIME ISSUE createdAT is current time (10) with UTC time stamp
-
-// Test hero to see what time I get back
