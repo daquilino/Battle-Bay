@@ -1,4 +1,4 @@
-// Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+// Debug Tool
 console.log("all-listings.js loaded");
 
 $.ajax({
