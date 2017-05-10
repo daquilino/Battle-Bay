@@ -49,5 +49,6 @@ require("./controllers/make-purchase-api-routes.js")(APP);
 DB.sequelize.sync().then(function()  //**** REMOVE {force:true} *** . USE ONLY FOR TESTING.
 {
 	APP.listen(PORT, () => console.log("listening on port:", PORT));
+	
 });
 
