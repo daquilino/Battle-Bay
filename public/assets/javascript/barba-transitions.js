@@ -107,7 +107,20 @@ var SignUp = Barba.BaseView.extend({
   namespace: 'SignUp',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
+      $.get("assets/javascript/form-test.js");
       console.log("SignUp loading worked");
+  },
+  onLeave: function() {
+    // Form-test listeners
+    $(document).on("click", "#signUpSubmit", signUp);
+    $(document).on("click", "#signInSubmit", signIn);
+    $(document).on("click", "#getPlayerAccountInfo", getPlayerAccountInfo);
+    $(document).on("click", "#getPlayerListings", getPlayerListings);
+    $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
+    $(document).on("click", "#getWarehousePrices", getWarehousePrices);
+    $(document).on("click", "#placeOrder", placeOrder);
+    $(document).on("click", "#getItemListings", getItemListings);
+    $(document).on("click", "#makeListing", makeListing); //makeListing
   }
 });
 
@@ -122,7 +135,20 @@ var SignIn = Barba.BaseView.extend({
   namespace: 'SignIn',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
+      $.get("assets/javascript/form-test.js");
       console.log("SignIn loading worked");
+  },
+  onLeave: function() {
+    // Form-test listeners
+    $(document).off("click", "#signUpSubmit", signUp);
+    $(document).off("click", "#signInSubmit", signIn);
+    $(document).off("click", "#getPlayerAccountInfo", getPlayerAccountInfo);
+    $(document).off("click", "#getPlayerListings", getPlayerListings);
+    $(document).off("click", "#getPlayersItemsSold", getPlayersItemsSold);
+    $(document).off("click", "#getWarehousePrices", getWarehousePrices);
+    $(document).off("click", "#placeOrder", placeOrder);
+    $(document).off("click", "#getItemListings", getItemListings);
+    $(document).off("click", "#makeListing", makeListing); //makeListing
   }
 });
 
@@ -145,18 +171,18 @@ var MakeListing = Barba.BaseView.extend({
    onLeave: function() {
 
     // Make A Listing Listeners
-    $(document).on("click", ".itemType-selection-div", selectItemType);
+    $(document).off("click", ".itemType-selectioff-div", selectItemType);
 
     // Form-test listeners
-    $(document).on("click", "#signUpSubmit", signUp);
-    $(document).on("click", "#signInSubmit", signIn);
-    $(document).on("click", "#getPlayerAccountInfo", getPlayerAccountInfo);
-    $(document).on("click", "#getPlayerListings", getPlayerListings);
-    $(document).on("click", "#getPlayersItemsSold", getPlayersItemsSold);
-    $(document).on("click", "#getWarehousePrices", getWarehousePrices);
-    $(document).on("click", "#placeOrder", placeOrder);
-    $(document).on("click", "#getItemListings", getItemListings);
-    $(document).on("click", "#makeListing", makeListing); //makeListing
+    $(document).off("click", "#signUpSubmit", signUp);
+    $(document).off("click", "#signInSubmit", signIn);
+    $(document).off("click", "#getPlayerAccountInfo", getPlayerAccountInfo);
+    $(document).off("click", "#getPlayerListings", getPlayerListings);
+    $(document).off("click", "#getPlayersItemsSold", getPlayersItemsSold);
+    $(document).off("click", "#getWarehousePrices", getWarehousePrices);
+    $(document).off("click", "#placeOrder", placeOrder);
+    $(document).off("click", "#getItemListings", getItemListings);
+    $(document).off("click", "#makeListing", makeListing); //makeListing
   }
 });
 
