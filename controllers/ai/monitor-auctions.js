@@ -2,15 +2,13 @@
 const DB = require("../../models");
 
 /*  NOTES
-
 	In order for Date() to work properly in localhost.
 	You need to add "timezone": "America/New_York" parameter to 'development' in config.json
-
 */
 
 //Assume 5 minute auctions for testing.
 
-module.exports = function monitorAI(app)
+module.exports = function monitorAI()
 {
 	console.log("\nmonitor-autions function called\n"); //TEST CODE REMOVE
 	
@@ -27,42 +25,37 @@ module.exports = function monitorAI(app)
 	.then(function(data)
 	{
 		itemsForSale = JSON.parse(JSON.stringify(data));  //this removes extra stuff from objects?
-
-			
+		
 		if(itemsForSale.length > 0)
 		{
 			intervalFlag = true;
 			
 			//Runs every 5s until clearInterval is called.
 			var intervalID = setInterval(function()
-			{
-				
-					for(var key in itemsForSale)
-					{
-						var currentItem = itemsForSale[key];
+			{				
+				for(var key in itemsForSale)
+				{
+					var currentItem = itemsForSale[key];
 
-						if(isExpired(currentItem)) // may use 'auctionTime' as argument 
-						{
-							itemsForSale.splice(key,1); // this will remove item from itemsForSale.				
-							returnToUsersInventory(currentItem)
-						}
-						
-					}// for		
-					
-			}, 5000);
+					if(isExpired(currentItem)) 
+					{
+						itemsForSale.splice(key,1); // this will remove item from itemsForSale.				
+						returnToUsersInventory(currentItem)
+					}						
+				}						
 			
-		}//if	
+			}, 5000);			
+		}
+		
 		setTimeout(function()
 		{
-
 			if(intervalFlag)
 				clearInterval(intervalID);
 			
 			monitorAI();
 		
 		}, 250000);
-
-	});// DB		
+	});		
 };// module
 
 
@@ -79,7 +72,6 @@ function isExpired(item)
 	}	
 	
 	return false;
-
 }
 
 //--------------------------------------
