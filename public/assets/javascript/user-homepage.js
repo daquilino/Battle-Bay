@@ -1,7 +1,6 @@
 // Debug Tool
 console.log("user-hompage.js File Has Loaded.");
 
-
 // GET Player account
 //-------------------------------------------------------------------------------------
 function getPlayerAccountInfo() {

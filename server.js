@@ -50,7 +50,5 @@ DB.sequelize.sync().then(function()  //**** REMOVE {force:true} *** . USE ONLY F
 {
 	APP.listen(PORT, () => console.log("listening on port:", PORT));
 	
-	//call monitor-autions module function
-	require("./monitor-auctions.js")(APP); 
 });
 
