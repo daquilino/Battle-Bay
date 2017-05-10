@@ -197,6 +197,7 @@ var AllListings = Barba.BaseView.extend({
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
       $.get("assets/javascript/all-listings.js");
+      $.get("assets/javascript/sorttable.js");
       console.log("AllListings loading worked");
   },
    onleave: function() {
