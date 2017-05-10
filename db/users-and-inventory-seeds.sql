@@ -29,4 +29,24 @@ VALUES
 ("electronics", 20, 4);
 
 -- itemsForSale seeds
+INSERT 
+itemsForSale (item_name, quantity, starting_price, highest_bid, createdAt, allUserId)
+VALUES
+-- Leslie itemForSale
+("fashion", 1, 45, 50, CURRENT_TIMESTAMP, 1),
+-- Ben itemForSale
+("electronics", 1, 80, null, CURRENT_TIMESTAMP, 2),
+-- Tom itemForSale
+("fashion", 1, 90, 120, CURRENT_TIMESTAMP, 3),
+-- Jerry itemForSale
+("collectables", 1, 20, null, CURRENT_TIMESTAMP, 4);
+
+
+
+
+
+
+
+
+
 
