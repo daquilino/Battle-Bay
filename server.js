@@ -35,6 +35,9 @@ APP.use(METHOD_OVERIDE("_method"));
 //Require AI contructors
 const BidderBot = require("./controllers/ai/bidder-bot.js");
 
+//Require Monitor AI
+const MONITOR = require("./controllers/ai/monitor-auctions.js")
+
 //Construct AI objects
 var hank = new BidderBot("Hank");
 
@@ -54,12 +57,14 @@ require("./controllers/make-purchase-api-routes.js")(APP);
 
 DB.sequelize.sync().then(function()  //**** REMOVE {force:true} *** . USE ONLY FOR TESTING.
 {
-	// APP.listen(PORT, () => console.log("listening on port:", PORT));
 	APP.listen(PORT, function()
 	{
 		console.log("Listening on port: " + PORT);
 
 		//Start AI bidding cycle
+
+		//Starts auction monitoring
+		//MONITOR;
 	});
 });
 
