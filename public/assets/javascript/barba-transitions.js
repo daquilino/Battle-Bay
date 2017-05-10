@@ -187,7 +187,7 @@ var UserHomepage = Barba.BaseView.extend({
   namespace: 'UserHomepage',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
-      // $.get("assets/javascript/make-a-listing-page.js");
+      $.get("assets/javascript/user-homepage.js");
       console.log("UserHomepage loading worked");
   },
    onLeave: function() {
