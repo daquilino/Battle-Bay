@@ -69,8 +69,7 @@ function addToUserInventory(userId, quantity, itemName, totalSpent, res)
 		
 		quantity: quantity,
 		item_name: itemName,
-		allUserId: userId,
-		was_listed: true
+		allUserId: userId
 	};
 		
 	DB.usersInventory.create(item)
