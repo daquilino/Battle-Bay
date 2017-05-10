@@ -11,7 +11,6 @@
 // If any step is unseccessful then a json object of {complete: false} will be responded.
 
 
-
 // Dependencies
 // =============================================================
 // Requiring our models
@@ -70,7 +69,8 @@ function addToUserInventory(userId, quantity, itemName, totalSpent, res)
 		
 		quantity: quantity,
 		item_name: itemName,
-		allUserId: userId
+		allUserId: userId,
+		was_listed: true
 	};
 		
 	DB.usersInventory.create(item)
