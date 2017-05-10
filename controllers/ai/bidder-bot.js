@@ -45,7 +45,7 @@ function BidderBot(nameInput)
 	{
 		//in future implementation, preferences will be taken into account
 
-		console.log("------- Deciding if I want to buy it ----------");
+		// console.log("------- Deciding if I want to buy it ----------");
 		return Math.round(Math.random());
 	};
 
@@ -54,7 +54,7 @@ function BidderBot(nameInput)
 	{
 		//in future implementation, prefrences will be taken into account
 
-		console.log("----- Deciding how much I want to spend -------");
+		// console.log("----- Deciding how much I want to spend -------");
 		if (itemObject.highest_bid !== null)
 		{
 			console.log("going off highest bid");
@@ -83,7 +83,13 @@ function BidderBot(nameInput)
 			}
 		}).then(function(updatedItem)
 		{
-			//
+			console.log("------------ " + name + " bid: " + bidAmount + " ---------------");
+			console.log("on:\n" + 
+			"id: " + itemObject.id + "\n" +
+			"startingPrice: " + itemObject.starting_price + "\n" +
+			"prevHighestPrice: " + itemObject.highest_bid + "\n" +
+			"prevHighestBidder: " + itemObject.highest_bidder + "\n" +
+			"allUserId: " + itemObject.allUserId);
 		});
 	};
 
@@ -100,7 +106,6 @@ function BidderBot(nameInput)
 				saleItems.push(saleItemsRaw[index].dataValues);
 
 			//Randomly pick one of the items
-			console.log("----- Selecting an Item--------");
 			var chosenIndex = GetRandomItemIndex(saleItems.length);
 
 			//Decide if want to buy that item
@@ -113,18 +118,15 @@ function BidderBot(nameInput)
 				MakeBid(bidAmount, saleItems[chosenIndex]);
 			}
 			else
-			{
-				console.log("I'm not buying the item at index: " + chosenIndex);
-				console.log(saleItems[chosenIndex]);
-			}
+				console.log(name + " is not buying the item at index: " + chosenIndex);
 
 		});
 	};
 
 	//public
-	this.StartBiddingCycle = function()
+	this.StartBiddingCycle = function(seconds)
 	{
-		SelectItem();
+		var bidId = setInterval(SelectItem, seconds * 1000);
 	};
 
 	
@@ -132,7 +134,7 @@ function BidderBot(nameInput)
 
 //testing =================================================================
 var hank = new BidderBot("Hank");
-hank.StartBiddingCycle();
+hank.StartBiddingCycle(2);
 
 
 
