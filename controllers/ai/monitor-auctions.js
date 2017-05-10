@@ -1,5 +1,5 @@
 //load in the models
-const DB = require("./models");
+const DB = require("../../models");
 
 /*  NOTES
 
