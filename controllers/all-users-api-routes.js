@@ -129,6 +129,25 @@ module.exports = function(app)
 		});
 	});
 
+
+	//Get only one user stats from 'allUsers'
+	app.get("/api/user/:id", function(req, res)
+	{
+		DB.allUsers.findOne({where: {id: req.params.id}})
+		.then(function(data)
+		{
+			var userStats = {
+				"id": data.id,
+				"username": data.username,
+				"balance": data.balance,
+				"money_spent": data.money_spent,
+				"money_earned": data.money_earned
+			}
+
+			res.json(userStats);
+		});		
+	});
+
 };
 
 
