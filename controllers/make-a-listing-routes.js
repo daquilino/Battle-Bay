@@ -58,7 +58,8 @@ module.exports = function(app)
 					quantity: parseInt(req.body.quantity),
 					starting_price: parseInt(req.body.price),
 					createdAt: new Date(),
-					allUserId: parseInt(req.cookies.id)
+					allUserId: parseInt(req.cookies.id),
+					was_listed: true
 
 				}).then(function(newListing)
 				{
