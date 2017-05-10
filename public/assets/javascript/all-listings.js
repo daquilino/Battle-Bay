@@ -1,4 +1,4 @@
-Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+// Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
 	console.log("all-listings.js loaded");
 
 	$.ajax({
@@ -8,4 +8,4 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
 	.done(function(data) {
 		console.log(data);
 	 });
-});
+// });
