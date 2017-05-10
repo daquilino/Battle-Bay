@@ -32,6 +32,12 @@ APP.use(COOKIE_PARSER());
 // Override with POST having ?_method=...
 APP.use(METHOD_OVERIDE("_method"));
 
+//Require AI contructors
+const BidderBot = require("./controllers/ai/bidder-bot.js");
+
+//Construct AI objects
+var hank = new BidderBot("Hank");
+
 // Set Handlebars.
 // APP.engine("handlebars", EXPHBS({ defaultLayout: "main" }));
 // APP.set("view engine", "handlebars");
@@ -48,7 +54,12 @@ require("./controllers/make-purchase-api-routes.js")(APP);
 
 DB.sequelize.sync().then(function()  //**** REMOVE {force:true} *** . USE ONLY FOR TESTING.
 {
-	APP.listen(PORT, () => console.log("listening on port:", PORT));
-	
+	// APP.listen(PORT, () => console.log("listening on port:", PORT));
+	APP.listen(PORT, function()
+	{
+		console.log("Listening on port: " + PORT);
+
+		//Start AI bidding cycle
+	});
 });
 
