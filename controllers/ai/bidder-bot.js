@@ -17,12 +17,14 @@ In order for a botBid to be made, 3 decisions must be made.
 */
 
 //constructor =============================================================
-function BidderBot(nameInput)
+function BidderBot(nameInput, bidChance, bidRange)
 {
 	//Instance Variables ----------------------------------
 
 	//private
-	var name = nameInput;
+	var name = nameInput
+		, chance = bidChance //number < 100
+		, multiplier = bidRange; //number < 100
 
 	//Get/Set Properties -----------------------------------
 
@@ -43,16 +45,31 @@ function BidderBot(nameInput)
 	//private
 	var DecideIfBuying = function(itemObject)
 	{
-		//in future implementation, preferences will be taken into account
 
+		//BASIC IMPLEMENTATION
 		return Math.round(Math.random());
+
+		//include itemObject data in calculations further down the road
+
+		// var lottoNumber = Math.floor(Math.random() * 100);
+
+		// if (lottoNumber < chance)
+		// {
+		// 	console.log("chance: " + chance);
+		// 	console.log("lotto number: " + lottoNumber);
+		// 	return true;
+		// }
+		// else
+		// {
+		// 	console.log("chance: " + chance);
+		// 	console.log("lotto number: " + lottoNumber);
+		// 	return false;
+		// }
 	};
 
 	//private
 	var DecideBidAmount = function(itemObject)
 	{
-		//in future implementation, prefrences will be taken into account
-
 		if (itemObject.highest_bid !== null && itemObject.highest_bid !== 0)
 		{
 			console.log("going off highest bid");
@@ -123,8 +140,31 @@ function BidderBot(nameInput)
 			}
 			else
 				console.log("no items for sale");
-
 		});
+	};
+
+	//private
+	var ConvertToMilliseconds = function(number, timeUnits)
+	{
+		switch(timeUnits)
+		{
+			case 'd':
+				ConvertToMilliseconds(number * 24, 'h');
+				break;
+			case 'h':
+				ConvertToMilliseconds(number * 60, 'm');
+				break;
+			case 'm':
+				ConvertToMilliseconds(number * 60, 's');
+				break;
+			case 's':
+				return number * 1000;
+				break;
+			default:
+				console.log("invalid units");
+				return -1;
+				break;
+		}
 	};
 
 	//public
@@ -138,9 +178,8 @@ function BidderBot(nameInput)
 module.exports = BidderBot;
 
 //testing =================================================================
-// var hank = new BidderBot("Hank");
+// var hank = new BidderBot("Hank", 1, 1);
 // hank.StartBiddingCycle(2);
-
 
 
 

@@ -3,6 +3,13 @@
 // getting leaderboard information. (Info pertaining to all the users). 
 // *********************************************************************************
 
+/*
+Todo:
+	- make a logout route
+		- removes cookie
+		- redirect to landing page
+*/
+
 // Dependencies
 // =============================================================
 // Requiring our models
@@ -133,6 +140,44 @@ module.exports = function(app)
 
 			//respond with an array of player objects in ranked order
 			res.json(results[0]);
+		});
+	});
+
+	//Log out a currently signed in user
+	app.put("/api/user/logout", function(req, res)
+	{
+		// //When we swtich to token, set that users token to null
+		// DB.allUsers.update(
+		// {
+		// 	token: null
+		// }, 
+		// {
+		// 	where:
+		// 	{
+		// 		token: req.cookies.token
+		// 	}
+		// }).then(function(signedOutUser)
+		// {
+		// 	//wipe the cookie
+		// 	res.clearCookie("token");
+
+		// 	//redirect to landing page via front end functions
+		// 	res.send(
+		// 	{
+		// 		success: true,
+		// 		redirectTo: "/"	
+		// 	});
+		// });
+
+
+		//wipe the cookie
+		res.clearCookie("id");
+		
+		//redirect to landing page via front end functions
+		res.send(
+		{
+			success: true,
+			redirectTo: "/"
 		});
 	});
 
