@@ -24,10 +24,10 @@ module.exports = function(app)
 	});
 
 	//------------------------------------------------------
-	//Get only one 'itemsForSale'
+	//Get all 'itemsForSale' from single user with id
 	app.get("/api/forsale/:id", function(req, res)
 	{
-		DB.itemsForSale.findOne({where: {id: req.params.id}})
+		DB.itemsForSale.findAll({where: {allUserId: req.params.id}})
 		.then(function(data)
 		{
 			res.json(data);
