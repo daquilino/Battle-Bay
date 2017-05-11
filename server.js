@@ -62,7 +62,7 @@ DB.sequelize.sync().then(function()  //**** REMOVE {force:true} *** . USE ONLY F
 		console.log("Listening on port: " + PORT);
 
 		//Start AI bidding cycle
-		// hank.StartBiddingCycle(2, 25, 20);
+		// hank.StartBiddingCycle(2);
 
 		//Starts auction monitoring
 		//MONITOR();

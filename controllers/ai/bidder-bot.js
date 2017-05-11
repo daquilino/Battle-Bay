@@ -24,8 +24,7 @@ function BidderBot(nameInput, bidChance, bidRange)
 	//private
 	var name = nameInput
 		, chance = bidChance
-		, multiplier = bidRange
-		, category = favoriteCategory;
+		, multiplier = bidRange;
 
 	//Get/Set Properties -----------------------------------
 
