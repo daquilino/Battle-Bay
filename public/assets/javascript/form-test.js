@@ -412,10 +412,10 @@ function getWarehousePrices() {
       data: post
     })
     .done(function(data) {
-     	console.log(JSON.stringify(data, null, 2)); //TEST CODE
      	
-     	//create function to add 'data' item to usersInvetory
-     	//call function here using data as argument.
+     	if (data.complete === true)
+    		window.location = "/user-homepage";
+     
     });
   }
 
