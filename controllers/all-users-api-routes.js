@@ -15,8 +15,8 @@ module.exports = function(app)
 	//Registering a new user
 	app.post("/api/user/signup", function(req, res)
 	{
-		//check if passwords match
-		if (req.body.signUpPassword === req.body.signUpPasswordConfirm)
+		//check sign up input
+		if (req.body.signUpName !== "" && req.body.signUpPassword === req.body.signUpPasswordConfirm)
 		{
 			//check if username is already taken
 			DB.allUsers.findOne(
@@ -54,10 +54,18 @@ module.exports = function(app)
 				}
 			});
 		}
-		else //paswords didn't match
+		else //sign up info invalid 
 		{
-			console.log("passwords didn't match.");
-			res.json({error: "Passwords entered did not match"});
+			if (req.body.signUpName === "")
+			{
+				console.log("username can't be blank");
+				res.json({error: "Username can't be blank"});
+			}
+			else
+			{
+				console.log("passwords didn't match.");
+				res.json({error: "Passwords entered did not match"});
+			}
 		}
 	});
 
@@ -124,7 +132,6 @@ module.exports = function(app)
 				results[0][index].rank = index + 1;
 
 			//respond with an array of player objects in ranked order
-			console.log(results[0]);
 			res.json(results[0]);
 		});
 	});
