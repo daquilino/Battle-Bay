@@ -3,6 +3,13 @@
 // getting leaderboard information. (Info pertaining to all the users). 
 // *********************************************************************************
 
+/*
+Todo:
+	- make a logout route
+		- removes cookie
+		- redirect to landing page
+*/
+
 // Dependencies
 // =============================================================
 // Requiring our models

@@ -17,12 +17,15 @@ In order for a botBid to be made, 3 decisions must be made.
 */
 
 //constructor =============================================================
-function BidderBot(nameInput)
+function BidderBot(nameInput, bidChance, bidRange, favoriteCategory)
 {
 	//Instance Variables ----------------------------------
 
 	//private
-	var name = nameInput;
+	var name = nameInput
+		, chance = bidChance
+		, multiplier = bidRange
+		, category = favoriteCategory;
 
 	//Get/Set Properties -----------------------------------
 
@@ -43,8 +46,8 @@ function BidderBot(nameInput)
 	//private
 	var DecideIfBuying = function(itemObject)
 	{
-		//in future implementation, preferences will be taken into account
-
+		//
+		
 		return Math.round(Math.random());
 	};
 
@@ -135,11 +138,10 @@ function BidderBot(nameInput)
 }
 
 //exporting the module ====================================================
-module.exports = BidderBot;
+// module.exports = BidderBot;
 
 //testing =================================================================
-// var hank = new BidderBot("Hank");
-// hank.StartBiddingCycle(2);
+var hank = new BidderBot("Hank" , 25, 32);
 
 
 
