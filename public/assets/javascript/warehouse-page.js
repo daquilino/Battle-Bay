@@ -24,7 +24,7 @@ $(document).on({
 $(document).on("click", ".warehouse-selection-div", selectWarehouse);
 
 // Updates the order summary when the mouse leaves the number input field
-$(":input[name=numberOfUnits]").mouseleave(function(){
+$(":input[name=numberOfUnits]").on("keyup mouseup", function(){
   changeOrderSummary();
 });
 //===============================================================================
