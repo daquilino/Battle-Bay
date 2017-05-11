@@ -63,7 +63,7 @@ module.exports = function(sequelize, DataTypes)
 		was_listed:
         {
             type: DataTypes.BOOLEAN,
-            defaltValue: false     
+            defaultValue: false     
         }
 	}, 
 	
