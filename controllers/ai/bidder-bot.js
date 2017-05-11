@@ -17,7 +17,7 @@ In order for a botBid to be made, 3 decisions must be made.
 */
 
 //constructor =============================================================
-function BidderBot(nameInput, bidChance, bidRange, favoriteCategory)
+function BidderBot(nameInput, bidChance, bidRange)
 {
 	//Instance Variables ----------------------------------
 
@@ -46,15 +46,28 @@ function BidderBot(nameInput, bidChance, bidRange, favoriteCategory)
 	//private
 	var DecideIfBuying = function(itemObject)
 	{
-		//
-		
-		return Math.round(Math.random());
+		//include itemObject data in calculations further down the road
+
+		var lottoNumber = Math.floor(Math.random() * 100);
+
+		if (lottoNumber < chance)
+		{
+			console.log("chance: " + chance);
+			console.log("lotto number: " + lottoNumber);
+			return true;
+		}
+		else
+		{
+			console.log("chance: " + chance);
+			console.log("lotto number: " + lottoNumber);
+			return false;
+		}
 	};
 
 	//private
 	var DecideBidAmount = function(itemObject)
 	{
-		//in future implementation, prefrences will be taken into account
+		//iclude itemObject data in calculations further down the road
 
 		if (itemObject.highest_bid !== null && itemObject.highest_bid !== 0)
 		{
@@ -138,10 +151,9 @@ function BidderBot(nameInput, bidChance, bidRange, favoriteCategory)
 }
 
 //exporting the module ====================================================
-// module.exports = BidderBot;
+module.exports = BidderBot;
 
 //testing =================================================================
-var hank = new BidderBot("Hank" , 25, 32);
 
 
 
