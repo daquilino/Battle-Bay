@@ -26,15 +26,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
-	<style>
-		.navbar .navbar-nav {
-    display: inline-block;
-    float: none;
-		}
-		.navbar .navbar-collapse {
-		    text-align: center;
-		}
-	</style>
+
 
 <body>
 	<!--  Top-NAV  -->
@@ -50,17 +42,16 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			       <a class="navbar-brand" href="#">Brand</a> 
+			       <a class="navbar-brand" href="/">
+			       	<img alt="Brand" src="assets/images/battlebay-logo.png" id="navbar-logo">
+		       	</a>
 			    </div>
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav navbar-right">
 			        <li class="">
-			          <a href="/">Form-test <span class="sr-only">(current)</span></a>
-			        </li>
-			        <li>
-			        	<a href="/landing">Home</a>
+			          <a href="/">Home <span class="sr-only">(current)</span></a>
 			        </li>
 			        <li>
 			        	<a href="/sign-in">Sign In</a>
@@ -101,7 +92,7 @@
 					    
 					    <!-- Collect the nav links, forms, and other content for toggling -->
 					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background-color: pink;">
-					      <ul class="nav navbar-nav">
+					      <ul class="nav navbar-nav navbar-right">
 					        <li>
 					          <a href="/user-homepage" id="user-homepage-link">User Homepage</a>
 					        </li>
@@ -115,69 +106,52 @@
 					    </div><!-- /.navbar-collapse -->
 					  </div> <!--  col-xs-10  -->
 					</div> <!--  row  -->
+
+						<!-- Start of User Info Div -->
+				   	<div class="row" style="">
+					    <div class="col-xs-10 col-xs-offset-1">
+					     	<h3>User Information</h3>
+							
+								<!-- Player Account Info Div -->
+								<div class="stand-out-div-light rounded-borders">
+									<ul id="playerAccountInfo" style="list-style-type: none;">
+										<!-- Dynamic User Info -->
+									</ul>
+								</div>
+								
+								<!-- End of Player account info Div -->
+								
+								<br>
+								
+								<!-- Player Listing Div -->
+								<h3>User Information</h3>
+								<div class="col-xs-12" id="playerListings">
+
+									<!-- DYNAMIC SPECIFIC PLAYER LISTINGS -->
+
+								</div>
+								
+								<!-- End of player listings Div -->
+								
+								<br>
+								
+								<!-- Players Items Sold div -->
+								<h3>Items Sold</h3>
+								<div id="playersItemsSold">
+									
+									<!-- DYNAMIC ITEMS THAT WERE SOLD -->
+									
+								</div>
+								
+								<!-- End of Players Items Sold Div -->
+
+					    </div>
+					   </div>
+					    <!-- End of User Info Div -->
+
 			  </div><!-- /.container-fluid -->
 			</nav>
-			<!--  End of Local Nav  -->
-					
-				
-
-						
-			<!-- Start of User Info Div -->
-	   	<div class="row">
-		    <div class="col-xs-10 col-xs-offset-1">
-		     	<h3>API Calls</h3>
-				
-					<!-- Player Account Info Div -->
-					<div id="playerAccountInfo">
-						<h4>Player Account Info Goes Here</h4>
-						<ul style="list-style-type: none;">
-							<li>Money</li>
-							<li>Inventory</li>
-							<li>Number of items for sale</li>
-						</ul>
-					</div>
-					<button id="getPlayerAccountInfo">Get Player Account Info</button>
-					<!-- End of Player account info Div -->
-					
-					<br>
-					
-					<!-- Player Listing Div -->
-					<div id="playerListings">
-						<h4>Player item listings go here</h4>
-						<ul>
-							<li>Item one:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-							<li>Item two:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-							<li>Item three:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-							<li>Item four:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-							<li>Item five:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-							<li>Item six:--NAME--NUMBER OF BIDS--STOCK--CURRENT PRICE--</li>
-						</ul>	
-					</div>
-					<button id="getPlayerListings">Get Player Listings</button>
-					<!-- End of player listings Div -->
-					
-					<br>
-					
-					<!-- Players Items Sold div -->
-					<div id="playersItemsSold">
-						<h4>Players sold items go here</h4>
-						<ul>
-							<li>Item one:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
-							<li>Item two:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
-							<li>Item three:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
-							<li>Item four:--NAME--NUMBER OF BIDS--SOLD FOR--</li>
-						</ul>
-					</div>
-					<button id="getPlayersItemsSold">Get Players Items Sold</button>
-					<!-- End of Players Items Sold Div -->
-
-		    </div>
-		   </div>
-		    <!-- End of User Info Div -->
-
-			  
-			</div> <!-- container-fluid -->
-			<!-- End of User Homepage -->
+			<!--  End of User Homepage  -->
 
 	 	</div>
 	</main>
