@@ -35,11 +35,11 @@ VALUES
 -- Leslie itemForSale
 ("fashion", 1, 45, 50, CURRENT_TIMESTAMP, 1),
 -- Ben itemForSale
-("electronics", 1, 80, null, CURRENT_TIMESTAMP, 2),
+("electronics", 1, 80, 0, CURRENT_TIMESTAMP, 2),
 -- Tom itemForSale
 ("fashion", 1, 90, 120, CURRENT_TIMESTAMP, 3),
 -- Jerry itemForSale
-("collectables", 1, 20, null, CURRENT_TIMESTAMP, 4);
+("collectables", 1, 20, 0, CURRENT_TIMESTAMP, 4);
 
 
 -- warehouseItems-seeds

@@ -83,7 +83,6 @@ function addToUserInventory(userId, quantity, itemName, totalSpent, res)
 }
 
 //---------------------------------------
-
 //Decrements the user 'balance' and increments the users 'money_spent'
 // in `allUsers` table.
 function updateUserStats(userId, totalSpent, res )
