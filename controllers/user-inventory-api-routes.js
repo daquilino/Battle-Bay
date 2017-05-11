@@ -41,6 +41,24 @@ module.exports = function(app)
 		});		
 	});
 
+	//------------------------------------------------------
+	//Get only one 'usersInventory'
+	app.get("/api/inventory/sold/:id", function(req, res)
+	{
+		DB.usersInventory.findAll({where:{allUserId: req.params.id, sold: true}})
+		.then(function(data)
+		{
+			//to store dataValues objects
+			var userInventoryInfo = [];
+
+			//pull dataValues from array of returned objects
+			for (var index = 0; index < data.length; index++)
+				userInventoryInfo.push(data[index].dataValues);
+
+			res.json(userInventoryInfo);
+		});		
+	});
+
 
 	//------------------------------------------------------
 	//Insert/create row
