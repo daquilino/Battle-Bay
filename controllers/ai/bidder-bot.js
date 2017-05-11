@@ -45,7 +45,6 @@ function BidderBot(nameInput)
 	{
 		//in future implementation, preferences will be taken into account
 
-		// console.log("------- Deciding if I want to buy it ----------");
 		return Math.round(Math.random());
 	};
 
@@ -54,8 +53,7 @@ function BidderBot(nameInput)
 	{
 		//in future implementation, prefrences will be taken into account
 
-		// console.log("----- Deciding how much I want to spend -------");
-		if (itemObject.highest_bid !== null)
+		if (itemObject.highest_bid !== null && itemObject.highest_bid !== 0)
 		{
 			console.log("going off highest bid");
 			return Math.round((Math.random() + 1) * itemObject.highest_bid);

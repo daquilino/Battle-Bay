@@ -41,11 +41,6 @@ module.exports = function(app)
 {
 	app.post("/api/new-listing", function(req, res)
 	{
-		// console.log("REQUEST COOKIES--------------------------------------");
-		// console.log(req.cookies);
-		// console.log("REQUEST BODY--------------------------------------");
-		// console.log(req.body);
-
 		//if user has enough of inventory to make that sale
 		if (EnoughInInvetory(req.body, false))
 		{
@@ -73,7 +68,7 @@ module.exports = function(app)
 					{
 						where: 
 						{
-							allUserId: req.cookies.id,
+							allUserId: parseInt(req.cookies.id),
 							item_name: req.body.itemName
 						}
 					}).then(function(updatedItem)
