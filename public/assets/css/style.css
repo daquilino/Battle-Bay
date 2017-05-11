@@ -183,3 +183,36 @@ th {
   border-color: #f3f3f3;
   border-style: dotted;
 }
+
+.sign-page-left {
+  background-image: url(../images/sign-in-left.png);
+  background-position: center;
+  background-size: cover;
+  min-height: 90vh;
+  background-position: right top;
+}
+
+.sign-page-right {
+  background-image: url(../images/sign-in-right.png);
+  background-position: center;
+  background-size: cover;
+  min-height: 90vh;
+  background-position: left top;
+}
+
+#sign-in-form {
+  margin-top: 10%;
+  background-image: url(../images/sign-in-coin-half.png);\
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.sign-in-button {
+  border-radius: 10px;
+  background-color: #e6892f;
+  border-color: #f3f3f3;
+  border-style: dotted;
+  color: #f3f3f3;
+  margin-left: 2%;
+}

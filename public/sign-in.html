@@ -43,9 +43,9 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			      <a class="navbar-brand" href="/">
+			       <a class="navbar-brand" href="/">
 			       	<img alt="Brand" src="assets/images/battlebay-logo.png" id="navbar-logo">
-		       	</a>
+			       </a>
 			    </div>
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -60,9 +60,21 @@
 			        <li>
 			          <a href="/user-homepage" id="user-homepage-link">H.Q.</a>
 			        </li>
+<<<<<<< HEAD
 			        <li>
 			          <a href="/all-listings">All Listings</a>
 			        </li>
+=======
+			        <!-- <li>
+			        	<a href="/make-a-listing">Make a Listing</a>
+			        </li> -->
+			        <li>
+			          <a href="/all-listings">All Listings</a>
+			        </li>
+			        <!-- <li>
+			          <a href="/warehouse">Warehouse</a>
+			        </li> -->
+>>>>>>> development
 			        <li>
 			          <a href="/leaderboard">Leaderboard</a>
 			        </li>
@@ -92,24 +104,36 @@
     
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-xs-4">
-						<a href="/sign-up"><h1>Sign Up</h1></a>
-					</div>
 
-					<div class="col-xs-4" id="sign-in-form">
-							<h3>Sign In</h3>
-							<form>
-							<input type="text" name="signInName">Name
-							<br>
-							<input type="password" name="signInPassword">Pass
-							</form>
-							<button id="signInSubmit" >Sign In Submit</button>
-					</div>
+					<!-- <div class="col-xs-12">   -->
 
-					<div class="col-xs-4">
-						<a href="/sign-in"><h1>Sign In</h1></a>
-					</div>		
+						<div class="col-xs-4 sign-page-left">
+							<!-- <a href="/sign-up"><h1>Sign Up</h1></a> -->
+						</div>
 
+						<div class="col-xs-4 white-border stand-out-div-dark rounded-borders white-text sign-in-form" id="sign-in-form">
+								<h3>Sign In</h3>
+								<form>
+								<label for="signInName">Name:</label>
+								<br>
+								<input type="text" name="signInName">
+								<br>
+								<label for="signInPassword">Pass:</label>
+								<br>
+								<input type="password" name="signInPassword">
+								<br>
+								</form>
+								<br>
+								<button class="btn btn-default" id="signInSubmit">Sign In Submit</button>
+								<br>
+								<br>
+								<p>Need an account?<a class="sign-in-button" href="/sign-up"> Sign Up! </a></p>
+						</div>
+
+						<div class="col-xs-4 sign-page-right">
+							<!-- <a href="/sign-in"><h1>Sign In</h1></a> -->
+						</div>		
+					<!-- </div> -->
 				</div>
 			</div>
 			<!-- End of container-fluid -->
