@@ -1,16 +1,17 @@
 body {
-  background-color: #e0e0e0;
+  background-color: rgb(62, 182, 210);
+  font-family: 'Roboto Slab', serif;
 }
 .full-width-img{
   width: 100%;
 }
 
 .stand-out-div-light{
-  background-color: #f1f1f1;
+  background-color: rgb(62, 182, 210);
 }
 
 .stand-out-div-dark{
-  background-color: #d4d4d4;
+  background-color: rgb(23, 144, 190);
 }
 #custom-handle {
     width: 3em;
@@ -44,7 +45,8 @@ body {
 
 /*Main Nav Bar*/
 #main-nav-bar {
-	background-color: yellow;
+	background-color: rgb(255, 162, 0);
+  background-image: url(../images/dark-wood.png);
 }
 #navbar-logo {
   width: 45px;
@@ -54,19 +56,20 @@ body {
 }
 
 /*Landing Page*/
-.game-intro {
+/*.game-intro {
 	background-color: green;
-}
+}*/
 .advertisement {
 	width: 100%;
 }
 #landing-signup {
   text-align: center;
-  background-color: yellow;
+  /*background-color: yellow;*/
   padding: 15px 0px 10px 0px;
+  color: #f3f3f3;
 }
 #landing-signup:hover {
-  background-color: purple;
+  /*background-color: purple;*/
   text-decoration: none;
 }
 
@@ -120,3 +123,42 @@ th {
   cursor: pointer;
 }
 
+.navbar-default .navbar-nav>li>a {
+    color: #f3f3f3;
+}
+
+.white-border{
+  border: 1px solid #f3f3f3;
+}
+
+.spaced-out-div-large {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.treasure-background {
+  background-image: url(../images/treasure-banner.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.game-intro {
+  background-image: url(../images/pirate-shot1.png);
+  background-position: center;
+  background-size: cover;
+  min-height: 90vh;
+  position: relative;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.game-intro-tag-line {
+  margin-top: 90%;
+  color: #f3f3f3;
+}
+
+.white-text {
+  color: #f3f3f3;
+}
