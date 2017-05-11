@@ -19,14 +19,14 @@ In order for a botBid to be made, 3 decisions must be made.
 //constructor =============================================================
 function BidderBot(nameInput, bidChance, bidRange)
 {
-	//Instance Variables ----------------------------------
+	//Instance Variables ---------------------------------------------
 
 	//private
 	var name = nameInput
 		, chance = bidChance //number < 100
 		, multiplier = bidRange; //number < 100
 
-	//Get/Set Properties -----------------------------------
+	//Get/Set Properties ---------------------------------------------
 
 	//public 
 	this.GetName = function()
@@ -34,7 +34,7 @@ function BidderBot(nameInput, bidChance, bidRange)
 		return name;
 	};
 
-	//Methods ---------------------------------------------
+	//Methods --------------------------------------------------------
 
 	//private
 	var GetRandomItemIndex = function(numItems)
@@ -70,6 +70,7 @@ function BidderBot(nameInput, bidChance, bidRange)
 	//private
 	var DecideBidAmount = function(itemObject)
 	{
+		//somebody has bid on the item
 		if (itemObject.highest_bid !== null && itemObject.highest_bid !== 0)
 		{
 			console.log("going off highest bid");
@@ -114,7 +115,6 @@ function BidderBot(nameInput, bidChance, bidRange)
 		//query itemsForSale
 		DB.itemsForSale.findAll({}).then(function(saleItemsRaw)
 		{
-			//check the length
 			if (saleItemsRaw.length > 0) //there are itemsForSale
 			{
 				var saleItems = [];
@@ -162,7 +162,6 @@ function BidderBot(nameInput, bidChance, bidRange)
 				break;
 			default:
 				console.log("invalid units");
-				return -1;
 				break;
 		}
 	};
@@ -172,16 +171,19 @@ function BidderBot(nameInput, bidChance, bidRange)
 	{
 		var delay = ConvertToMilliseconds(number, timeUnits);
 
-		var bidId = setInterval(SelectItem, delay);
+		if (typeof delay === "number")
+			var bidId = setInterval(SelectItem,	delay);
+		else
+			console.log("delay invalid");
 	};
 }
 
 //exporting the module ====================================================
-// module.exports = BidderBot;
+module.exports = BidderBot;
 
 //testing =================================================================
-var hank = new BidderBot("Hank", 1, 1);
-hank.StartBiddingCycle(1, 's');
+// var hank = new BidderBot("Hank", 1, 1);
+// hank.StartBiddingCycle(3, 's');
 
 
 

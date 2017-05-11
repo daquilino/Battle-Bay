@@ -169,16 +169,20 @@ module.exports = function(app)
 		// 	});
 		// });
 
-
-		//wipe the cookie
-		res.clearCookie("id");
-		
-		//redirect to landing page via front end functions
-		res.send(
+		if (req.cookies.id !== undefined)
 		{
-			success: true,
-			redirectTo: "/"
-		});
+			//wipe the cookie
+			res.clearCookie("id");
+
+			//redirect to landing page via front end functions
+			res.send(
+			{
+				success: true,
+				redirectTo: "/"
+			});
+		}
+		else
+			console.log("that cookie is undefined");
 	});
 
 	//Get only one user's stats from 'allUsers'
