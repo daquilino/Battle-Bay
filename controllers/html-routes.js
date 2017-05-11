@@ -6,6 +6,22 @@
 // =============================================================
 const PATH = require("path");
 
+//Functions
+// function CheckForCookie(req) //returns true if user has an id cookie
+// {
+//   if (req.cookies.id !== undefined)
+//   {
+//     var cookie = req.cookies.id.split("=");
+
+//     if (cookie[0] === "id" && typeof parseInt(cookie[1]) === "number")
+//       return true;
+//     else
+//       return false;
+//   }
+//   else
+//     return false;
+// }
+
 // Routes
 // =============================================================
 module.exports = function(app) 
@@ -15,7 +31,6 @@ module.exports = function(app)
 
   //ADD ALL HTML ROUTES HERE 
   /*
- 
     -  landing-page
     -  sign-in-and-up page
     -  up-for-bid Page
@@ -24,11 +39,9 @@ module.exports = function(app)
 
   // EXAMPLE for landing page (test.html using handlebars)
   app.get("/", function(req, res) {
-   res.sendFile(PATH.join(__dirname, "../public/form-test.html"));
-  });
 
-  app.get("/landing", function(req, res) {
-    res.sendFile(PATH.join(__dirname, "../public/landing.html"));
+   res.sendFile(PATH.join(__dirname, "../public/landing.html"));
+
   });
 
   app.get("/sign-in", function(req, res) {
@@ -40,20 +53,19 @@ module.exports = function(app)
   });
 
   app.get("/user-homepage", function(req, res) {
-  	console.log("/user-homepage route hit.");
-    res.sendFile(PATH.join(__dirname, "../public/user-homepage.html"));
+      res.sendFile(PATH.join(__dirname, "../public/user-homepage.html"));
   });
 
   app.get("/make-a-listing", function(req, res) {
-    res.sendFile(PATH.join(__dirname, "../public/make-a-listing.html"));
+      res.sendFile(PATH.join(__dirname, "../public/make-a-listing.html"));
   });
 
   app.get("/all-listings", function(req, res) {
-    res.sendFile(PATH.join(__dirname, "../public/all-listings.html"));
+      res.sendFile(PATH.join(__dirname, "../public/all-listings.html"));
   });
 
   app.get("/warehouse", function(req, res) {
-    res.sendFile(PATH.join(__dirname, "../public/warehouse.html"));
+      res.sendFile(PATH.join(__dirname, "../public/warehouse.html"));
   });
 
   app.get("/leaderboard", function(req, res) {
