@@ -13,7 +13,7 @@ function CheckForCookie(req) //returns true if user has an id cookie
   {
     var cookie = req.cookies.id.split("=");
 
-    if (cookie[0] === "id" && typeof cookie[1] === "number")
+    if (cookie[0] === "id" && typeof parseInt(cookie[1]) === "number")
       return true;
     else
       return false;
@@ -31,7 +31,6 @@ module.exports = function(app)
 
   //ADD ALL HTML ROUTES HERE 
   /*
- 
     -  landing-page
     -  sign-in-and-up page
     -  up-for-bid Page
