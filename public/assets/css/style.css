@@ -56,15 +56,12 @@ body {
 }
 
 /*Landing Page*/
-/*.game-intro {
-	background-color: green;
-}*/
 .advertisement {
 	width: 100%;
 }
 #landing-signup {
   text-align: center;
-  /*background-color: yellow;*/
+  font-size: 40px;
   padding: 15px 0px 10px 0px;
   color: #f3f3f3;
 }
@@ -161,4 +158,12 @@ th {
 
 .white-text {
   color: #f3f3f3;
+}
+
+/*Main Nav Bar and Local Nav Bar*/
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+  background-color: white;  
+}
+#local-nav-bar>li>a:hover {
+  background-color: white;
 }
