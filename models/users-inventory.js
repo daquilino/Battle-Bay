@@ -37,6 +37,7 @@ module.exports = function(sequelize, DataTypes){
         {
             type: DataTypes.STRING,
             allowNull: true,
+            defaultValue: "none",
             validate: 
             {
                 isAlpha: true,

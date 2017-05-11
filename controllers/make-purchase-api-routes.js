@@ -19,8 +19,7 @@ const DB = require("../models");
 // Routes
 // =============================================================
 module.exports = function(app) 
-{
-			
+{			
 	// Route to make a purchase from the warehouse.
 	// 'units_sold' of item is incremented by quantity of users purchase in warehouseItems table.
 	// Then addToUserInventory() is called

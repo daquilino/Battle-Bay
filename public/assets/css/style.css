@@ -63,6 +63,7 @@ body {
   text-align: center;
   font-size: 40px;
   padding: 15px 0px 10px 0px;
+
   color: #f3f3f3;
 }
 #landing-signup:hover {
@@ -76,19 +77,17 @@ html {
 	min-height: 100%;
 }
 body {
-  margin-bottom: 60px;
+  margin-bottom: 300px;
 }
 .footer {
-  background-color: pink;
+  background-color: #000000;
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 300px;
 }
-#footer-text {
-  color: black;
-  text-align: center;
-  margin-top: 21px;
+.footer-text {
+  color: white;
 }
 
 /*Leaderboard*/
@@ -137,6 +136,8 @@ th {
   background-image: url(../images/treasure-banner.png);
   background-size: cover;
   background-position: center;
+  padding-top: 10%;
+  padding-bottom: 10%;
 }
 
 .game-intro {
@@ -160,10 +161,25 @@ th {
   color: #f3f3f3;
 }
 
+
 /*Main Nav Bar and Local Nav Bar*/
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
   background-color: white;  
 }
 #local-nav-bar>li>a:hover {
   background-color: white;
+}
+.footer-padding {
+  padding-top: 4%;
+}
+
+.footer-padding-copyright {
+  padding-top: 2%;
+}
+
+.landing-signup-button {
+  border-radius: 10px;
+  background-color: #e6892f;
+  border-color: #f3f3f3;
+  border-style: dotted;
 }
