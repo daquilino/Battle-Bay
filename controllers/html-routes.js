@@ -24,11 +24,7 @@ module.exports = function(app)
 
   // EXAMPLE for landing page (test.html using handlebars)
   app.get("/", function(req, res) {
-   res.sendFile(PATH.join(__dirname, "../public/form-test.html"));
-  });
-
-  app.get("/landing", function(req, res) {
-    res.sendFile(PATH.join(__dirname, "../public/landing.html"));
+   res.sendFile(PATH.join(__dirname, "../public/landing.html"));
   });
 
   app.get("/sign-in", function(req, res) {
