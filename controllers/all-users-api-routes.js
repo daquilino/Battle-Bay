@@ -172,7 +172,7 @@ module.exports = function(app)
 
 		//wipe the cookie
 		res.clearCookie("id");
-		console.log("cookie cleared");
+		
 		//redirect to landing page via front end functions
 		res.send(
 		{

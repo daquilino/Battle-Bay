@@ -23,8 +23,8 @@ function BidderBot(nameInput, bidChance, bidRange)
 
 	//private
 	var name = nameInput
-		, chance = bidChance
-		, multiplier = bidRange;
+		, chance = bidChance //number < 100
+		, multiplier = bidRange; //number < 100
 
 	//Get/Set Properties -----------------------------------
 
@@ -45,29 +45,31 @@ function BidderBot(nameInput, bidChance, bidRange)
 	//private
 	var DecideIfBuying = function(itemObject)
 	{
+
+		//BASIC IMPLEMENTATION
+		return Math.round(Math.random());
+
 		//include itemObject data in calculations further down the road
 
-		var lottoNumber = Math.floor(Math.random() * 100);
+		// var lottoNumber = Math.floor(Math.random() * 100);
 
-		if (lottoNumber < chance)
-		{
-			console.log("chance: " + chance);
-			console.log("lotto number: " + lottoNumber);
-			return true;
-		}
-		else
-		{
-			console.log("chance: " + chance);
-			console.log("lotto number: " + lottoNumber);
-			return false;
-		}
+		// if (lottoNumber < chance)
+		// {
+		// 	console.log("chance: " + chance);
+		// 	console.log("lotto number: " + lottoNumber);
+		// 	return true;
+		// }
+		// else
+		// {
+		// 	console.log("chance: " + chance);
+		// 	console.log("lotto number: " + lottoNumber);
+		// 	return false;
+		// }
 	};
 
 	//private
 	var DecideBidAmount = function(itemObject)
 	{
-		//iclude itemObject data in calculations further down the road
-
 		if (itemObject.highest_bid !== null && itemObject.highest_bid !== 0)
 		{
 			console.log("going off highest bid");
@@ -138,8 +140,31 @@ function BidderBot(nameInput, bidChance, bidRange)
 			}
 			else
 				console.log("no items for sale");
-
 		});
+	};
+
+	//private
+	var ConvertToMilliseconds = function(number, timeUnits)
+	{
+		switch(timeUnits)
+		{
+			case 'd':
+				ConvertToMilliseconds(number * 24, 'h');
+				break;
+			case 'h':
+				ConvertToMilliseconds(number * 60, 'm');
+				break;
+			case 'm':
+				ConvertToMilliseconds(number * 60, 's');
+				break;
+			case 's':
+				return number * 1000;
+				break;
+			default:
+				console.log("invalid units");
+				return -1;
+				break;
+		}
 	};
 
 	//public
@@ -153,7 +178,8 @@ function BidderBot(nameInput, bidChance, bidRange)
 module.exports = BidderBot;
 
 //testing =================================================================
-
+// var hank = new BidderBot("Hank", 1, 1);
+// hank.StartBiddingCycle(2);
 
 
 
