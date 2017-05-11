@@ -7,20 +7,20 @@
 const PATH = require("path");
 
 //Functions
-function CheckForCookie(req) //returns true if user has an id cookie
-{
-  if (req.cookies.id !== undefined)
-  {
-    var cookie = req.cookies.id.split("=");
+// function CheckForCookie(req) //returns true if user has an id cookie
+// {
+//   if (req.cookies.id !== undefined)
+//   {
+//     var cookie = req.cookies.id.split("=");
 
-    if (cookie[0] === "id" && typeof cookie[1] === "number")
-      return true;
-    else
-      return false;
-  }
-  else
-    return false;
-}
+//     if (cookie[0] === "id" && typeof parseInt(cookie[1]) === "number")
+//       return true;
+//     else
+//       return false;
+//   }
+//   else
+//     return false;
+// }
 
 // Routes
 // =============================================================
@@ -31,7 +31,6 @@ module.exports = function(app)
 
   //ADD ALL HTML ROUTES HERE 
   /*
- 
     -  landing-page
     -  sign-in-and-up page
     -  up-for-bid Page
@@ -54,31 +53,19 @@ module.exports = function(app)
   });
 
   app.get("/user-homepage", function(req, res) {
-    if (CheckForCookie(req))
       res.sendFile(PATH.join(__dirname, "../public/user-homepage.html"));
-    else
-      res.sendFile(PATH.join(__dirname, "../public/sign-up.html"));
   });
 
   app.get("/make-a-listing", function(req, res) {
-    if (CheckForCookie(req))
       res.sendFile(PATH.join(__dirname, "../public/make-a-listing.html"));
-    else
-      res.sendFile(PATH.join(__dirname, "../public/sign-up.html"));
   });
 
   app.get("/all-listings", function(req, res) {
-    if (CheckForCookie(req))
       res.sendFile(PATH.join(__dirname, "../public/all-listings.html"));
-    else
-      res.sendFile(PATH.join(__dirname, "../public/sign-up.html"));
   });
 
   app.get("/warehouse", function(req, res) {
-    if (CheckForCookie(req))
       res.sendFile(PATH.join(__dirname, "../public/warehouse.html"));
-    else
-      res.sendFile(PATH.join(__dirname, "../public/sign-up.html"));
   });
 
   app.get("/leaderboard", function(req, res) {
