@@ -149,13 +149,13 @@ function BidderBot(nameInput, bidChance, bidRange)
 		switch(timeUnits)
 		{
 			case 'd':
-				ConvertToMilliseconds(number * 24, 'h');
+				return ConvertToMilliseconds(number * 24, 'h');
 				break;
 			case 'h':
-				ConvertToMilliseconds(number * 60, 'm');
+				return ConvertToMilliseconds(number * 60, 'm');
 				break;
 			case 'm':
-				ConvertToMilliseconds(number * 60, 's');
+				return ConvertToMilliseconds(number * 60, 's');
 				break;
 			case 's':
 				return number * 1000;
@@ -168,18 +168,20 @@ function BidderBot(nameInput, bidChance, bidRange)
 	};
 
 	//public
-	this.StartBiddingCycle = function(seconds)
+	this.StartBiddingCycle = function(number, timeUnits)
 	{
-		var bidId = setInterval(SelectItem, seconds * 1000);
+		var delay = ConvertToMilliseconds(number, timeUnits);
+
+		var bidId = setInterval(SelectItem, delay);
 	};
 }
 
 //exporting the module ====================================================
-module.exports = BidderBot;
+// module.exports = BidderBot;
 
 //testing =================================================================
-// var hank = new BidderBot("Hank", 1, 1);
-// hank.StartBiddingCycle(2);
+var hank = new BidderBot("Hank", 1, 1);
+hank.StartBiddingCycle(1, 's');
 
 
 
