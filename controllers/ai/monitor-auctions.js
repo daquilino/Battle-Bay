@@ -9,18 +9,13 @@ const DB = require("../../models");
 //Assume 5 minute auctions for testing.
 
 module.exports = function monitorAI()
-{
-	console.log("\nmonitor-autions function called\n"); //TEST CODE REMOVE
-	
+{	
 	//all array of items for sale obects.
 	var itemsForSale;
 	
 	//flag to check if interval is active
 	var intervalFlag = false;
 
-	//const auctionTime = 5000; //miliseconds NOT CURRENTLY USED MAY REMOVE hard codded now
-
-	
 	DB.itemsForSale.findAll()
 	.then(function(data)
 	{
@@ -54,7 +49,8 @@ module.exports = function monitorAI()
 			
 			monitorAI();
 		
-		}, 250000);
+		}, 270000);// 4.5 minutes
+		
 	});		
 };// module
 
@@ -77,7 +73,7 @@ function isExpired(item)
 //--------------------------------------
 // Adds item to 'usersInventory',
 // then calls removeForSale() to remove item from 'itemsForSale'. 
-function returnToUsersInventory(item, sold)
+function returnToUsersInventory(item)
 {
 	var itemId = item.id;	
 
@@ -85,27 +81,46 @@ function returnToUsersInventory(item, sold)
 	delete item.createdAt;
 	delete item.id;
 
-	//adds 'sold' property to item
-	item.sold = sold;
+	item.was_listed = true;
+	
+	//if 'sold' property to item
+	if(item.highest_bid >= item.starting_price)
+		item.sold = true;
 
 	DB.usersInventory.create(item)
 	.then(function()
 	{
-		removeForSale(itemId);
+		removeForSale(item, itemId);
 	});
 }
 
 //--------------------------------------
-// Deletes item with id 'forSaleId' from 'itemsForSale' table
-function removeForSale(forSaleId)
+// Deletes item with id 'forSaleId' from 'itemsForSale' table, then calls updateUserStats().
+function removeForSale(item, itemId)
 {
+
 	DB.itemsForSale.destroy(
     {
      	where: 
       	{
-        	id: forSaleId
+        	id: itemId
       	}
+    }).then(function()
+    {
+    	updateUserStats(item)
     });
 }
 
+//---------------------------------------
+// Increments 'money_earned' and 'balance' of user based on 'item.allUsersId'
+// in `allUsers` table.
+function updateUserStats(item)
+{
+	var updateObj = {
+		money_earned: DB.sequelize.literal('money_earned + ' + item.highest_bid),
+		balance:  DB.sequelize.literal('balance + ' + item.highest_bid)
+	};
+
+	DB.allUsers.update(updateObj, {where: {id: item.allUserId}});
+}
 
