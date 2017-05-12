@@ -5,15 +5,52 @@
 
 /*
 Todo:
-	- make a logout route
-		- removes cookie
-		- redirect to landing page
 */
 
 // Dependencies
 // =============================================================
 // Requiring our models
 const DB = require("../models");
+
+//Functions ===================================================
+function CheckAvailableAndRegister(req, res)
+{
+	//check if username is already taken
+	DB.allUsers.findOne(
+	{
+		where: {username: req.body.signUpName}
+	}).then(function(result)
+	{
+		//if username is available
+		if (result === null)
+		{
+			//create user
+			DB.allUsers.create(
+			{
+				username: req.body.signUpName,
+				password: req.body.signUpPassword
+			}).then(function(newUser)
+			{
+				console.log("Created a new user");
+				console.log(newUser.dataValues);
+				//set a cookie containing that user's id#
+				res.cookie("id", newUser.dataValues.id);
+				//redirect to user homepage via front end functions
+				res.send(
+				{
+					success: true,
+					redirectTo: "/user-homepage"
+				});
+			});
+		}
+		else //username is already taken
+		{
+			console.log("Username already taken.");
+			//send error
+			res.json({error: "Username already taken"});
+		}
+	});
+}
 
 // Routes
 // =============================================================
@@ -22,57 +59,34 @@ module.exports = function(app)
 	//Registering a new user
 	app.post("/api/user/signup", function(req, res)
 	{
-		//check sign up input
-		if (req.body.signUpName !== "" && req.body.signUpPassword === req.body.signUpPasswordConfirm)
+		//check name field
+		if (req.body.signUpName !== "")
 		{
-			//check if username is already taken
-			DB.allUsers.findOne(
+			//check for blank passwords
+			if (req.body.signUpPassword !== "" || req.body.signUpPasswordConfirm !== "")
 			{
-				where: {username: req.body.signUpName}
-			}).then(function(result)
-			{
-				//if username is available
-				if (result === null)
+				//ensure passwords match
+				if (req.body.signUpPassword === req.body.signUpPasswordConfirm)
 				{
-					//create user
-					DB.allUsers.create(
-					{
-						username: req.body.signUpName,
-						password: req.body.signUpPassword
-					}).then(function(newUser)
-					{
-						console.log("Created a new user");
-						console.log(newUser.dataValues);
-						//set a cookie containing that user's id#
-						res.cookie("id", newUser.dataValues.id);
-						//redirect to user homepage via front end functions
-						res.send(
-						{
-							success: true,
-							redirectTo: "/user-homepage"
-						});
-					});
+					//register new user if username is available
+					CheckAvailableAndRegister(req, res);
 				}
-				else //username is already taken
+				else
 				{
-					console.log("Username already taken.");
-					//send error
-					res.json({error: "Username already taken"});
+					console.log("Passwords don't match");
+					res.json({error: "Passwords don't match"});
 				}
-			});
-		}
-		else //sign up info invalid 
-		{
-			if (req.body.signUpName === "")
-			{
-				console.log("username can't be blank");
-				res.json({error: "Username can't be blank"});
 			}
 			else
 			{
-				console.log("passwords didn't match.");
-				res.json({error: "Passwords entered did not match"});
+				console.log("Password can't be blank");
+				res.json({error: "Password can't be blank"});
 			}
+		}
+		else
+		{
+			console.log("Username can't be blank");
+			res.json({error: "Username can't be blank"});
 		}
 	});
 
@@ -185,7 +199,14 @@ module.exports = function(app)
 			});
 		}
 		else
+		{
 			console.log("that cookie is undefined");
+			res.send(
+			{
+				success: false,
+				message: "No cookie"
+			});
+		}
 	});
 
 	//Get only one user's stats from 'allUsers'
