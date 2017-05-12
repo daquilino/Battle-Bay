@@ -16,7 +16,7 @@ $.ajax({
 			"<tr>" +
 			"<td>" + data[i].allUser.username + "</td>" +
 			"<td>" + data[i].item_name + "</td>" +
-			"<td>" + highestBid + "</td>" +
+			"<td>" + data[i].highest_bid + "</td>" +
 			"<td>" + data[i].quantity + "</td>" +
 			"</tr>");
 	}
