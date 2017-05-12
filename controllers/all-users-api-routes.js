@@ -147,38 +147,45 @@ module.exports = function(app)
 	app.put("/api/user/logout", function(req, res)
 	{
 		// //When we swtich to token, set that users token to null
-		// DB.allUsers.update(
+		// if (req.cookies.token !== undefined)
 		// {
-		// 	token: null
-		// }, 
-		// {
-		// 	where:
+		// 	DB.allUsers.update(
 		// 	{
-		// 		token: req.cookies.token
-		// 	}
-		// }).then(function(signedOutUser)
-		// {
-		// 	//wipe the cookie
-		// 	res.clearCookie("token");
+		// 		token: null
+		// 	}, 
+		// 	{
+		// 		where:
+		// 		{
+		// 			token: req.cookies.token
+		// 		}
+		// 	}).then(function(signedOutUser)
+		// 	{
+		// 		//wipe the cookie
+		// 		res.clearCookie("token");
 
-		// 	//redirect to landing page via front end functions
-		// 	res.send(
-		// 	{
-		// 		success: true,
-		// 		redirectTo: "/"	
+		// 		//redirect to landing page via front end functions
+		// 		res.send(
+		// 		{
+		// 			success: true,
+		// 			redirectTo: "/"	
+		// 		});
 		// 	});
-		// });
+		// }
 
-
-		//wipe the cookie
-		res.clearCookie("id");
-		
-		//redirect to landing page via front end functions
-		res.send(
+		if (req.cookies.id !== undefined)
 		{
-			success: true,
-			redirectTo: "/"
-		});
+			//wipe the cookie
+			res.clearCookie("id");
+
+			//redirect to landing page via front end functions
+			res.send(
+			{
+				success: true,
+				redirectTo: "/"
+			});
+		}
+		else
+			console.log("that cookie is undefined");
 	});
 
 	//Get only one user's stats from 'allUsers'
