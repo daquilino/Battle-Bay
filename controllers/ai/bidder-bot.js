@@ -143,7 +143,10 @@ function BidderBot(nameInput, bidChance, bidRange)
 					MakeBid(bidAmount, saleItems[chosenIndex]);
 				}
 				else
+				{
+					console.log("------------------------------------------------");
 					console.log(name + " is not buying the item at index: " + chosenIndex);
+				}
 			}
 			else
 				console.log("no items for sale");
