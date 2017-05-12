@@ -14,6 +14,14 @@ In order for a botBid to be made, 3 decisions must be made.
     
 - If decide to buy item === true
     - make bid for whateverAmountDecided
+
+-----------------------------------------------------------
+Initialization info
+- bidChance is the likelihood of the bot making a bid. Ex:
+	bidChance of 10 has a 1/10 chance of bidding
+- bidRange will be turned into multiplier on the current 
+price of the item. Ex:
+	bidRange of 28 may max out at a 1.27 multiplier of the current price
 */
 
 //constructor =============================================================
@@ -23,8 +31,8 @@ function BidderBot(nameInput, bidChance, bidRange)
 
 	//private
 	var name = nameInput
-		, chance = bidChance //number < 100
-		, multiplier = bidRange; //number < 100
+		, chance = bidChance //number < 100 && number > 0
+		, range = bidRange; //number < 100 && number > 0
 
 	//Get/Set Properties ---------------------------------------------
 
@@ -45,41 +53,40 @@ function BidderBot(nameInput, bidChance, bidRange)
 	//private
 	var DecideIfBuying = function(itemObject)
 	{
-
-		//BASIC IMPLEMENTATION
-		return Math.round(Math.random());
-
 		//include itemObject data in calculations further down the road
 
-		// var lottoNumber = Math.floor(Math.random() * 100);
-
-		// if (lottoNumber < chance)
-		// {
-		// 	console.log("chance: " + chance);
-		// 	console.log("lotto number: " + lottoNumber);
-		// 	return true;
-		// }
-		// else
-		// {
-		// 	console.log("chance: " + chance);
-		// 	console.log("lotto number: " + lottoNumber);
-		// 	return false;
-		// }
+		var lottoNumber = Math.floor(Math.random() * 100);
+		return (lottoNumber < chance);
 	};
 
 	//private
 	var DecideBidAmount = function(itemObject)
 	{
+		var multiplier = Math.round(Math.random() * range) / 100 + 1;
+		multiplier = parseFloat(multiplier.toFixed(2));
+
 		//somebody has bid on the item
 		if (itemObject.highest_bid !== null && itemObject.highest_bid !== 0)
 		{
 			console.log("going off highest bid");
-			return Math.round((Math.random() + 1) * itemObject.highest_bid);
+
+			var bid = Math.ceil(multiplier * itemObject.highest_bid);
+
+			if (bid === itemObject.highest_bid)
+				return bid + 1;
+			else
+				return bid;
 		}
 		else	//nobody has bid on the item yet
 		{
 			console.log("going off starting price");
-			return Math.round((Math.random() + 1) * itemObject.starting_price);
+
+			var bid = Math.ceil(multiplier * itemObject.starting_price);
+
+			if (bid === itemObject.starting_price)
+				return bid + 1;
+			else
+				return bid;
 		}
 	};
 
@@ -144,20 +151,20 @@ function BidderBot(nameInput, bidChance, bidRange)
 	};
 
 	//private
-	var ConvertToMilliseconds = function(number, timeUnits)
+	var ConvertToMilliseconds = function(number, timeUnit)
 	{
-		switch(timeUnits)
+		switch(timeUnit)
 		{
-			case 'd':
+			case 'd': //days
 				return ConvertToMilliseconds(number * 24, 'h');
 				break;
-			case 'h':
+			case 'h': //hours
 				return ConvertToMilliseconds(number * 60, 'm');
 				break;
-			case 'm':
+			case 'm': //minutes
 				return ConvertToMilliseconds(number * 60, 's');
 				break;
-			case 's':
+			case 's': //seconds
 				return number * 1000;
 				break;
 			default:
@@ -167,11 +174,11 @@ function BidderBot(nameInput, bidChance, bidRange)
 	};
 
 	//public
-	this.StartBiddingCycle = function(number, timeUnits)
+	this.StartBiddingCycle = function(number, timeUnit)
 	{
-		var delay = ConvertToMilliseconds(number, timeUnits);
+		var delay = ConvertToMilliseconds(number, timeUnit);
 
-		if (typeof delay === "number")
+		if (typeof delay === "number" && delay > 0)
 			var bidId = setInterval(SelectItem,	delay);
 		else
 			console.log("delay invalid");
@@ -182,8 +189,6 @@ function BidderBot(nameInput, bidChance, bidRange)
 module.exports = BidderBot;
 
 //testing =================================================================
-// var hank = new BidderBot("Hank", 1, 1);
-// hank.StartBiddingCycle(3, 's');
 
 
 
