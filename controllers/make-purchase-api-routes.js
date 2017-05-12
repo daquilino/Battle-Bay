@@ -21,41 +21,52 @@ const DB = require("../models");
 module.exports = function(app) 
 {			
 	// Route to make a purchase from the warehouse.
+	// Checks if user has sufficient funds before purchase.
 	// 'units_sold' of item is incremented by quantity of users purchase in warehouseItems table.
 	// Then addToUserInventory() is called
 	app.put("/api/make-purchase", function(req, res)
-	{						
-		//Updates 'units_sold' of item.
-		DB.warehouseItems.update(
-		{ 			
-			 units_sold: DB.sequelize.literal('units_sold + ' + req.body.quantity)				
-		},
-		
-		{
-			where: 
-			{
-				id: req.body.warehouseID
-			}
-		})
+	{								
+		DB.allUsers.findOne({where: {id: req.body.userID}})
 		.then(function(data)
-		{			
-			//if update successful
-			if(data[0] === 1)
-			{
-				addToUserInventory(req.body.userID, req.body.quantity, req.body.warehouseName, req.body.total, res);
+		{
+		
+			if(data.balance >= req.body.total)
+			{	
+				//Updates 'units_sold' of item.
+				DB.warehouseItems.update(
+				{ 			
+					 units_sold: DB.sequelize.literal('units_sold + ' + req.body.quantity)				
+				},
+				
+				{
+					where: 
+					{
+						id: req.body.warehouseID
+					}
+				})
+				.then(function(data)
+				{			
+					//if update successful
+					if(data[0] === 1)
+					{
+						addToUserInventory(req.body.userID, req.body.quantity, req.body.warehouseName, req.body.total, res);
+					}
+					else
+					{
+						res.json({complete: false, error: "update failed"});
+					}	
+					
+				}).catch(function(error){
+					
+					res.json({complete: false, error: "update error"});
+				});		
 			}
 			else
 			{
-				res.json({complete: false});
-			}	
-			
-		}).catch(function(error){
-			
-			res.json({complete: false});
-		});
-
-	});
-  
+				res.json({complete: false, error: "Insufficient Balance"})
+			}
+		});	
+  	});
 };
 
 //Helper Functions
