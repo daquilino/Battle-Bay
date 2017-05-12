@@ -40,7 +40,7 @@ function getPlayerListings() {
 
 		for (var i = 0; i < numberOfListings; i++){
 			$("#playerListings").append(
-				"<div class='col-xs-12 stand-out-div-light rounded-borders'>" +
+				"<div class='col-xs-12 stand-out-div-dark rounded-borders'>" +
 				"<div class='col-xs-3'>" +
 				"<h5>Item Name: " + data[i].item_name + "</h5>" +
 				"</div>" +
@@ -74,7 +74,7 @@ function getPlayersItemsSold() {
 
 		if (numberOfListings === 0) {
 			$("#playersItemsSold").append(
-				"<div class='col-xs-12 stand-out-div-light rounded-borders'>" +
+				"<div class='col-xs-12 stand-out-div-dark rounded-borders'>" +
 				"<div class='col-xs-3'>" +
 				"<h5>No Items Sold.</h5>" +
 				"</div>" +
@@ -84,7 +84,7 @@ function getPlayersItemsSold() {
 		for (var i = 0; i < numberOfListings; i++){
 			if (data[i].sold === true) {
 				$("#playersItemsSold").append(
-				"<div class='col-xs-12 stand-out-div-light rounded-borders'>" +
+				"<div class='col-xs-12 stand-out-div-dark rounded-borders'>" +
 				"<div class='col-xs-3'>" +
 				"<h5>Item Name: " + data[i].item_name + "</h5>" +
 				"</div>" +
