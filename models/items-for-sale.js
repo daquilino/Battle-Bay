@@ -19,7 +19,6 @@ module.exports = function(sequelize, DataTypes)
 			type: DataTypes.INTEGER,
 			defaultValue: 1, 
 			allowNull: false,
-
 			validate: 
 			{
 				isInt: true,
@@ -42,10 +41,11 @@ module.exports = function(sequelize, DataTypes)
 		{
 			type: DataTypes.INTEGER,
 			allowNull: true,
+			defaultValue: 0,
 			validate: 
 			{
 				isInt: true,
-				min: 1
+				min: 0
 			}
 		},
 		
@@ -53,6 +53,7 @@ module.exports = function(sequelize, DataTypes)
 		{
 			type: DataTypes.STRING,
 			allowNull: true,
+			defaultValue: "none",
 			validate: 
 			{
 				isAlpha: true,

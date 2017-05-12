@@ -1,12 +1,29 @@
+//Dependencies
 //load in the models
 const DB = require("../../models");
 
-/*  NOTES
+/*  
+	This is the 'Monitoring' logic for the ongoing auctions (or 'listings').
+	
+	Using setTimeout() monitorAI() call itself recursivly to GET all current listings and
+	stores them in an array as to not have to keep querying database.
+	
+	Then within a setInterval timer loops through all listings checking if they expired.
+	
+	When expired they are check if they are sold or not.  If sold their 'sold' status is
+	marked true, they are retunred to users inventory, and owners stats are updated.  
+	If not sold, they are simply retured to users inventory wigh their 'sold' status as
+	'false' so they could be re-listed at another time.
+
+
+	*NOTE
 	In order for Date() to work properly in localhost.
 	You need to add "timezone": "America/New_York" parameter to 'development' in config.json
 */
 
-//Assume 5 minute auctions for testing.
+
+
+//Assume 5 minute auctions.
 
 module.exports = function monitorAI()
 {	
@@ -25,7 +42,7 @@ module.exports = function monitorAI()
 		{
 			intervalFlag = true;
 			
-			//Runs every 5s until clearInterval is called.
+			//Runs every 1s until clearInterval is called.
 			var intervalID = setInterval(function()
 			{				
 				for(var key in itemsForSale)
@@ -39,7 +56,7 @@ module.exports = function monitorAI()
 					}						
 				}						
 			
-			}, 5000);			
+			}, 1000);			
 		}
 		
 		setTimeout(function()

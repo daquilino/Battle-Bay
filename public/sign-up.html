@@ -98,25 +98,36 @@
     		
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-xs-4">
+
+
+					<div class="col-xs-4 sign-up-page-left">
 						<!-- <a href="/sign-up"><h1>Sign Up</h1></a> -->
 					</div>
 
-					<div class="col-xs-4" id="sign-up-form">
-						<h1>Sign Up Page</h1>
-						<br>
+					<div class="col-xs-4 white-border stand-out-div-dark rounded-borders white-text sign-in-form" id="sign-in-form">
 							<h3>Sign Up</h3>
 							<form>
-							<input type="text" name="signUpName">name
+							<label for="signUpName">Name:</label>
 							<br>
-							<input type="password" name="signUpPassword">Pass
+							<input type="text" name="signUpName" style="color: black;">
 							<br>
-							<input type="password" name="signUpPasswordConfirm">Confirm Pass
+							<label for="signInPassword">Pass:</label>
+							<br>
+							<input type="password" name="signUpPassword">
+							<br>
+							<label for="signInPassword">Confirm Pass:</label>
+							<br>
+							<input type="password" name="signUpPasswordConfirm">
+							<br>
 							</form>
-							<button id="signUpSubmit">Sign Up Submit</button>
+							<br>
+							<button class="btn btn-default" id="signUpSubmit">Sign Up Submit</button>
+							<br>
+							<br>
+							<p>Already have an account?<a class="sign-in-button" href="/sign-in" style="text-decoration: none;"> Sign In! </a></p>
 					</div>
 
-					<div class="col-xs-4">
+					<div class="col-xs-4 sign-up-page-right">
 						<!-- <a href="/sign-in"><h1>Sign In</h1></a> -->
 					</div>		
 
