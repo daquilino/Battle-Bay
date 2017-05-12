@@ -92,7 +92,14 @@ var Landing = Barba.BaseView.extend({
   namespace: 'Landing',
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
+      $.get("assets/javascript/nav-bar-change.js");
       console.log("Landing loading worked");
+  },
+  onLeave: function() {
+    // nav-bar-change listeners
+    if (eventListenerCreated === true){
+      $(document).off("click", "#sign-nav-link", logOut);
+    }
   }
 });
 
@@ -108,6 +115,7 @@ var SignUp = Barba.BaseView.extend({
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
       $.get("assets/javascript/form-test.js");
+      $.get("assets/javascript/nav-bar-change.js");
       console.log("SignUp loading worked");
   },
   onLeave: function() {
@@ -121,6 +129,11 @@ var SignUp = Barba.BaseView.extend({
     $(document).off("click", "#placeOrder", placeOrder);
     $(document).off("click", "#getItemListings", getItemListings);
     $(document).off("click", "#makeListing", makeListing); //makeListing
+
+    // nav-bar-change listeners
+    if (eventListenerCreated === true){
+      $(document).off("click", "#sign-nav-link", logOut);
+    }
   }
 });
 
@@ -136,6 +149,7 @@ var SignIn = Barba.BaseView.extend({
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
       $.get("assets/javascript/form-test.js");
+      $.get("assets/javascript/nav-bar-change.js");
       console.log("SignIn loading worked");
   },
   onLeave: function() {
@@ -149,6 +163,11 @@ var SignIn = Barba.BaseView.extend({
     $(document).off("click", "#placeOrder", placeOrder);
     $(document).off("click", "#getItemListings", getItemListings);
     $(document).off("click", "#makeListing", makeListing); //makeListing
+
+    // nav-bar-change listeners
+    if (eventListenerCreated === true){
+      $(document).off("click", "#sign-nav-link", logOut);
+    }
   }
 });
 
@@ -165,7 +184,7 @@ var MakeListing = Barba.BaseView.extend({
       // The new Container is ready and attached to the DOM.
       $.get("assets/javascript/make-a-listing-page.js");
       $.get("assets/javascript/form-test.js");
-      
+      $.get("assets/javascript/nav-bar-change.js");
       console.log("MakeListing loading worked");
   },
    onLeave: function() {
@@ -183,6 +202,11 @@ var MakeListing = Barba.BaseView.extend({
     $(document).off("click", "#placeOrder", placeOrder);
     $(document).off("click", "#getItemListings", getItemListings);
     $(document).off("click", "#makeListing", makeListing); //makeListing
+
+    // nav-bar-change listeners
+    if (eventListenerCreated === true){
+      $(document).off("click", "#sign-nav-link", logOut);
+    }
   }
 });
 
@@ -198,7 +222,14 @@ var Leaderboard = Barba.BaseView.extend({
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
       $.get("assets/javascript/leaderboard.js");
+      $.get("assets/javascript/nav-bar-change.js");
       console.log("Leaderboard loading worked");
+  },
+  onLeave: function() {
+    // nav-bar-change listeners
+    if (eventListenerCreated === true){
+      $(document).off("click", "#sign-nav-link", logOut);
+    }
   }
 });
 
@@ -214,10 +245,14 @@ var UserHomepage = Barba.BaseView.extend({
   onEnter: function() {
       // The new Container is ready and attached to the DOM.
       $.get("assets/javascript/user-homepage.js");
+      $.get("assets/javascript/nav-bar-change.js");
       console.log("UserHomepage loading worked");
   },
    onLeave: function() {
-    
+    // nav-bar-change listeners
+    if (eventListenerCreated === true){
+      $(document).off("click", "#sign-nav-link", logOut);
+    }
   }
 });
 
@@ -234,7 +269,14 @@ var AllListings = Barba.BaseView.extend({
       // The new Container is ready and attached to the DOM.
       $.get("assets/javascript/all-listings.js");
       $.get("assets/javascript/sorttable.js");
+      $.get("assets/javascript/nav-bar-change.js");
       console.log("AllListings loading worked");
+  },
+  onLeave() {
+    // nav-bar-change listeners
+    if (eventListenerCreated === true){
+      $(document).off("click", "#sign-nav-link", logOut);
+    }
   }
 });
 
@@ -251,6 +293,7 @@ var Warehouse = Barba.BaseView.extend({
       // The new Container is ready and attached to the DOM.
       $.get("assets/javascript/warehouse-page.js");
       $.get("assets/javascript/form-test.js");
+      $.get("assets/javascript/nav-bar-change.js");
       console.log("Warehouse loading worked");
   },
    onLeave: function() {
@@ -269,6 +312,11 @@ var Warehouse = Barba.BaseView.extend({
     $(document).off("click", "#placeOrder", placeOrder);
     $(document).off("click", "#getItemListings", getItemListings);
     $(document).off("click", "#makeListing", makeListing);
+
+    // nav-bar-change listeners
+    if (eventListenerCreated === true){
+      $(document).off("click", "#sign-nav-link", logOut);
+    }
     }
 });
 
