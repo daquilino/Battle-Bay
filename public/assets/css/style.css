@@ -108,7 +108,7 @@ body {
 }
 .first-place {
   height: 100px;
-  font-size: 3.4vw;
+  font-size: 3.7vw;
   line-height: 
 }
 .second-place {
@@ -121,6 +121,21 @@ body {
 }
 .leaderboard-losers {
   font-size: 1.8vw;
+}
+#first-place-trophy {
+  width: 15vh;
+}
+#second-place-trophy {
+  width: 11vh;
+}
+#third-place-trophy {
+  width: 8vh;
+}
+#second-place-line {
+  width: 61vw;
+}
+#third-place-line {
+  width: 46vw;
 }
 
 /*All Listings Page*/
