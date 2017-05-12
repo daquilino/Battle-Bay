@@ -179,13 +179,13 @@ function BidderBot(nameInput, bidChance, bidRange)
 		var delay = ConvertToMilliseconds(number, timeUnit);
 
 		if (typeof delay === "number" && delay > 0)
-			var bidId = setInterval(SelectItem,	delay);
+			var bidId = setInterval(SelectItem, delay);
 		else
 			console.log("delay invalid");
 	};
 }
 
-//exporting the module ====================================================
+//exporting the constructor ===============================================
 module.exports = BidderBot;
 
 //testing =================================================================
