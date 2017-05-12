@@ -39,7 +39,7 @@ const BidderBot = require("./controllers/ai/bidder-bot.js");
 const MONITOR = require("./controllers/ai/monitor-auctions.js")
 
 //Construct AI objects
-var hank = new BidderBot("Hank");
+var hank = new BidderBot("Hank", 25, 5);
 
 // Set Handlebars.
 // APP.engine("handlebars", EXPHBS({ defaultLayout: "main" }));
@@ -62,7 +62,7 @@ DB.sequelize.sync().then(function()  //**** REMOVE {force:true} *** . USE ONLY F
 		console.log("Listening on port: " + PORT);
 
 		//Start AI bidding cycle
-		// hank.StartBiddingCycle(2);
+		// hank.StartBiddingCycle(3, 's');
 
 		//Starts auction monitoring
 		//MONITOR();
