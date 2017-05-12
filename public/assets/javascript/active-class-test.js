@@ -1,8 +1,0 @@
-// Debug Tool
-console.log("active-class-test.js Loaded.");
-
-// highlights the navbar link of the current page displayed
-$(".nav a").on("click", function(){
-   $(".nav").find(".active").removeClass("active");
-   $(this).parent().addClass("active");
-});

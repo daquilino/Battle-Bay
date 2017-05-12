@@ -75,7 +75,9 @@ function getPlayersItemsSold() {
 		if (numberOfListings === 0) {
 			$("#playersItemsSold").append(
 				"<div class='col-xs-12 stand-out-div-light rounded-borders'>" +
+				"<div class='col-xs-3'>" +
 				"<h5>No Items Sold.</h5>" +
+				"</div>" +
 				"</div>"
 		)} else {		
 
