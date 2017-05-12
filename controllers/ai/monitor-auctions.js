@@ -22,7 +22,6 @@ const DB = require("../../models");
 */
 
 
-
 //Assume 5 minute auctions.
 
 module.exports = function monitorAI()
