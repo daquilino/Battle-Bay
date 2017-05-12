@@ -74,7 +74,7 @@ DB.sequelize.sync().then(function()  //**** REMOVE {force:true} *** . USE ONLY F
 		hank.StartBiddingCycle(20, 's');
 
 		//Starts auction monitoring
-		//MONITOR();
+		MONITOR();
 	});
 });
 
